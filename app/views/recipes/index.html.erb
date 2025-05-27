@@ -1,7 +1,10 @@
 <h1>List of my recipes</h1>
 
-<%= @recipes %>
- <%= @recipe.each do |recipe| %>
- <%= @recipe.name %>
- <%= @recipe.description %>
-<%# <%= link_to "Add a recipe", recipe_path(@recipe) %> %>
+<ul>
+  <% @recipes.each do |recipe| %>
+  <li>
+  <%= recipe.name %>
+  <%= recipe.description %>
+  <% end %>
+  </li>
+</ul>
