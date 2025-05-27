@@ -41,6 +41,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipe_path, status: :see_other
   end
+
  private
 
   def set_recipe
@@ -50,5 +51,5 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :photo, :ingredients, :description, :quantity)
   end
-end
+  
 end
