@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
   resources :recipes, only: [:index, :new, :create, :show]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :users do
-    resources :messages, only: [:new, :create, :index]
-  end
+
+  resources :messages, only: [:new, :create, :index]
+
 
 end
