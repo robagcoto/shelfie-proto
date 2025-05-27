@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_134603) do
 
   add_foreign_key "cookbooks", "ingredients"
   add_foreign_key "cookbooks", "recipes"
+  add_foreign_key "ingredients", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
 end
