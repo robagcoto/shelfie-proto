@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  belongs_to :user
 
   VALID_CATEGORIES = ['French', 'Italian', 'Japanese', 'Mexican', 'Indian']
   has_one_attached :image
