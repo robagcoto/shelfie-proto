@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
-  has_many :ingredients, through: :cookbook
   belongs_to :user
+
   VALID_CATEGORIES = ['French', 'Italian', 'Japanese', 'Mexican', 'Indian']
   has_one_attached :image
   validates :name, presence: true
