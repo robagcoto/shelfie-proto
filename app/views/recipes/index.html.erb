@@ -1,10 +1,15 @@
-<h1>List of my recipes</h1>
+<div class="decoration">
+<h1 class="d-flex justify-content-center">List of my recipes</h1>
 
 <ul>
-  <% @recipes.each do |recipe| %>
-  <li>
-  <%= recipe.name %>
-  <%= recipe.description %>
-  <% end %>
-  </li>
+<% @recipes.each do |recipe| %>
+
+<li> <%= link_to recipe.name, recipe_path(recipe) %> </li>
+
+<% end %>
 </ul>
+
+<div class="ms-3"><%= link_to "Add a recipe", new_recipe_path(@recipe), class: "btn btn-primary" %></div>
+</div>
+
+

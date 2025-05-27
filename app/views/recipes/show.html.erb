@@ -1,2 +1,13 @@
-<%= @recipe.name %>
-<%= @recipe.category %>
+<h1><%= @recipe.name %></h1>
+
+<ul>
+<li><%= @recipe.description %></li>
+<li><%= @recipe.ingredients %></li>
+<li><%= @recipe.category %></li>
+<li><%= @recipe.rating %></li>
+<li><%= @recipe.quantity %></li>
+<li><%= @recipe.user_id %></li>
+
+</ul>
+
+<%= link_to "Back to recipes", recipes_path, class: "btn btn-primary"%>
