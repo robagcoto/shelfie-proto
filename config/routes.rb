@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'ingredients/index'
+  get 'ingredients/show'
+  get 'ingredients/new'
+  get 'ingredients/create'
+  get 'ingredients/edit'
+  get 'ingredients/update'
+  get 'ingredients/destroy'
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
