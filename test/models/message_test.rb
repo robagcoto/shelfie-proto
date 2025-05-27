@@ -1,6 +1,6 @@
 require "test_helper"
 
-class RecipyTest < ActiveSupport::TestCase
+class MessageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
