@@ -37,4 +37,5 @@ STORAGE_TYPES = [
 
   belongs_to :user
   belongs_to :recipe
+  has_many :cookbooks
 end
