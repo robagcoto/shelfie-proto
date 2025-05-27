@@ -11,3 +11,10 @@
 
 <div class="ms-3"><%= link_to "Add a recipe", new_recipe_path(@recipe), class: "btn btn-primary" %></div>
 </div>
+
+<%= @recipes %>
+ <%= @recipe.each do |recipe| %>
+ <%= @recipe.name %>
+ <%= @recipe.description %>
+<%# <%= link_to "Add a recipe", recipe_path(@recipe) %> %>
+
