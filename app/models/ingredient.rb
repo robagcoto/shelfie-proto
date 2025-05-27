@@ -27,11 +27,14 @@ FOOD_TYPES = [
 STORAGE_TYPES = [
   "dry",
   "fridge",
-  "freezer",
+  "freezer"
 ]
   validates :name, presence: true
   validates :quantity, presence: true
   validates :unit_type, presence: true, inclusion: { in: UNIT_TYPES }
   validates :food_type, presence: true, inclusion: { in: FOOD_TYPES }
   validates :storage_type, presence: true, inclusion: { in: STORAGE_TYPES}
+
+  belongs_to :user
+  belongs_to :recipe
 end
