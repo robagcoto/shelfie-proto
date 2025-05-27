@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :home, only: [:index]
   resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :recipes, only: [:index]
 end
