@@ -1,3 +1,17 @@
 .card {
   border-radius: 1rem; // ou 16px
 }
+
+.card-background {
+  background-image: asset-url("back_card.png");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+}
+
+.card-light-background {
+  background-image: asset-url("back_card_light.png");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+}

@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:new, :create, :index]
 
-
+get "/pages/dashboard", to: "pages#dashboard"
 end
