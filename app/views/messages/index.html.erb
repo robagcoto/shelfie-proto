@@ -1,5 +1,13 @@
 <h1>Your cooking assistant</h1>
-<h2>Type what's on your mind and your assistant will recommend a recipe </h2>
+<h2>Type what's on your mind and your assistant will recommend a recipe</h2>
+
+<% @messages.each do |message| %>
+  <p>
+    <strong><%= message.role %></strong>
+    <%= simple_format(message.prompt) %>
+  </p>
+<% end %>
+
 
 <%= simple_form_for [@message] do |f| %>
   <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
