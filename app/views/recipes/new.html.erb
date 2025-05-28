@@ -14,15 +14,15 @@
 
   <div class="row mb-3">
     <div class="col-4">
-      <%= f.input :ingredients_recipe, label: "Ingredients"  %>
+      <%= text_field_tag :ingredient_name, label: "Ingredients"  %>
       </div>
 
     <div class="col-4">
-      <%= f.input :quantity, label: "Quantity" %>
+      <%= text_field_tag :ingredient_quantity, label: "Quantity" %>
     </div>
 
     <div class="col-4">
-      <%= f.input :unit.ingredients_recipe, as: :select, prompt: "Unité" %>
+      <%= text_field_tag :ingredient_unit, as: :select, prompt: "Unité" %>
     </div>
 
   </div>
