@@ -1,4 +1,8 @@
-<div class="container my-5">
+<div class="container my-1">
+
+  <div class="text-start my-3">
+      <%= link_to "Return to recipe", recipes_path, class: "btn btn-primary btn-xl" %>
+  </div>
 
   <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
 
@@ -25,12 +29,9 @@
     </div>
 
     <div class="text-center mt-4">
-      <%= f.button :submit, "Create recipe", class: "btn btn-primary" %>
+      <%= f.button :submit, "Create recipe", class: "btn btn-primary btn-xl" %>
     </div>
   <% end %>
 
-  <div class="text-center mt-2">
-      <%= link_to "Return to recipe", recipes_path, class: "btn btn-primary" %>
-  </div>
 
 </div>
