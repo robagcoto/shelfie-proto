@@ -1,15 +1,28 @@
 <div class="container my-4">
   <div class="card shadow-sm">
     <div class="card-body">
-      <h1 class="card-title mb-4"><%= @recipe.name %></h1>
+      <h1 class="card-title mb-4 text-center"><%= @recipe.name %></h1>
 
       <ul class="list-group list-group-flush mb-4">
-        <li class="list-group-item"><strong>Description:</strong> <%= @recipe.description %></li>
-        <li class="list-group-item"><strong>Ingredients:</strong> <%= @recipe.ingredients %></li>
-        <li class="list-group-item"><strong>Category:</strong> <%= @recipe.category %></li>
-        <li class="list-group-item"><strong>Rating:</strong> <%= @recipe.rating %></li>
-        <li class="list-group-item"><strong>Quantity:</strong> <%= @recipe.quantity %></li>
-        <li class="list-group-item"><strong>User ID:</strong> <%= @recipe.user_id %></li>
+
+        <div class="container-img"><%= cl_image_tag @recipe.photo.key, class: "picture" %></div>
+
+        <li class="list-group-item mt-3"><strong>Category:</strong>
+        <p><%= @recipe.category %></p></li>
+
+        <li class="list-group-item">
+        <strong>Description:</strong>
+        <p><%= @recipe.description %></p></li>
+
+        <li class="list-group-item"><strong>Ingredients:</strong>
+        <p><%= @recipe.ingredients %></p></li>
+
+        <li class="list-group-item"><strong>Rating:</strong>
+        <p><%= @recipe.rating %></p></li>
+
+        <li class="list-group-item"><strong>Quantity:</strong>
+        <p><%= @recipe.quantity %></p></li>
+
       </ul>
 
       <%= link_to "Back to recipes", recipes_path, class: "btn btn-primary" %>
