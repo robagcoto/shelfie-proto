@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_27_190943) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_28_123102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_190943) do
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_cookbooks_on_ingredient_id"
     t.index ["recipe_id"], name: "index_cookbooks_on_recipe_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -35,6 +44,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_190943) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_ingredients_on_user_id"
+  end
+
+  create_table "ingredients_recipes", force: :cascade do |t|
+    t.string "name"
+    t.integer "quatity"
+    t.string "unit"
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -74,7 +93,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_190943) do
 
   add_foreign_key "cookbooks", "ingredients"
   add_foreign_key "cookbooks", "recipes"
+  add_foreign_key "favorites", "recipes"
+  add_foreign_key "favorites", "users"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "ingredients_recipes", "recipes"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
 end
