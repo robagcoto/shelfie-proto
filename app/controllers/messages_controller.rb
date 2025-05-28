@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = current_user.messages
+    @message = current_user.messages.new
   end
 
   def new
@@ -20,7 +21,7 @@ class MessagesController < ApplicationController
     if @message.save
       chat = RubyLLM.chat
       response = chat.with_instructions(instructions).ask(@message.prompt)
-      Message.create(prompt: response.prompt, role: :assistant, user: current_user)
+      Message.create(prompt: response.content, role: :assistant, user: current_user)
       redirect_to messages_path
     else
       render :new, status: :unprocessable_entity
