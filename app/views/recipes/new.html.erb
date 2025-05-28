@@ -14,7 +14,7 @@
 
   <div class="row mb-3">
     <div class="col-4">
-      <%= f.input :ingredients, collection: ["Pâtes", "Riz", "Poulet", "Boeuf"], as: :select, prompt: "Ingredients"  %>
+      <%= f.input :ingredients_recipe, label: "Ingredients"  %>
       </div>
 
     <div class="col-4">
@@ -22,9 +22,9 @@
     </div>
 
     <div class="col-4">
-      <%= f.input :unit, collection: ["ml", "cl", "l", "g", "kg"], as: :select, prompt: "Unité" %>
+      <%= f.input :unit.ingredients_recipe, as: :select, prompt: "Unité" %>
     </div>
-    
+
   </div>
 
     <%# <div class="mb-3">
