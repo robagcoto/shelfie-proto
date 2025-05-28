@@ -1,6 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+
+  background-image: url('nav_back.png'); // Chemin relatif depuis app/assets/images
+  background-size: cover;                 // Ajuste l'image pour couvrir toute la navbar
+  background-position: center;           // Centre l'image
+  background-repeat: no-repeat;          // Empêche la répétition
+  color: white;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +14,9 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 80px;
+}
+
+.navbar-lewagon {
+  font-family: 'Karla', sans-serif;
 }

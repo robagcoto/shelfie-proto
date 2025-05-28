@@ -1,3 +1,5 @@
+puts "Initializing seed 🌱"
+
 # 1. Create 2 demo users with prompt_setting
 user1 = User.create!(
   email: "anna@example.com",
@@ -8,6 +10,8 @@ user2 = User.create!(
   email: "max@example.com",
   password: "password",
 )
+
+puts "Users created ! 🧑🏻‍💻"
 
 # 2. Recipe seeds
 recipe1 = Recipe.new(
@@ -86,3 +90,6 @@ recipe7 = Recipe.new(
   user_id: 2
 )
 recipe7.save!
+
+puts "Recipes sample created 🍔"
+puts "Go check in your console 🪴"

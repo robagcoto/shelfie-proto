@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_27_134603) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_27_190943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_134603) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -73,7 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_134603) do
 
   add_foreign_key "cookbooks", "ingredients"
   add_foreign_key "cookbooks", "recipes"
-  add_foreign_key "messages", "users"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
 end

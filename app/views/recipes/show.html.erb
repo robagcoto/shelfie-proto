@@ -1,2 +1,18 @@
-<%= @recipe.name %>
-<%= @recipe.category %>
+<div class="container my-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title mb-4"><%= @recipe.name %></h1>
+
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item"><strong>Description:</strong> <%= @recipe.description %></li>
+        <li class="list-group-item"><strong>Ingredients:</strong> <%= @recipe.ingredients %></li>
+        <li class="list-group-item"><strong>Category:</strong> <%= @recipe.category %></li>
+        <li class="list-group-item"><strong>Rating:</strong> <%= @recipe.rating %></li>
+        <li class="list-group-item"><strong>Quantity:</strong> <%= @recipe.quantity %></li>
+        <li class="list-group-item"><strong>User ID:</strong> <%= @recipe.user_id %></li>
+      </ul>
+
+      <%= link_to "Back to recipes", recipes_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
