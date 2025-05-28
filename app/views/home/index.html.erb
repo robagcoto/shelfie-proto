@@ -2,13 +2,71 @@
 <p>Find me in app/views/home/index.html.erb</p> %>
 
 <div class="container mt-10">
-  <div class="text-center">
+  <div class="text-start">
 
-    <h1 class="display-4 mt-5">Welcome to Shelfie</h1>
-    <hr class="my-4">
+    <h1 class="display-4 mt-3 pb-(-5)"><strong> Welcome to Shelfie </strong></h1>
+    <%# <hr class="my-4"> %>
     <p>Explore your recipes, ingredients, and much more</p>
 
-    <%= link_to 'View recipes', recipes_path, class: "btn btn-primary btn-lg" %>
-
   </div>
+
+
+
+  <div class="col my-3">
+
+    <div class="card h-100 shadow-sm my-4">
+      <div class="card card-background text-white">
+        <div class="card-img-overlay">
+        <h5 class="card-title">ingredients alerte</h5>
+
+        <ul class="list-unstyled">
+          <li>eggs</li>
+          <li>butter</li>
+          <li>onion</li>
+       </ul>
+
+        <div class="text-end">
+          <%= link_to 'view', root_path, class: "btn btn-secondary btn-xl" %>
+        </div>
+      </div>
+      </div>
+     </div>
+
+<%# ---------------------------------------------------------------- %>
+
+    <div class="card h-100 shadow-sm my-4">
+      <div class="card card-light-background text-black">
+          <div class="card-img-overlay">
+
+        <h5 class="card-title">recipes</h5>
+
+
+        <ul class="list-unstyled">
+          <% @recipes.first(3).each do |recipe| %>
+            <li><%= recipe.name %></li>
+          <% end %>
+       </ul>
+
+        <div class="text-end">
+          <%= link_to 'view', recipes_path, class: "btn btn-primary btn-xl" %>
+        </div>
+
+
+      </div>
+     </div>
+      </div>
+
+<%# ---------------------------------------------------------------- %>
+
+      <div class="text-center m-4">
+        <%= link_to 'ask to your assistant', recipes_path, class: "btn btn-primary btn-xl" %>
+      </div>
+
+      <%# <div class="text-center m-4">
+        <%= link_to 'my food preferences', recipes_path, class: "btn btn-primary btn-lg" %>
+
+
+
+
+    </div>
 </div>

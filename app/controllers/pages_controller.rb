@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
-  def home
+  def dashboard
+    @my_recipes = Recipe.where(user_id: current_user)
   end
 end
