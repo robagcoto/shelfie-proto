@@ -2,7 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   VALID_CATEGORIES = ['French', 'Italian', 'Japanese', 'Mexican', 'Indian']
-  has_one_attached :image
+  has_one_attached :photo
   validates :name, presence: true
   validates :description, presence: true
   validates :ingredients, presence: true

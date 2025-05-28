@@ -3,6 +3,8 @@
   <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
 
     <div class="mb-3">
+      <%= f.input :photo, as: :file %>
+
       <%= f.input :category, label: "Category" %>
     </div>
 
