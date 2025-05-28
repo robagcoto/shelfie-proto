@@ -6,7 +6,14 @@
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
+@import "components/btn";
+@import "components/cards";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+body {
+  font-family: 'Karla', sans-serif;
+}

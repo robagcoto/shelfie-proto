@@ -1,15 +1,29 @@
-<div class="decoration">
-<h1 class="d-flex justify-content-center">List of my recipes</h1>
+<div class="container my-5">
+  <h1 class="text-center mb-4">List of my recipes</h1>
 
-<ul>
-<% @recipes.each do |recipe| %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-<li> <%= link_to recipe.name, recipe_path(recipe) %> </li>
+    <% @recipes.each do |recipe| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
 
-<% end %>
-</ul>
+            <h5 class="card-title"><%= recipe.name %></h5>
+            <% if recipe.description.present? %>
+              <p class="card-text"><%= truncate(recipe.description, length: 100) %></p>
+            <% end %>
 
-<div class="ms-3"><%= link_to "Add a recipe", new_recipe_path(@recipe), class: "btn btn-primary" %></div>
+            <%= link_to "See more", recipe_path(recipe), class: "btn btn-outline-primary" %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="text-center mt-4">
+    <%= link_to "Return to menu", root_path, class: "btn btn-primary" %>
+    <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-primary" %>
+  </div>
 </div>
-
-
