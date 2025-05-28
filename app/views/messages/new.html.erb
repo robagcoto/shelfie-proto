@@ -1,6 +1,19 @@
-<h1>Cooking assistant</h1>
+<div class="container mt<div class="col my-3">
+  <%= link_to 'return', root_path, class: "btn btn-secondary btn-xl" %>
 
-<%= simple_form_for [@message] do |f| %>
-  <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
-  <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
-<% end %>
+  <div class="card h-100 shadow-sm my-4">
+    <div class="card card-background text-white">
+      <div class="card-img-overlay">
+
+  <h1>Cooking assistant</h1>
+
+    <%= simple_form_for [@message] do |f| %>
+      <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
+      <%= f.button :submit, 'Submit', class: 'btn btn-secondary btn-xl' %>
+    <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>
