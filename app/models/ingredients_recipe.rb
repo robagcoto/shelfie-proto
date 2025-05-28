@@ -1,7 +1,7 @@
 class IngredientsRecipe < ApplicationRecord
   belongs_to :recipe
 
-  VALID_CATEGORIES = ['l', 'g', 'pc(s)',]
+  VALID_CATEGORIES = ['l', 'g', 'pc(s)']
 
   validates :name, presence: true
   validates :quatity, presence: true

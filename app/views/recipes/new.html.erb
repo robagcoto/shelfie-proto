@@ -16,13 +16,24 @@
       <%= f.input :name, label: "Name of the recipe" %>
     </div>
 
-    <div class="mb-3">
-      <%= f.input :ingredients, label: "List of your ingredients" %>
+  <div class="row mb-3">
+    <div class="col-4">
+      <%= text_field_tag :ingredient_name, label: "Ingredients"  %>
+      </div>
+
+    <div class="col-4">
+      <%= text_field_tag :ingredient_quantity, label: "Quantity" %>
     </div>
 
-    <div class="mb-3">
-      <%= f.input :quantity, label: "Quantity" %>
+    <div class="col-4">
+      <%= text_field_tag :ingredient_unit, as: :select, prompt: "Unité" %>
     </div>
+
+  </div>
+
+    <%# <div class="mb-3">
+      <%= f.input :quantity, label: "Quantity" %>
+    <%# </div> %>
 
     <div class="mb-3">
       <%= f.input :description, label: "Description" %>

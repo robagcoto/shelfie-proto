@@ -15,13 +15,16 @@
         <p><%= @recipe.description %></p></li>
 
         <li class="list-group-item"><strong>Ingredients:</strong>
-        <p><%= @recipe.ingredients %></p></li>
+        <p><% @recipe.ingredients_recipe.each do |ingredient| %>
+      <li class="list-group-item">
+        <strong><%= ingredient.name %></strong> —
+        <%= ingredient.quatity %> <%= ingredient.unit %>
+        </li>
+        <% end %></p></li>
 
         <li class="list-group-item"><strong>Rating:</strong>
         <p><%= @recipe.rating %></p></li>
 
-        <li class="list-group-item"><strong>Quantity:</strong>
-        <p><%= @recipe.quantity %></p></li>
 
       </ul>
 
