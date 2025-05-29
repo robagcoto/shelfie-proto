@@ -1,5 +1,15 @@
-<h1>dashboard</h1>
-<% @my_recipes.each do |recipe| %>
-<%=recipe.name%>
-<%=recipe.description%>
-<%end %>
+<div class="container mt<div class="col my-3">
+  <div class="card h-100 shadow-sm my-4">
+    <div class="card">
+
+    <h1>dashboard</h1>
+    <% @my_recipes.each do |recipe| %>
+    <%=recipe.name%>
+    <br>
+    <br>
+    <%=recipe.description%>
+    <%end %>
+
+    </div>
+  </div>
+</div>
