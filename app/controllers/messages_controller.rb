@@ -13,8 +13,18 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = current_user.messages.new
+    if params[:chat_id].present?
+      @chat = Chat.find_by(id: params[:chat_id])
+      if @chat
+        @message = @chat.messages.new
+      else
+        redirect_to chats_path, alert: "Ce chat n'existe pas." and return
+      end
+    else
+      @message = Message.new
+    end
   end
+
 
 # ---------------------------------------------------------------------------
 # modif pour hotwire
