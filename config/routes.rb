@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :chats, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:new, :create, :index]
+    resources :messages, only: [:create, :index]
   end
 
 get "/pages/dashboard", to: "pages#dashboard"
