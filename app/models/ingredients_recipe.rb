@@ -4,6 +4,6 @@ class IngredientsRecipe < ApplicationRecord
   VALID_CATEGORIES = ['l', 'g', 'pc(s)']
 
   validates :name, presence: true
-  validates :quatity, presence: true
+  validates :quantity, presence: true
   validates :unit, presence: true, inclusion: { in: VALID_CATEGORIES }
 end
