@@ -71,28 +71,14 @@ def create
   end
 end
 
-# ---------------------------------------------------------------------------
-# ancienne version de create, à garder pour référence
-# ---------------------------------------------------------------------------
+def destroy
+  @chat = current_user.chats.find(params[:chat_id])
+  @message = @chat.messages.find(params[:id])
+  @message.destroy
+  redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
+end
 
-  # def create
-  # @chat = Chat.find(params[:chat_id])
-  # @message = @chat.messages.new(message_params.merge(role: :user))
-  # @message.user_id = current_user
-  # if @message.valid?
-  #     chat = RubyLLM.chat
-  #     response = chat.with_instructions(instructions).ask(@message.prompt)
-  #     Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
-  #     redirect_to chat_messages_path(@chat)
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
-
-# ---------------------------------------------------------------------------
-# ---------------------------------------------------------------------------
-
-  private
+private
 
 
   def message_params
@@ -105,9 +91,6 @@ end
     [SYSTEM_PROMPT].join("\n\n")
   end
 end
-
-
-
 
       # parsed_response = JSON.parse(response.content)
       #   recipe_response = parsed_response["response"]

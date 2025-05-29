@@ -7,7 +7,7 @@
     <% @chats.each do |chat| %>
     <p>
       <%= link_to "#{chat.title}", chat_messages_path(chat) %>
-
+      <%= link_to ' Delete', chat_path(chat), method: :delete, data: { confirm: "Are you sure?" } %>
     </p>
     <% end %>
   </p>
