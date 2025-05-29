@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
   "
 
   def index
-    @messages = current_user.messages
-    @message = current_user.messages.new
+    @chat = Chat.find(params[:chat_id])
+    @messages = @chat.messages.order(:created_at)
   end
 
   def new
