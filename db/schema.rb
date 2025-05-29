@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_28_131215) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_29_093906) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_131215) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cookbooks", force: :cascade do |t|
@@ -90,6 +96,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_131215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
+    t.bigint "chat_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -125,6 +133,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_131215) do
   add_foreign_key "favorites", "users"
   add_foreign_key "ingredients", "users"
   add_foreign_key "ingredients_recipes", "recipes"
+  add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
 end
