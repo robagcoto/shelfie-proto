@@ -1,8 +1,18 @@
-<p>
+<div class="container mt-4">
 
-  <% @chats.each do |chat| %>
+  <%= link_to 'return', root_path, class: "btn btn-secondary btn-xl mb-3" %>
+
+
   <p>
-    <%= link_to "#{chat.title}", chat_messages_path(chat) %>
+    <% @chats.each do |chat| %>
+    <p>
+      <%= link_to "#{chat.title}", chat_messages_path(chat) %>
+    </p>
+    <% end %>
   </p>
-  <% end %>
-</p>
+
+  <div>
+    <%# <%= link_to 'ask a question',  new_chat_message_path, class: "btn btn-primary btn-xl mb-3" %> %>
+  </div>
+
+</div>
