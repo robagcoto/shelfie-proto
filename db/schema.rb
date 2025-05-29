@@ -111,9 +111,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_120653) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.boolean "favorite"
     t.string "duration"
     t.text "steps"
+    t.boolean "favorite"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
