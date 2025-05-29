@@ -3,7 +3,7 @@
     <div class="card-body">
       <h1 class="card-title mb-4 text-center"><%= @recipe.name %></h1>
 
-      <ul class="list-group list-group-flush mb-4">
+      <ul class="list-group list-group-flush mb-3">
 
         <div class="container-img"><%= cl_image_tag @recipe.photo.key, class: "picture" %></div>
 
@@ -11,19 +11,35 @@
         <p><%= @recipe.category %></p></li>
 
         <li class="list-group-item">
-        <strong>Description:</strong>
-        <p><%= @recipe.description %></p></li>
-
-        <li class="list-group-item"><strong>Ingredients:</strong>
-        <p><% @recipe.ingredients_recipe.each do |ingredient| %>
-      <li class="list-group-item">
-        <strong><%= ingredient.name %></strong> —
-        <%= ingredient.quatity %> <%= ingredient.unit %>
+          <strong>Rating:</strong>
+          <% rating = @recipe.rating.to_i %>
+          <% 5.times do |i| %>
+            <% if i < rating %>
+              <i class="fas fa-star text-warning"></i>
+            <% else %>
+              <i class="far fa-star text-muted"></i>
+            <% end %>
+          <% end %>
         </li>
-        <% end %></p></li>
 
-        <li class="list-group-item"><strong>Rating:</strong>
-        <p><%= @recipe.rating %></p></li>
+        <li class="list-group-item mt-3"><strong>Duration:</strong>
+        <p><%= @recipe.duration %> min</p></li>
+
+        <ul class="list-group-item mb-1">
+          <p class="mb-3"><strong>Ingredients:</strong></p>
+          <% @recipe.ingredients_recipe.each do |ingredient| %>
+          <li class="mb-1"><strong><%= ingredient.name %></strong>
+          <%= ingredient.quatity %> <%= ingredient.unit %></li>
+        <% end %>
+        </ul>
+
+        <li class="list-group-item">
+        <strong>Steps:</strong>
+        <p><%= simple_format(@recipe.steps) %></p></li>
+
+
+
+
 
 
       </ul>
