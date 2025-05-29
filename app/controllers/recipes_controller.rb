@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
       IngredientsRecipe.create(
       recipe_id: @recipe.id,
       name: params[:ingredient_name],
-      quatity: params[:ingredient_quantity],
+      quantity: params[:ingredient_quantity],
       unit: params[:ingredient_unit]
     )
       redirect_to recipe_path(@recipe)
@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
   end
 
   def ingredients_recipe
-    params.require(:ingredients_recipe).permit(:name, :quatity, :unit)
+    params.require(:ingredients_recipe).permit(:name, :quantity, :unit)
   end
 
 end

@@ -29,7 +29,7 @@
           <p class="mb-3"><strong>Ingredients:</strong></p>
           <% @recipe.ingredients_recipe.each do |ingredient| %>
           <li class="mb-1"><strong><%= ingredient.name %></strong>
-          <%= ingredient.quatity %> <%= ingredient.unit %></li>
+          <%= ingredient.quantity %> <%= ingredient.unit %></li>
         <% end %>
         </ul>
 
