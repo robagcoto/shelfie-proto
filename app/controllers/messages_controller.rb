@@ -1,3 +1,5 @@
+require 'json'
+
 class MessagesController < ApplicationController
 
   SYSTEM_PROMPT = <<-PROMPT
@@ -100,6 +102,7 @@ end
 
   private
 
+
   def message_params
     params.require(:message).permit(:prompt)
   end
@@ -110,3 +113,17 @@ end
     [SYSTEM_PROMPT].join("\n\n")
   end
 end
+
+
+
+
+      # parsed_response = JSON.parse(response.content)
+      #   recipe_response = parsed_response["response"]
+      #   recipe_name = parsed_response["name"]
+      #   recipe_description = parsed_response["description"]
+      #   recipe_rating = parsed_response["rating"]
+      #   recipe_category = parsed_response["category"]
+      #   recipe_favorites = parsed_response["favorites"]
+      #   recipe_duration = parsed_response["duration"]
+      #   recipe_steps = parsed_response["steps"]
+      #   recipe_ingredients_hash = parsed_response["ingredients_recipe"]
