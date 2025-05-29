@@ -45,7 +45,7 @@ class ChatsController < ApplicationController
       @chat.generate_title_from_first_message
 
     #Lance LLM
-      chat = RubyLLM.cha
+      chat = RubyLLM.chat
       response = chat.with_instructions(instructions).ask(prompt)
 
     #Crée le message du assistant
