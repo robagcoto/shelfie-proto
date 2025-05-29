@@ -1,0 +1,10 @@
+<% messages.each do |message| %>
+  <div class="card shadow-sm rounded-5 my-3">
+    <div class="card-body">
+      <p class="mb-1">
+        <strong><%= message.role.capitalize %></strong>
+      </p>
+      <%= simple_format(message.prompt) %>
+    </div>
+  </div>
+<% end %>

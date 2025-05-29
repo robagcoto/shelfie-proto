@@ -46,56 +46,54 @@ class MessagesController < ApplicationController
     end
   end
 
-
 # ---------------------------------------------------------------------------
-# modif pour hotwire
+# modif hotwire
 # ---------------------------------------------------------------------------
 
-#   def create
-#   @chat = Chat.find(params[:chat_id])
-#   @message = @chat.messages.new(message_params.merge(role: :user))
-#   @message.user_id = current_user
-#   if @message.valid?
-#     chat = RubyLLM.chat
-#     response = chat.with_instructions(instructions).ask(@message.prompt)
-#     Message.create(prompt: response.content, role: :assistant, user_id: current_user)
+def create
+  @chat = Chat.find(params[:chat_id])
+  @message = @chat.messages.new(message_params.merge(role: :user))
+  @message.user_id = current_user.id
 
-#     respond_to do |format|
-#       format.turbo_stream
-#       format.html { redirect_to messages_path }
-#     end
-#   else
-#     respond_to do |format|
-#       format.turbo_stream {
-#         render turbo_stream: turbo_stream.replace(
-#           "new_message",
-#           partial: "messages/form",
-#           locals: { chat: @chat, message: @message }
-#         )
-#       }
-#       format.html { render :new, status: :unprocessable_entity }
-#     end
-#   end
-# end
-
+  if @message.valid?
+    chat = RubyLLM.chat
+    response = chat.with_instructions(instructions).ask(@message.prompt)
+    Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
+    respond_to do |format|
+      format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+      format.html { redirect_to chat_path(@chat) }
+    end
+  else
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+          "new_message",
+          partial: "messages/form",
+          locals: { chat: @chat, message: @message }
+        )
+      }
+      format.html { render :new, status: :unprocessable_entity }
+    end
+  end
+end
 
 # ---------------------------------------------------------------------------
 # ancienne version de create, à garder pour référence
 # ---------------------------------------------------------------------------
 
-  def create
-  @chat = Chat.find(params[:chat_id])
-  @message = @chat.messages.new(message_params.merge(role: :user))
-  @message.user_id = current_user
-  if @message.valid?
-      chat = RubyLLM.chat
-      response = chat.with_instructions(instructions).ask(@message.prompt)
-      Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
-      redirect_to chat_messages_path(@chat)
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
+  # def create
+  # @chat = Chat.find(params[:chat_id])
+  # @message = @chat.messages.new(message_params.merge(role: :user))
+  # @message.user_id = current_user
+  # if @message.valid?
+  #     chat = RubyLLM.chat
+  #     response = chat.with_instructions(instructions).ask(@message.prompt)
+  #     Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
+  #     redirect_to chat_messages_path(@chat)
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
