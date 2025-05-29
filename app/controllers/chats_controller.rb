@@ -26,8 +26,6 @@ class ChatsController < ApplicationController
                     "ingredient3": { "name": "Pecorino Romano cheese", "quantity": 100, "unit": "g" } } } La réponse doit être exclusivement en format JSON, c'est extrêmement important.
                     PROMPT
 
-
-
   def index
     @chats = Chat.where(user_id: current_user)
   end
@@ -43,8 +41,11 @@ class ChatsController < ApplicationController
       prompt = params[:chat][:prompt]
       user_message = @chat.messages.create!(prompt: prompt, role: "user", user_id: current_user.id)
 
+    #Génère le titre dès le démarrage
+      @chat.generate_title_from_first_message
+
     #Lance LLM
-      chat = RubyLLM.chat
+      chat = RubyLLM.cha
       response = chat.with_instructions(instructions).ask(prompt)
 
     #Crée le message du assistant
