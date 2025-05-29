@@ -45,10 +45,11 @@ recipe1.photo.attach(
 
 recipe1.save!
 
-IngredientsRecipe.create!(name: "Spaghetti", quatity: 400, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "Eggs yolk", quatity: 2, unit: "pc(s)", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "Pecorino Romano", quatity: 100, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "Pancetta", quatity: 200, unit: "g", recipe_id: recipe1.id)
+
+IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
 
 file2 = URI.parse("https://bellyfull.net/wp-content/uploads/2021/05/Chicken-Tikka-Masala-blog.jpg").open
 
@@ -74,10 +75,10 @@ recipe2.photo.attach(
 
 recipe2.save!
 
-IngredientsRecipe.create!(name: "chicken", quatity: 300, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "cream", quatity: 100, unit: "l", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "tomato", quatity: 150, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "spices", quatity: 20, unit: "g", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe_id: recipe2.id)
 
 
 
@@ -104,10 +105,10 @@ recipe3.photo.attach(
 
 recipe3.save!
 
-IngredientsRecipe.create!(name: "rice", quatity: 200, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "seaweed", quatity: 4, unit: "pc(s)", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "salmon", quatity: 150, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "avocado", quatity: 1, unit: "pc(s)", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe_id: recipe3.id)
 
 
 
@@ -134,10 +135,10 @@ recipe4.photo.attach(
 
 recipe4.save!
 
-IngredientsRecipe.create!(name: "avocado", quatity: 2, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "lime", quatity: 1, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "onion", quatity: 0.5, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "cilantro", quatity: 10, unit: "g", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe_id: recipe4.id)
 
 
 file5 = URI.parse("https://www.kikkoman.fr/fileadmin/_processed_/1/8/csm_1075-recipe-page-Saffron-scented-Ratatouille_desktop_5ddfe5fdbf.jpg").open
@@ -163,10 +164,10 @@ recipe5.photo.attach(
 )
 recipe5.save!
 
-IngredientsRecipe.create!(name: "zucchini", quatity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "eggplant", quatity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "pepper", quatity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "tomato", quatity: 2, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe_id: recipe5.id)
 
 
 
@@ -193,10 +194,10 @@ recipe6.photo.attach(
 )
 
 recipe6.save!
-IngredientsRecipe.create!(name: "pork", quatity: 250, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "pineapple", quatity: 100, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "tortilla", quatity: 3, unit: "pc(s)", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "chili", quatity: 10, unit: "g", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe_id: recipe6.id)
 
 
 
@@ -222,10 +223,10 @@ recipe7.photo.attach(
 
 recipe7.save!
 
-IngredientsRecipe.create!(name: "miso paste", quatity: 30, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "tofu", quatity: 100, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "seaweed", quatity: 10, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "green onion", quatity: 1, unit: "pc(s)", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe_id: recipe7.id)
 
 
 
