@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes
-  has_many :messages, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true

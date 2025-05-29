@@ -16,6 +16,41 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new
   end
 
+# ---------------------------------------------------------------------------
+# modif pour hotwire
+# ---------------------------------------------------------------------------
+
+#   def create
+#   @message = current_user.messages.new(message_params.merge(role: :user))
+
+#   if @message.valid?
+#     chat = RubyLLM.chat
+#     response = chat.with_instructions(instructions).ask(@message.prompt)
+#     Message.create(prompt: response.content, role: :assistant, user: current_user)
+
+#     respond_to do |format|
+#       format.turbo_stream
+#       format.html { redirect_to messages_path }
+#     end
+#   else
+#     respond_to do |format|
+#       format.turbo_stream {
+#         render turbo_stream: turbo_stream.replace(
+#           "new_message",
+#           partial: "messages/form",
+#           locals: { chat: @chat, message: @message }
+#         )
+#       }
+#       format.html { render :new, status: :unprocessable_entity }
+#     end
+#   end
+# end
+
+
+# ---------------------------------------------------------------------------
+# ancienne version de create, à garder pour référence
+# ---------------------------------------------------------------------------
+
   def create
     @message = current_user.messages.new(message_params.merge(role: :user))
     if @message.save
@@ -28,7 +63,11 @@ class MessagesController < ApplicationController
     end
   end
 
-private
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
+  private
+
   def message_params
     params.require(:message).permit(:prompt)
   end
