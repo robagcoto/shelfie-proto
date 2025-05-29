@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   def index
     @chat = Chat.find(params[:chat_id])
     @messages = @chat.messages.order(:created_at)
+    @message = Message.new
   end
 
   def new
@@ -31,12 +32,13 @@ class MessagesController < ApplicationController
 # ---------------------------------------------------------------------------
 
 #   def create
-#   @message = current_user.messages.new(message_params.merge(role: :user))
-
+#   @chat = Chat.find(params[:chat_id])
+#   @message = @chat.messages.new(message_params.merge(role: :user))
+#   @message.user_id = current_user
 #   if @message.valid?
 #     chat = RubyLLM.chat
 #     response = chat.with_instructions(instructions).ask(@message.prompt)
-#     Message.create(prompt: response.content, role: :assistant, user: current_user)
+#     Message.create(prompt: response.content, role: :assistant, user_id: current_user)
 
 #     respond_to do |format|
 #       format.turbo_stream
@@ -62,12 +64,14 @@ class MessagesController < ApplicationController
 # ---------------------------------------------------------------------------
 
   def create
-    @message = current_user.messages.new(message_params.merge(role: :user))
-    if @message.save
+  @chat = Chat.find(params[:chat_id])
+  @message = @chat.messages.new(message_params.merge(role: :user))
+  @message.user_id = current_user
+  if @message.valid?
       chat = RubyLLM.chat
       response = chat.with_instructions(instructions).ask(@message.prompt)
-      Message.create(prompt: response.content, role: :assistant, user: current_user)
-      redirect_to messages_path
+      Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
+      redirect_to chat_messages_path(@chat)
     else
       render :new, status: :unprocessable_entity
     end

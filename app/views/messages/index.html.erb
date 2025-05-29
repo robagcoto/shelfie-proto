@@ -5,7 +5,7 @@ J'aterris ici pour suivre le flux de mes messages
 
 <div class="container mt-4">
 
-  <%= link_to 'return', new_message_path, class: "btn btn-secondary btn-xl mb-3" %>
+  <%= link_to 'return', chats_path, class: "btn btn-secondary btn-xl mb-3" %>
 
 
   <div class="col mb-3">
@@ -42,7 +42,7 @@ J'aterris ici pour suivre le flux de mes messages
 
     <div class="card shadow-sm rounded-5 my-3">
       <div class="card-body">
-        <%= simple_form_for [@message], remote: true do |f| %>
+        <%= simple_form_for [@chat, @message], remote: true do |f| %>
 
           <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
 
