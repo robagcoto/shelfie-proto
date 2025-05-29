@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :chats, dependent: :destroy
+  has_many :messages, through: :chat
 
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
