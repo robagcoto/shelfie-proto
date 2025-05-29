@@ -23,7 +23,8 @@ class MessagesController < ApplicationController
               topped with additional cheese and pepper." ], "ingredients_recipe": { "ingredient1":
               { "name": "Spaghetti", "quantity": 400, "unit": "g" }, "ingredient2":
                { "name": "Pancetta", "quantity": 150, "unit": "g" },
-                "ingredient3": { "name": "Pecorino Romano cheese", "quantity": 100, "unit": "g" } } } La réponse doit être exclusivement en format JSON, c'est extrêmement important.
+                "ingredient3": { "name": "Pecorino Romano cheese", "quantity": 100, "unit": "g" } } }
+                 La réponse doit être exclusivement en format JSON, c'est extrêmement important.
                 PROMPT
 
 
