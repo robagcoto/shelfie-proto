@@ -22,6 +22,8 @@ puts "Users created ! 🧑🏻‍💻"
 # 2. Recipe seeds
 file1 = URI.parse("https://www.fromager.net/wp-content/uploads/2023/12/recette-pates-carbonara.jpg").open
 
+puts "creating recipe sample 🍔"
+
 
 recipe1 = Recipe.new(
   name: "Spaghetti Carbonara",
@@ -232,3 +234,11 @@ IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recip
 
 puts "Recipes sample created with ingredients created 🍔"
 puts "Go check in your console 🪴"
+
+
+puts "creating message..."
+
+Chat.create!(title: "harry potter recipe", user_id: 1)
+Message.create!(prompt: "harry potter mood !!", user_id: 1, role: "user", chat_id: 1)
+
+puts "chat created 📨"
