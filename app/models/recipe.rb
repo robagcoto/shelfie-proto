@@ -2,7 +2,23 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients_recipe, dependent: :destroy
 
-  VALID_CATEGORIES = ['French', 'Italian', 'Japanese', 'Mexican', 'Indian']
+VALID_CATEGORIES = [
+  'French',
+  'Italian',
+  'Japanese',
+  'Mexican',
+  'Indian',
+  'Chinese',
+  'Thai',
+  'Greek',
+  'Spanish',
+  'Moroccan',
+  'American',
+  'Vietnamese',
+  'Lebanese',
+  'Korean',
+  'Turkish']
+
   has_one_attached :photo
   validates :name, presence: true
   validates :description, presence: true
