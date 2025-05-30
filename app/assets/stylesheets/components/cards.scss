@@ -2,12 +2,19 @@
   border-radius: 1rem; // ou 16px
 }
 
-.card-img {
-  display: flex;
-  justify-content: start;
-  object-fit: cover;
-  height: 100px;
-  width: 100px;
+// .card-img {
+//   display: flex;
+//   justify-content: start;
+//   object-fit: cover;
+//   height: 100px;
+//   width: 100px;
+// }
+
+.card-background {
+  background-image: asset-url("back_card.png");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
 }
 
 .card-light-background {
