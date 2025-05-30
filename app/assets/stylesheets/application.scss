@@ -18,3 +18,27 @@
 body {
   font-family: 'Karla', sans-serif;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.full-height {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#messages {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+#form {
+  flex-shrink: 0;
+}
