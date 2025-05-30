@@ -240,7 +240,7 @@ puts "Go check in your console 🪴"
 
 puts "creating message..."
 
-Chat.create!(title: "harry potter recipe", user_id: 1)
-Message.create!(prompt: "harry potter mood !!", user_id: 1, role: "user", chat_id: 1)
+chat1 = Chat.create!(title: "harry potter recipe", user_id: user1.id)
+Message.create!(prompt: "harry potter mood !!", user_id: user1.id, role: "user", chat_id: chat1.id)
 
 puts "chat created 📨"
