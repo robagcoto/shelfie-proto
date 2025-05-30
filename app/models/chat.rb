@@ -1,4 +1,6 @@
 class Chat < ApplicationRecord
+  acts_as_chat
+
   attr_accessor :prompt
 
   belongs_to :user

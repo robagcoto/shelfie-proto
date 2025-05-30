@@ -48,11 +48,12 @@ def create
   @chat = Chat.find(params[:chat_id])
   @message = @chat.messages.new(message_params.merge(role: :user))
   @message.user_id = current_user.id
+  # debugger
 
   if @message.valid?
     chat = RubyLLM.chat
     response = chat.with_instructions(instructions).ask(@message.prompt)
-    Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
+    # Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
     respond_to do |format|
       format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
       format.html { redirect_to chat_messages_path(@chat) }
