@@ -16,19 +16,29 @@
       <%= f.input :category, label: "Category" %>
     </div>
 
+    <div class="mb-3">
+      <%= f.input :description, label: "Describe shortly your recipe" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :rating, label: "Rating" %>
+    </div>
 
   <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
+
+      <div> <%= f.input :number_of_ingredients, collection: 1..20, placeholder: "number of ingredients" %></div>
+
     <div class="ingredient-row" data-ingredients-target="remove">
       <div class="col-4 mb-2">
-        <%= text_field_tag :ingredient_name, nil, placeholder: "Ingredients", class: "form-control" %>
+        <%= text_field_tag :ingredient_name1, nil, placeholder: "Ingredients", class: "form-control" %>
         </div>
 
       <div class="col-4">
-        <%= text_field_tag :ingredient_quantity, nil, placeholder: "Quantity", class: "form-control" %>
+        <%= text_field_tag :ingredient_quantity1, nil, placeholder: "Quantity", class: "form-control" %>
           </div>
 
       <div class="col-2">
-        <%= select_tag :ingredient_unit, options_for_select(IngredientsRecipe::VALID_CATEGORIES), class: "form-select" %>
+        <%= select_tag :ingredient_unit1, options_for_select(IngredientsRecipe::VALID_CATEGORIES), class: "form-select" %>
         </div>
 
         <div class="col-2 p-0 d-flex justify-content-center" >
@@ -39,13 +49,15 @@
   </div>
 
 
-
-
     <div class="mb-3">
-      <%= f.input :description, as: :text, input_html: { rows: 6 }, label: "Steps" %>
+      <%= f.input :duration, label: "Duration" %>
     </div>
 
-    <div class="text-center mt-4">
+    <div class="mb-3">
+      <%= f.input :steps, as: :text, input_html: { rows: 6 }, label: "Steps" %>
+    </div>
+
+    <div class="text-center my-4">
       <%= f.button :submit, "Create recipe", class: "btn btn-primary btn-xl" %>
     </div>
   <% end %>
