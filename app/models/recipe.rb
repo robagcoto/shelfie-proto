@@ -22,6 +22,8 @@ VALID_CATEGORIES = [
   has_one_attached :photo
   validates :name, presence: true
   validates :description, presence: true
+  validates :steps, presence: true
+  validates :duration, presence: true
   validates :category, presence: true, inclusion: { in: VALID_CATEGORIES }
   validates :rating, numericality: {
     greater_than_or_equal_to: 0,
