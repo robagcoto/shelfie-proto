@@ -1,20 +1,15 @@
-<div class="container mt-4">
+<div class="d-flex flex-column full-height px-3">
 
-  <%= link_to 'return', chats_path, class: "btn btn-secondary btn-xl mb-3" %>
+  <div class="pt-3">
+    <%= link_to '← Return', chats_path, class: "btn btn-secondary btn-sm mb-3" %>
+    <h1 class="h4 mb-3"><%= @chat.title %></h1>
+  </div>
 
-  <div class="col mb-3">
-    <div class="pl-1">
-      <h1>Your cooking assistant</h1>
-      <h5>Type what's on your mind and your assistant will recommend a recipe</h5>
-    </div>
+  <div id="messages" class="overflow-auto">
+  <%= render "messages/messages", messages: @messages %>
+</div>
 
-
-    <div id="messages">
-      <%= render "messages/messages", messages: @messages  %>
-    </div>
-
-    <div id="form">
-      <%= render "messages/form", chat: @chat, message: @message %>
-    </div>
+  <div id="form" class=" pb-5 mb-4">
+    <%= render "messages/form", chat: @chat, message: @message %>
   </div>
 </div>
