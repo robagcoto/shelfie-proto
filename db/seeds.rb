@@ -1,5 +1,7 @@
 require "open-uri"
 
+Message.destroy_all
+Chat.destroy_all
 IngredientsRecipe.destroy_all
 Recipe.destroy_all
 User.destroy_all
