@@ -1,17 +1,23 @@
 <div class="container mt-4 mb-5">
-  <%= link_to 'Return', root_path, class: "btn btn-secondary btn-lg mb-4" %>
+  <%= link_to 'Return', root_path, class: "btn btn-secondary btn-lg mb-4 btn-xl" %>
 
   <div class="row gx-3 gy-3">
     <% @chats.each do |chat| %>
       <div class="col-6">
-        <%= link_to chat.title, chat_messages_path(chat),
-              class: "btn btn-outline-primary w-100 text-truncate",
-              style: "border-radius: 10px; max-width: 100%;" %>
+        <div class="d-flex align-items-center">
+          <%= link_to chat.title, chat_messages_path(chat),
+                class: "btn btn-outline-primary w-100 text-truncate me-2",
+                style: "border-radius: 10px; max-width: 100%;" %>
+                <%= link_to "X", chat_path(chat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "btn btn-outline-danger btn-sm ms-2", style: "font-weight: bold;" %>
+        </div>
       </div>
     <% end %>
+  </div>
 
-</div>
+  <div class="fixed-bottom p-3 border-top bg-white">
 
-<div class="fixed-bottom p-3 border-top bg-white">
-  <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100" %>
+
+    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100" %>
+  </div>
 </div>
