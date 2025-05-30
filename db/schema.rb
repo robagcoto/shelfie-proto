@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_30_121838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,6 +114,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
     t.string "duration"
     t.text "steps"
     t.boolean "favorite", default: false
+<<<<<<< HEAD
+=======
+    t.integer "number_of_ingredients"
+>>>>>>> aa8b2f69b00b845372445adff84d61353c2d8501
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
