@@ -9,8 +9,8 @@
         <h1 class="card-title">Cooking Assistant</h1>
         <p class="card-text">Type what's on your mind and your assistant will recommend a recipe.</p>
 
-        <%= simple_form_for @message do |f| %>
-          <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false, input_html: { class: "form-control form-control-lg" } %>
+        <%= simple_form_for [@chat, @message] do |f| %>
+          <%= f.input :prompt, placeholder: "Type whats on your mind to get a recommendation", required: true, label: false, input_html: { class: "form-control form-control-lg" } %>
           <%= f.button :submit, 'Submit', class: 'btn btn-primary btn-xl w-100' %>
         <% end %>
 
@@ -19,3 +19,7 @@
   </div>
 
 </div>
+
+<%# -----------------------------
+besoin de facto
+----------------------------- %>

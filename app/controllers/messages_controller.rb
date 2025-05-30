@@ -25,9 +25,9 @@ class MessagesController < ApplicationController
               topped with additional cheese and pepper." ], "ingredients_recipe": { "ingredient1":
               { "name": "Spaghetti", "quantity": 400, "unit": "g" }, "ingredient2":
                { "name": "Pancetta", "quantity": 150, "unit": "g" },
-                "ingredient3": { "name": "Pecorino Romano cheese", "quantity": 100, "unit": "g" } } } La réponse doit être exclusivement en format JSON, c'est extrêmement important.
+                "ingredient3": { "name": "Pecorino Romano cheese", "quantity": 100, "unit": "g" } } }
+                 La réponse doit être exclusivement en format JSON, c'est extrêmement important.
                 PROMPT
-
 
   def index
     @chat = Chat.find(params[:chat_id])
@@ -35,18 +35,10 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
-  def new
-    if params[:chat_id].present?
-      @chat = Chat.find_by(id: params[:chat_id])
-      if @chat
-        @message = @chat.messages.new
-      else
-        redirect_to chats_path, alert: "Ce chat n'existe pas." and return
-      end
-    else
-      @message = Message.new
-    end
-  end
+  # def new
+  #     @chat = Chat.find(params[:chat_id])
+  #     @message = @chat.messages.new
+  # end
 
 # ---------------------------------------------------------------------------
 # modif hotwire
@@ -63,7 +55,7 @@ def create
     Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
     respond_to do |format|
       format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
-      format.html { redirect_to chat_path(@chat) }
+      format.html { redirect_to chat_messages_path(@chat) }
     end
   else
     respond_to do |format|
@@ -79,28 +71,14 @@ def create
   end
 end
 
-# ---------------------------------------------------------------------------
-# ancienne version de create, à garder pour référence
-# ---------------------------------------------------------------------------
+def destroy
+  @chat = current_user.chats.find(params[:chat_id])
+  @message = @chat.messages.find(params[:id])
+  @message.destroy
+  redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
+end
 
-  # def create
-  # @chat = Chat.find(params[:chat_id])
-  # @message = @chat.messages.new(message_params.merge(role: :user))
-  # @message.user_id = current_user
-  # if @message.valid?
-  #     chat = RubyLLM.chat
-  #     response = chat.with_instructions(instructions).ask(@message.prompt)
-  #     Message.create!(prompt: response.content, role: :assistant, user_id: current_user.id, chat_id: @chat.id)
-  #     redirect_to chat_messages_path(@chat)
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
-
-# ---------------------------------------------------------------------------
-# ---------------------------------------------------------------------------
-
-  private
+private
 
 
   def message_params
@@ -113,9 +91,6 @@ end
     [SYSTEM_PROMPT].join("\n\n")
   end
 end
-
-
-
 
       # parsed_response = JSON.parse(response.content)
       #   recipe_response = parsed_response["response"]
