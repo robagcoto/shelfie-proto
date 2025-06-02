@@ -6,8 +6,8 @@
   </div>
 
   <div id="messages" class="overflow-auto">
-  <%= render "messages/messages", messages: @messages %>
-</div>
+    <%= render @messages, partial: "messages/message", as: :message %>
+  </div>
 
   <div id="form" class=" pb-5 mb-4">
     <%= render "messages/form", chat: @chat, message: @message %>

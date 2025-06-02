@@ -1,9 +1,9 @@
 <div class="card shadow-sm rounded-5 my-3">
   <div class="card-body">
     <%= simple_form_for [chat, message], remote: true do |f| %>
-      <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
+      <%= f.input :prompt, input_html: {data: { messages_target: "userMessage"} , placeholder: "Ask a question"}, required: true, label: false %>
       <div class='text-end'>
-        <%= f.button :submit, 'Submit', class: 'btn btn-primary w-100' %>
+        <%= f.button :submit, 'Submit', class: 'btn btn-primary w-100', data: { action: 'click->messages#injectMessage' } %>
       </div>
     <% end %>
   </div>

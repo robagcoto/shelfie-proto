@@ -1,0 +1,58 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche le scroll global */
+}
+
+.full-height, .d-flex.flex-column.full-height {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#messages {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+#form {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  z-index: 10;
+  flex-shrink: 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
+}
+
+.mobile-navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.mobile-navbar .nav-link {
+  color: #333;
+  text-align: center;
+  font-size: 14px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+.mobile-navbar .nav-link i {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.mobile-navbar .nav-link.active, .mobile-navbar .nav-link:active {
+  color: #007bff;
+}
