@@ -55,7 +55,7 @@ IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: r
 IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
 IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
 
-file2 = URI.parse("https://bellyfull.net/wp-content/uploads/2021/05/Chicken-Tikka-Masala-blog.jpg").open
+file2 = URI.parse("https://cdn.britannica.com/40/177340-050-2F922898/Chicken-tikka-masala.jpg").open
 
 recipe2 = Recipe.new(
   name: "Chicken Tikka Masala",

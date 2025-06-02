@@ -1,14 +1,52 @@
 .card {
-  border-radius: 1rem; // ou 16px
+  border: none;
+  border-radius: 1rem;
 }
 
-// .card-img {
-//   display: flex;
-//   justify-content: start;
-//   object-fit: cover;
-//   height: 100px;
-//   width: 100px;
+// .col {
+//   font-size:small;
 // }
+
+.card-product {
+  background: url("back_card_light.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 150px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+
+}
+
+// .pic-card {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+#pic {
+  width: 130px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+
+.card-description {
+  text-align: start;
+}
+
+.card-description p {
+  text-align: start;
+}
+
+ .btn-cards {
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+ }
+// -----------------------------------------
 
 .card-background {
   background-image: asset-url("back_card.png");
