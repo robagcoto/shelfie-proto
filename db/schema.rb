@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_02_151819) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_02_154550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,18 +65,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_151819) do
   create_table "house_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "roles"
   end
 
   create_table "houses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "houses_users", id: false, force: :cascade do |t|
-    t.bigint "house_id", null: false
-    t.bigint "user_id", null: false
-    t.string "roles"
   end
 
   create_table "ingredients", force: :cascade do |t|

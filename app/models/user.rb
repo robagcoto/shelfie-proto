@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :chats, dependent: :destroy
   has_many :messages, through: :chat
-  has_many :houses_users
+  has_many :house_users
   has_many :houses, through: :houses_users
 
   validates :email, presence: true, uniqueness: true
