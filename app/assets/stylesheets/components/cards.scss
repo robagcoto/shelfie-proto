@@ -7,7 +7,7 @@
 //   font-size:small;
 // }
 
-.card-product {
+.card-product-light {
   background: url("back_card_light.png");
   background-size: cover;
   background-position: center;
@@ -17,6 +17,18 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
 
+}
+
+.card-product {
+  background: url("back_card.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 150px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  color: lightgreen;
 }
 
 // .pic-card {
