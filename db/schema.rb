@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_03_104029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
+  create_table "completions", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_completions_on_recipe_id"
+  end
+
   create_table "house_ingredients", force: :cascade do |t|
     t.date "expiration_date"
     t.integer "quantity"
@@ -68,6 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
     t.string "roles"
     t.bigint "user_id", null: false
     t.bigint "house_id", null: false
+    t.string "status", default: "pending"
     t.index ["house_id"], name: "index_house_users_on_house_id"
     t.index ["user_id"], name: "index_house_users_on_user_id"
   end
@@ -80,7 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.string "preservation_method"
+    t.string "storage_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,14 +101,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
-  end
-
-  create_table "kitchens", force: :cascade do |t|
-    t.boolean "done"
-    t.bigint "recipe_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_kitchens_on_recipe_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -154,12 +154,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "users"
+  add_foreign_key "completions", "recipes"
   add_foreign_key "house_ingredients", "houses"
   add_foreign_key "house_ingredients", "ingredients"
   add_foreign_key "house_users", "houses"
   add_foreign_key "house_users", "users"
   add_foreign_key "ingredients_recipes", "recipes"
-  add_foreign_key "kitchens", "recipes"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :messages, through: :chat
   has_many :house_users
-  has_many :houses, through: :houses_users
+  has_many :houses, through: :house_users
 
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
