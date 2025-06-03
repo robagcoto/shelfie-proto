@@ -1,6 +1,8 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients_recipe, dependent: :destroy
+  has_many :kitchens
+  has_many :steps
 
 VALID_CATEGORIES = [
   'French',
