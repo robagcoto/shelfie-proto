@@ -1,58 +1,15 @@
-J'aterris ici pour suivre le flux de mes messages
+<div class="d-flex flex-column full-height px-3">
 
+  <div class="pt-3">
+    <%= link_to '← Return', chats_path, class: "btn btn-secondary btn-sm mb-3" %>
+    <h1 class="h4 mb-3"><%= @chat.title %></h1>
+  </div>
 
+  <div id="messages" class="overflow-auto">
+  <%= render "messages/messages", messages: @messages %>
+</div>
 
-
-<div class="container mt-4">
-
-  <%= link_to 'return', chats_path, class: "btn btn-secondary btn-xl mb-3" %>
-
-
-  <div class="col mb-3">
-    <div class="pl-1">
-      <h1>Your cooking assistant</h1>
-      <h5>Type what's on your mind and your assistant will recommend a recipe</h5>
-    </div>
-
-<%# # --------------------------------------------------------------------------- %>
-
-
-
-    <div class="card shadow-sm rounded-5 mt-4">
-      <div class="card-body">
-
-
-
-        <% @messages.each do |message| %>
-          <p>
-            <strong><%= message.role %></strong>
-            <%= simple_format(message.prompt) %>
-          </p>
-
-        <% end %>
-
-
-      </div>
-    </div>
-
-
-
-
-<%# # --------------------------------------------------------------------------- %>
-
-    <div class="card shadow-sm rounded-5 my-3">
-      <div class="card-body">
-        <%= simple_form_for [@chat, @message], remote: true do |f| %>
-
-          <%= f.input :prompt, placeholder: "Ask a question", required: true, label: false %>
-
-        <div class='texte-end'>
-          <%= f.button :submit, 'Submit', class: 'btn btn-primary w-100' %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-
+  <div id="form" class=" pb-5 mb-4">
+    <%= render "messages/form", chat: @chat, message: @message %>
   </div>
 </div>

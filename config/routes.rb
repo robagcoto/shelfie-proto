@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :chats, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:new, :create, :index]
+  resources :chats, only: [:index, :new, :create, :destroy] do
+    resources :messages, only: [:create, :index, :destroy]
   end
 
 get "/pages/dashboard", to: "pages#dashboard"
