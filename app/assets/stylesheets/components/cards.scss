@@ -8,7 +8,7 @@
 // }
 
 .card-product-light {
-  background: url("back_card_light.png");
+  background: asset-url("card_recipes/card_light_recipes_2.png");
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -29,12 +29,6 @@
 //   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 //   display: flex;
 //   color: lightgreen;
-// }
-
-// .pic-card {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
 // }
 
 #pic {

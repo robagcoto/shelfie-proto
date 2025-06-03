@@ -136,8 +136,11 @@ The recipe description and all texts must be in English regardless of the input 
     redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
   end
 
+<<<<<<< HEAD
   private
 
+=======
+>>>>>>> 56b87b1ca609ed57605bca37ec90a216fb2a8172
   def message_params
     params.require(:message).permit(:prompt)
   end

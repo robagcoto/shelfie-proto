@@ -9,18 +9,25 @@
     </div>
   </div>
 
-  <div style="padding-top: 70px;">
+  <div style="padding-top: 70px; my-1;">
     <div class="row g-3">
       <% @chats.each do |chat| %>
         <div class="col-12">
-          <%= link_to chat.title, chat_messages_path(chat),
-                class: "btn w-100 text-truncate shadow",
-                style: "border-radius: 10px; max-width: 100%;" %>
+          <div class="d-flex align-items-center justify-content-between w-100 shadow height-150px mb-2 px-3" style="border-radius: 10px; max-width: 100%;">
+            <span class="flex-grow-1 text-truncate">
+              <%= link_to chat.title, chat_messages_path(chat),
+                    class: "text-decoration-none text-dark" %>
+            </span>
+            <%= button_to chat_path(chat), method: :delete, data: { confirm: 'Supprimer ce chat ?' }, class: "btn btn-sm btn-outline-none ms-2 p-0" do %>
+              <%= image_tag "close.png", style: "width: 24px; height: 24px;" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
   </div>
 
+<<<<<<< HEAD
 
 <div class="container mt-4 mb-5">
   <%= link_to 'Return', root_path, class: "btn btn-secondary btn-lg mb-4 btn-xl" %>
@@ -49,5 +56,9 @@
     <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100 shadow" %>
 
 
+=======
+  <div class="fixed-bottom p-3 border-top bg-white">
+    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100 shadow" %>
+>>>>>>> 56b87b1ca609ed57605bca37ec90a216fb2a8172
   </div>
 </div>
