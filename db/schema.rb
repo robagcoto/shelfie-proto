@@ -50,11 +50,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
-  create_table "collections", force: :cascade do |t|
+  create_table "completions", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_collections_on_recipe_id"
+    t.index ["recipe_id"], name: "index_completions_on_recipe_id"
   end
 
   create_table "house_ingredients", force: :cascade do |t|
@@ -153,7 +153,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "users"
-  add_foreign_key "collections", "recipes"
+  add_foreign_key "completions", "recipes"
   add_foreign_key "house_ingredients", "houses"
   add_foreign_key "house_ingredients", "ingredients"
   add_foreign_key "house_users", "houses"
