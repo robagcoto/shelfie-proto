@@ -1,17 +1,6 @@
-<<<<<<< HEAD
-
-<%# inclure form /// div pour les derniers messages /// loop sur @chats pour afficher un équiv d'index %>
-
-<h1><%=  %></h1>
 
 
-<%# path vers  chat_messages(chat) => url : /chats/:chat_id/messages %>
 
-<%= simple_form_for @chat do |f| %>
-  <%= f.input :prompt, placeholder: "Type whats on your mind to get a recommendation", required: true, label: false, input_html: { class: "form-control form-control-lg" } %>
-  <%= f.button :submit, 'Submit', class: 'btn btn-primary btn-xl w-100' %>
-<% end %>
-=======
  <div class="container my-5">
     <!-- Formulaire simple pour créer un nouveau chat -->
     <%= simple_form_for @chat do |f| %>
@@ -24,4 +13,3 @@
       </div>
       <%= f.button :submit, 'submit', class: 'btn btn-primary w-100' %>
     <% end %>
->>>>>>> d0e131b3a5942748641000e60fe03c552f7c811a
