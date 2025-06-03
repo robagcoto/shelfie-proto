@@ -1,0 +1,17 @@
+<%# LOCALS %>
+<%# with_add_button => BOOLEAN => affichage du bouton %>
+
+<div class="position-fixed top-0 start-0 w-100 pt-3" style="z-index: 1050; padding: 0.5rem 0; background: #f4f4f4;">
+  <div class="container">
+    <div class="row justify-content-evenly">
+
+      <%= link_to chats_path do %>
+        <%= image_tag "return.png", alt: "return", width: 50, height: 50, class: "rounded-circle p-1" %>
+      <% end %>
+
+      <% if with_add_button %>
+        <%# <button>+</button> %>
+      <% end %>
+    </div>
+  </div>
+</div>
