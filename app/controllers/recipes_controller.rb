@@ -16,17 +16,24 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
+    counter = 1
     if @recipe.save
-      IngredientsRecipe.create(
-      recipe_id: @recipe.id,
-      name: params[:ingredient_name],
-      quantity: params[:ingredient_quantity],
-      unit: params[:ingredient_unit]
+      number_of_ingredients = @recipe.number_of_ingredients
+      number_of_ingredients.times do
+        IngredientsRecipe.create(
+          recipe_id: @recipe.id,
+          name: params["ingredient_name#{counter}"],
+          quantity: params["ingredient_quantity#{counter}"],
+          unit: params["ingredient_unit#{counter}"]
     )
+    counter += 1
+    puts "counter: #{counter}"
+    end
       redirect_to recipe_path(@recipe)
     else
       render :new, status: :unprocessable_entity
     end
+  end
 
     def edit
       @recipe = Recipe.find(params[:id])
@@ -40,7 +47,6 @@ class RecipesController < ApplicationController
         render :edit
       end
     end
-  end
 
   def destroy
     @recipe = Recipe.find(params[:id])
@@ -55,7 +61,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :photo, :description, :category, :duration, :steps, :favorite)
+    params.require(:recipe).permit(:name, :photo, :description, :category, :duration, :steps, :favorite, :rating, :number_of_ingredients)
   end
 
   def ingredients_recipe

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_02_155528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,36 +50,39 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
-  create_table "cookbooks", force: :cascade do |t|
+  create_table "house_ingredients", force: :cascade do |t|
+    t.date "expiration_date"
+    t.integer "quantity"
+    t.string "unit"
+    t.bigint "house_id", null: false
     t.bigint "ingredient_id", null: false
-    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ingredient_id"], name: "index_cookbooks_on_ingredient_id"
-    t.index ["recipe_id"], name: "index_cookbooks_on_recipe_id"
+    t.index ["house_id"], name: "index_house_ingredients_on_house_id"
+    t.index ["ingredient_id"], name: "index_house_ingredients_on_ingredient_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "recipe_id", null: false
+  create_table "house_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.string "roles"
+    t.bigint "user_id", null: false
+    t.bigint "house_id", null: false
+    t.index ["house_id"], name: "index_house_users_on_house_id"
+    t.index ["user_id"], name: "index_house_users_on_user_id"
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.integer "quantity"
-    t.string "unit_type"
-    t.string "food_type"
-    t.string "storage_type"
-    t.date "purchase_date"
-    t.date "best_before_date"
+    t.string "preservation_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "ingredients_recipes", force: :cascade do |t|
@@ -90,6 +93,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
+  end
+
+  create_table "kitchens", force: :cascade do |t|
+    t.boolean "done"
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_kitchens_on_recipe_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -113,8 +124,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
     t.bigint "user_id", null: false
     t.boolean "favorite", default: false
     t.string "duration"
-    t.text "steps"
+    t.integer "number_of_ingredients"
     t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string "description"
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,6 +145,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "prompt_setting"
+    t.string "name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -133,13 +154,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_29_131754) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "users"
-  add_foreign_key "cookbooks", "ingredients"
-  add_foreign_key "cookbooks", "recipes"
-  add_foreign_key "favorites", "recipes"
-  add_foreign_key "favorites", "users"
-  add_foreign_key "ingredients", "users"
+  add_foreign_key "house_ingredients", "houses"
+  add_foreign_key "house_ingredients", "ingredients"
+  add_foreign_key "house_users", "houses"
+  add_foreign_key "house_users", "users"
   add_foreign_key "ingredients_recipes", "recipes"
+  add_foreign_key "kitchens", "recipes"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
+  add_foreign_key "steps", "recipes"
 end

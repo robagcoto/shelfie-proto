@@ -1,5 +1,7 @@
 require "open-uri"
 
+Message.destroy_all
+Chat.destroy_all
 IngredientsRecipe.destroy_all
 Recipe.destroy_all
 User.destroy_all
@@ -53,7 +55,7 @@ IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: r
 IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
 IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
 
-file2 = URI.parse("https://bellyfull.net/wp-content/uploads/2021/05/Chicken-Tikka-Masala-blog.jpg").open
+file2 = URI.parse("https://cdn.britannica.com/40/177340-050-2F922898/Chicken-tikka-masala.jpg").open
 
 recipe2 = Recipe.new(
   name: "Chicken Tikka Masala",
@@ -238,7 +240,7 @@ puts "Go check in your console 🪴"
 
 puts "creating message..."
 
-Chat.create!(title: "harry potter recipe", user_id: 1)
-Message.create!(prompt: "harry potter mood !!", user_id: 1, role: "user", chat_id: 1)
+chat1 = Chat.create!(title: "harry potter recipe", user_id: user1.id)
+Message.create!(prompt: "harry potter mood !!", user_id: user1.id, role: "user", chat_id: chat1.id)
 
 puts "chat created 📨"
