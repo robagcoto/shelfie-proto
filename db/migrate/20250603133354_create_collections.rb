@@ -1,7 +1,6 @@
-class CreateKitchens < ActiveRecord::Migration[7.1]
+class CreateCollections < ActiveRecord::Migration[7.1]
   def change
-    create_table :kitchens do |t|
-      t.boolean :done
+    create_table :collections do |t|
       t.references :recipe, null: false, foreign_key: true
 
       t.timestamps
