@@ -68,7 +68,6 @@ end
 
 private
 
-
   def message_params
     params.require(:message).permit(:prompt)
   end
