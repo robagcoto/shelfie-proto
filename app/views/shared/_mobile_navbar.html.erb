@@ -1,0 +1,22 @@
+<!-- filepath: /Users/fabienhoarau/code/robagcoto/shelfie-proto/app/views/shared/_mobile_navbar.html.erb -->
+<div class="navbar-mobile positioned d-md-none border-top shadow">
+  <div class="d-flex justify-content-around align-items-center pt-1 icon-size" style="height:60px;">
+
+    <%= link_to recipes_path, class: "text-dark text-center flex-fill" do %>
+      <%= image_tag "picto_navbar/icon_recipes.png", alt: "Recipes", style: "height:40px;" %><br>
+    <% end %>
+
+    <%= link_to root_path, class: "text-dark text-center flex-fill" do %>
+      <%= image_tag "picto_navbar/icon_calendar.png", alt: "Recipes", style: "height:40px;" %><br>
+    <% end %>
+
+    <%= link_to root_path, class: "text-dark text-center flex-fill" do %>
+      <%= image_tag "picto_navbar/icon_pict.png", alt: "Recipes", style: "height:44px;" %><br>
+    <% end %>
+
+    <%= link_to root_path, class: "text-dark text-center flex-fill icon-size" do %>
+      <%= image_tag "picto_navbar/icon_fridge.png", alt: "Recipes", style: "height:42px;" %><br>
+    <% end %>
+
+  </div>
+</div>
