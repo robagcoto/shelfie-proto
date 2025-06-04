@@ -19,7 +19,7 @@ The output must be a JSON object with exactly two keys:
   - steps (object): an ordered set of step instructions using unique keys (e.g., "step1", "step2", etc.), where each value is a string describing the step.
   - ingredients_recipe (object): a nested object listing each ingredient, where each ingredient key is unique (e.g., "ingredient1"), and each ingredient contains:
     - name (string)
-    - quantity (number)
+    - quantity (number), must be g,l or pc(s)
     - unit (string)
 
 - recipe_description: a human-readable, well-formatted textual recipe combining the above info, excluding the favorites key, styled like a cookbook entry.
