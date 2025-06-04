@@ -17,7 +17,7 @@ The output must be a JSON object with exactly two keys:
   - favorites (boolean): whether the recipe is a favorite.
   - duration (string): estimated preparation time (e.g., "25 minutes").
   - steps (object): an ordered set of step instructions using unique keys (e.g., "step1", "step2", etc.), where each value is a string describing the step.
-  - ingredients_recipe (object): a nested object listing each ingredient, where each ingredient key is unique (e.g., "ingredient1"), and each ingredient contains:
+  - ingredients_recipes (object): a nested object listing each ingredient, where each ingredient key is unique (e.g., "ingredient1"), and each ingredient contains:
     - name (string)
     - quantity (number), must be g,l or pc(s)
     - unit (string)
@@ -35,7 +35,7 @@ this  what the output must seems
     "rating": 4.7,
     "category": "Dessert",
     "favorites": true,
-    "duration": "30 minutes",
+    "duration": "30",
     "steps": {
       "step1": "Preheat the oven to 375°F (190°C) and line a muffin tin with paper liners.",
       "step2": "In a large bowl, whisk together flour, baking powder, baking soda, salt, and poppy seeds.",
@@ -46,7 +46,7 @@ this  what the output must seems
       "step7": "While muffins cool, mix powdered sugar and lemon juice to make the glaze.",
       "step8": "Drizzle the glaze over the cooled muffins and let set before serving."
     },
-    "ingredients_recipe": {
+    "ingredients_recipes": {
       "ingredient1": {
         "name": "all-purpose flour",
         "quantity": 2,
@@ -161,13 +161,13 @@ this  what the output must seems
           category: recipe_data["category"],
           duration: recipe_data["duration"],
           favorite: recipe_data["favorites"],
-          number_of_ingredients: recipe_data["ingredients_recipe"].size,
+          number_of_ingredients: recipe_data["ingredients_recipes"].size,
           user: current_user
         )
 
         if recipe.save
           # Ajout des ingrédients
-          recipe_data["ingredients_recipe"].each_value do |ingredient|
+          recipe_data["ingredients_recipes"].each_value do |ingredient|
             recipe.ingredients_recipes.create!(
               name: ingredient["name"],
               quantity: ingredient["quantity"],
