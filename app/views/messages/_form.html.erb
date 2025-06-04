@@ -1,14 +1,18 @@
 <div class="card shadow-sm rounded-5 my-3 bg-secondary">
-  <div class="card-body">
+  <div class="card-body" style="border-radius: 50%;">
     <%= simple_form_for [chat, message], remote: true do |f| %>
-      <div class="row g-2 align-items-center">
-        <div class="col-8">
+      <div class="row g-3 align-items-center">
+
+        <div class="col-10 pt-2">
           <%= f.input :prompt, input_html: { class: "form-control rounded-4", data: { messages_target: "userMessage" }, placeholder: "Ask a question" }, required: true, label: false %>
         </div>
 
-        <div class="col-4 text-end">
-          <%= f.button :submit, "wesh", class: 'btn btn-primary w-100 d-flex align-items-center justify-content-center', data: { action: 'click->messages#injectMessage' } do %>
-            <%= image_tag "view.png", alt: "Envoyer", style: "width: 32px; height: 32px;" %>
+        <div class="col-2 text-end">
+          <%= button_tag type: 'submit',
+                         class: 'btn btn-primary d-flex align-items-center justify-content-center',
+                         style: 'border-radius: 50%; width: 48px; height: 48px; padding: 0;',
+                         data: { action: 'click->messages#injectMessage' } do %>
+            <%= image_tag "view.png", alt: "Envoyer", style: "width: 32px; height: 32px; transform: rotate(-90deg);" %>
           <% end %>
         </div>
       </div>
