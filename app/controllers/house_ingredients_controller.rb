@@ -30,6 +30,12 @@ class HouseIngredientsController < ApplicationController
   def update
   end
 
+  def destroy
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.destroy
+    redirect_to house_house_ingredients_path(@house), notice: "Hasta la vista, baby..."
+  end
+
 private
 
   def default_house
