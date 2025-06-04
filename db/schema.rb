@@ -44,9 +44,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
 
   create_table "chats", force: :cascade do |t|
     t.string "title"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
@@ -70,16 +70,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
   end
 
   create_table "house_users", force: :cascade do |t|
-
     t.bigint "user_id", null: false
     t.bigint "house_id", null: false
     t.string "role"
     t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "roles"
-    t.bigint "user_id", null: false
-    t.bigint "house_id", null: false
     t.index ["house_id"], name: "index_house_users_on_house_id"
     t.index ["user_id"], name: "index_house_users_on_user_id"
   end
@@ -107,20 +103,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
     t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
   end
 
-  create_table "kitchens", force: :cascade do |t|
-    t.boolean "done"
-    t.bigint "recipe_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_kitchens_on_recipe_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.string "prompt"
+    t.string "role"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
     t.bigint "chat_id"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
@@ -131,12 +119,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
     t.string "description"
     t.integer "rating"
     t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.string "duration"
     t.boolean "favorite", default: false
     t.integer "number_of_ingredients"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -172,7 +160,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
   add_foreign_key "house_users", "houses"
   add_foreign_key "house_users", "users"
   add_foreign_key "ingredients_recipes", "recipes"
-  add_foreign_key "kitchens", "recipes"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "recipes", "users"
