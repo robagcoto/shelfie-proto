@@ -1,8 +1,8 @@
+<%= render partial: "shared/top_nav", locals: { return_url: recipe_path(@recipe), fav_display: false, edit_display: false, add_display: false } %>
+
+
 <div class="container my-1">
 
-  <div class="text-start my-3">
-      <%= link_to "Return to recipe", recipes_path, class: "btn btn-primary btn-xl" %>
-  </div>
 
   <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
 
@@ -24,7 +24,7 @@
       <%= f.input :rating, label: "Rating" %>
     </div>
 
-  <% @recipe.ingredients_recipe.each do |ingredient| %>
+  <% @recipe.ingredients_recipes.each do |ingredient| %>
     <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
       <div class="ingredient-row" data-ingredients-target="remove">
         <div class="col-4 mb-2">
@@ -37,7 +37,7 @@
 
         <div class="col-2">
           <select name="ingredients[][unit]">
-            <%= options_for_select(IngredientsRecipe::VALID_CATEGORIES, ingredient.unit) %>
+            <%= options_for_select(Recipe::VALID_CATEGORIES, ingredient.unit) %>
           </select>
         </div>
 

@@ -1,15 +1,15 @@
+<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false } %>
 
-
-
- <div class="container my-5">
-    <!-- Formulaire simple pour créer un nouveau chat -->
-    <%= simple_form_for @chat do |f| %>
-      <div class="mb-3">
-        <%= f.input :prompt,
-                    placeholder: "Tapez ce que vous avez en tête pour obtenir une recommandation",
-                    required: true,
-                    label: false,
-                    input_html: { class: "form-control" } %>
-      </div>
-      <%= f.button :submit, 'submit', class: 'btn btn-primary w-100' %>
-    <% end %>
+<div class="container my-5">
+  <!-- Formulaire simple pour créer un nouveau chat -->
+  <%= simple_form_for @chat do |f| %>
+    <div class="mb-3">
+      <%= f.input :prompt,
+                  placeholder: "Tapez ce que vous avez en tête pour obtenir une recommandation",
+                  required: true,
+                  label: false,
+                  input_html: { class: "form-control" } %>
+    </div>
+    <%= f.button :submit, 'submit', class: 'btn btn-primary w-100' %>
+  <% end %>
+</div>

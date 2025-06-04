@@ -1,31 +1,24 @@
-<div class="d-flex flex-column">
-  <%# passe la locale with_add_button pour afficher le button ou non %>
-  <%= render partial: 'shared/top_nav', locals: { with_add_button: true } %>
+<%= render partial: "shared/top_nav", locals: { return_url: chats_path, fav_display: false, edit_display: false, add_display: false } %>
 
-
-  <h1 class="h4 mb-3"><%= @chat.title %></h1>
-  <div id="messages" class="overflow-auto" style="margin-top: 128px;">
-    <%#= render "messages/messages", messages: @messages %>
-    <%= render partial: "messages/message", collection: @messages, as: :message %>
-  </div>
-
-  <div id="form" >
-  <div class="position-fixed top-0 start-0 w-100 pt-3" style="z-index: 1050; padding: 0.5rem 0; background: #f4f4f4;">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-4">
-          <%= link_to chats_path do %>
-            <%= image_tag "return.png", alt: "return", width: 50, height: 50, class: "rounded-circle p-1" %>
-          <% end %>
-        </div>
-        <div class="col-4">
-          <h1 class="h4 mb-3"><%= @chat.title %></h1>
-        </div>
+<div class="d-flex flex-column vh-100">
+  <div class="d-flex flex-column">
+    <!-- Fixed header with chat title and retour -->
+    <div class="row align-items-center">
+      <div class="col text-center">
+        <h1><%= @chat.title %></h1>
       </div>
     </div>
-  </div>
 
-  <div id="form">
-    <%= render "messages/form", chat: @chat, message: @message %>
+    <!-- Messages list -->
+    <div id="messages" class="flex-grow-1 overflow-auto px-3" style="margin-top: 80px; margin-bottom: 90px;">
+      <%= render partial: "messages/message", collection: @messages, as: :message %>
+    </div>
+
+    <!-- Message form fixed at the bottom -->
+    <div class="position-fixed bottom-0 start-0 w-100" style="z-index: 1050; padding: 1rem 0;">
+      <div class="container px-3">
+        <%= render "messages/form", chat: @chat, message: @message %>
+      </div>
+    </div>
   </div>
 </div>

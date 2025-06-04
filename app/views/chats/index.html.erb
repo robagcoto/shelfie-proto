@@ -1,4 +1,6 @@
 
+<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false } %>
+
 <div class="container mt-4">
 
   <div class="position-fixed top-0 start-0 w-100" style="z-index: 1050; padding: 0.5rem 0; background: #f4f4f4;">
@@ -9,14 +11,14 @@
     </div>
   </div>
 
-  <div style="padding-top: 70px; my-1;">
+  <div style="padding-top: 10px; mb-5 pb-5;">
     <div class="row g-3">
       <% @chats.each do |chat| %>
-        <div class="col-12">
-          <div class="d-flex align-items-center justify-content-between w-100 shadow height-150px mb-2 px-3" style="border-radius: 10px; max-width: 100%;">
+        <div class="col-12 ">
+          <div class="d-flex align-items-center justify-content-between w-100 shadow height-150px mb-2 px-3" style="border-radius: 10px; max-width: 100%; ">
             <span class="flex-grow-1 text-truncate">
               <%= link_to chat.title, chat_messages_path(chat),
-                    class: "text-decoration-none text-dark" %>
+                    class: "text-decoration-none text-primary margin-100px" %>
             </span>
             <%= button_to chat_path(chat), method: :delete, data: { confirm: 'Supprimer ce chat ?' }, class: "btn btn-sm btn-outline-none ms-2 p-0" do %>
               <%= image_tag "close.png", style: "width: 24px; height: 24px;" %>
@@ -25,9 +27,11 @@
         </div>
       <% end %>
     </div>
-  </div>
-  <div class="fixed-bottom p-3 border-top bg-white">
-    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100 shadow" %>
 
+    <div style="margin-bottom: 100px;"></div>
+  </div>
+
+  <div class="fixed-bottom p-3 bg-#f4f4f4">
+    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-secondary btn-lg w-100 shadow", style: "border-radius: 50px;" %>
   </div>
 </div>

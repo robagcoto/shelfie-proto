@@ -1,8 +1,15 @@
 require "open-uri"
 
+puts "Restarting DB 🔥"
+Step.destroy_all
 IngredientsRecipe.destroy_all
 Recipe.destroy_all
+HouseUser.destroy_all
+HouseIngredient.destroy_all
 User.destroy_all
+House.destroy_all
+Message.destroy_all
+Chat.destroy_all
 
 puts "Initializing seed 🌱"
 
@@ -23,7 +30,7 @@ puts "Users created ! 🧑🏻‍💻"
 
 # 2. Recipe seeds
 
-puts "creating recipe sample 🍔"
+puts "creating recipe 1 🔪👨🏻‍🍳"
 
 file1 = URI.parse("https://www.fromager.net/wp-content/uploads/2023/12/recette-pates-carbonara.jpg").open
 
@@ -36,7 +43,16 @@ steps1 = [
   "Serve right away with extra cheese and black pepper on top."
 ]
 
-recipe1 = Recipe.new(
+steps1 = [
+  "Boil water, salt it generously, and cook spaghetti until al dente. Reserve 1 cup of pasta water before draining.",
+  "In a pan, cook pancetta/guanciale over medium heat until crispy. Turn off the heat once done.",
+  "In a bowl, whisk together the egg yolks, whole egg, cheese, and a generous amount of black pepper.",
+  "Add the hot pasta to the pan with pancetta. Quickly toss.",
+  "Immediately stir in the egg mixture, tossing fast so the eggs coat the pasta without scrambling. Add pasta water bit by bit to make it creamy.",
+  "Serve right away with extra cheese and black pepper on top."
+]
+
+recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
   duration: 20,
@@ -56,18 +72,24 @@ recipe1.photo.attach(
 recipe1.save!
 
 
-IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe: recipe1)
+IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe: recipe1)
 
 # ----------------------------------------------------------------------------------------------------------------------
+
+puts "Recipe 1 created 🍔"
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+puts "creating recipe 2 🔪👨🏻‍🍳"
 
 file2 = URI.parse("https://bellyfull.net/wp-content/uploads/2021/05/Chicken-Tikka-Masala-blog.jpg").open
 
 steps2 = [
- "In a bowl, mix yogurt, lemon juice, and all marinade spices. Add chicken, coat well, and marinate for at least 30 mins (or overnight).",
- "Heat a grill pan or skillet over high heat. Cook marinated chicken until lightly charred and just cooked through. Set aside.",
+  "In a bowl, mix yogurt, lemon juice, and all marinade spices. Add chicken, coat well, and marinate for at least 30 mins (or overnight).",
+  "Heat a grill pan or skillet over high heat. Cook marinated chicken until lightly charred and just cooked through. Set aside.",
  "In a large pan, heat oil/ghee. Sauté onions until golden. Add garlic, ginger, and spices. Stir for 1–2 minutes.",
  "Pour in crushed tomatoes. Simmer for 10 minutes until thick.",
  "Add cream, stir, and then add cooked chicken. Simmer for another 10–15 minutes until chicken is tender and sauce is luscious.",
@@ -93,10 +115,10 @@ recipe2.photo.attach(
 
 recipe2.save!
 
-IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recipe2)
+IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -129,10 +151,10 @@ recipe3.photo.attach(
 
 recipe3.save!
 
-IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: recipe3)
+IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -165,12 +187,16 @@ recipe4.photo.attach(
 
 recipe4.save!
 
-IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe: recipe4)
 
+puts "Recipe 4 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+
+puts "creating recipe 5 🔪👨🏻‍🍳"
+
 
 file5 = URI.parse("https://www.kikkoman.fr/fileadmin/_processed_/1/8/csm_1075-recipe-page-Saffron-scented-Ratatouille_desktop_5ddfe5fdbf.jpg").open
 
@@ -202,10 +228,10 @@ recipe5.photo.attach(
 )
 recipe5.save!
 
-IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -239,10 +265,10 @@ recipe6.photo.attach(
 )
 
 recipe6.save!
-IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
+IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -275,20 +301,94 @@ recipe7.photo.attach(
 
 recipe7.save!
 
-IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-puts "Recipes sample created with ingredients created 🍔"
+puts "Recipes sample created with ingredients created 🥘🍙"
 puts "Go check in your console 🪴"
 
 
 puts "creating message..."
 
-Chat.create!(title: "harry potter recipe", user_id: 1)
-Message.create!(prompt: "harry potter mood !!", user_id: 1, role: "user", chat_id: 1)
+chat = Chat.create!(title: "harry potter recipe", user: user1)
+Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
 puts "chat created 📨"
+
+puts "Creating Houses 🏚️"
+house1 = House.create!(name: "My happy home")
+HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
+
+
+puts "House created 🏘️"
+
+puts "Creating the ingredients 🛒"
+
+ing1  = Ingredient.create!(name: "banana",           storage_method: "dry")
+ing2  = Ingredient.create!(name: "apple",            storage_method: "dry")
+ing3  = Ingredient.create!(name: "carrot",           storage_method: "fridge")
+ing4  = Ingredient.create!(name: "tomato",           storage_method: "fridge")
+ing5  = Ingredient.create!(name: "potato",           storage_method: "dry")
+ing6  = Ingredient.create!(name: "onion",            storage_method: "dry")
+ing7  = Ingredient.create!(name: "garlic",           storage_method: "dry")
+ing8  = Ingredient.create!(name: "broccoli",         storage_method: "fridge")
+ing9  = Ingredient.create!(name: "spinach",          storage_method: "fridge")
+ing10 = Ingredient.create!(name: "lettuce",          storage_method: "fridge")
+ing11 = Ingredient.create!(name: "egg",              storage_method: "fridge")
+ing12 = Ingredient.create!(name: "milk",             storage_method: "fridge")
+ing13 = Ingredient.create!(name: "butter",           storage_method: "fridge")
+ing14 = Ingredient.create!(name: "chicken breast",   storage_method: "fridge")
+ing15 = Ingredient.create!(name: "beef steak",       storage_method: "fridge")
+ing16 = Ingredient.create!(name: "pork chop",        storage_method: "fridge")
+ing17 = Ingredient.create!(name: "fish fillet",      storage_method: "fridge")
+ing18 = Ingredient.create!(name: "shrimp",           storage_method: "freezer")
+ing19 = Ingredient.create!(name: "frozen peas",      storage_method: "freezer")
+ing20 = Ingredient.create!(name: "cheddar cheese",   storage_method: "fridge")
+ing21 = Ingredient.create!(name: "yogurt",           storage_method: "fridge")
+ing22 = Ingredient.create!(name: "orange",           storage_method: "dry")
+ing23 = Ingredient.create!(name: "lemon",            storage_method: "dry")
+ing24 = Ingredient.create!(name: "cucumber",         storage_method: "fridge")
+ing25 = Ingredient.create!(name: "zucchini",         storage_method: "fridge")
+ing26 = Ingredient.create!(name: "eggplant",         storage_method: "fridge")
+ing27 = Ingredient.create!(name: "bell pepper",      storage_method: "fridge")
+ing28 = Ingredient.create!(name: "rice",             storage_method: "dry")
+ing29 = Ingredient.create!(name: "pasta",            storage_method: "dry")
+ing30 = Ingredient.create!(name: "bread",            storage_method: "dry")
+
+# Rattacher chaque ingrédient à la même maison
+HouseIngredient.create!(expiration_date: "2025-07-01", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing1.id)
+HouseIngredient.create!(expiration_date: "2025-07-02", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing2.id)
+HouseIngredient.create!(expiration_date: "2025-07-03", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing3.id)
+HouseIngredient.create!(expiration_date: "2025-07-04", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing4.id)
+HouseIngredient.create!(expiration_date: "2025-07-05", quantity: 10, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing5.id)
+HouseIngredient.create!(expiration_date: "2025-07-06", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing6.id)
+HouseIngredient.create!(expiration_date: "2025-07-07", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing7.id)
+HouseIngredient.create!(expiration_date: "2025-07-08", quantity: 5,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing8.id)
+HouseIngredient.create!(expiration_date: "2025-07-09", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing9.id)
+HouseIngredient.create!(expiration_date: "2025-07-10", quantity: 1,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing10.id)
+HouseIngredient.create!(expiration_date: "2025-07-11", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing11.id)
+HouseIngredient.create!(expiration_date: "2025-07-12", quantity: 2,  unit: 'l',     house_id: house1.id, ingredient_id: ing12.id)
+HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
+HouseIngredient.create!(expiration_date: "2025-07-14", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing14.id)
+HouseIngredient.create!(expiration_date: "2025-07-15", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing15.id)
+HouseIngredient.create!(expiration_date: "2025-07-16", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing16.id)
+HouseIngredient.create!(expiration_date: "2025-07-17", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing17.id)
+HouseIngredient.create!(expiration_date: "2025-07-18", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing18.id)
+HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
+HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
+HouseIngredient.create!(expiration_date: "2025-07-21", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing21.id)
+HouseIngredient.create!(expiration_date: "2025-07-22", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing22.id)
+HouseIngredient.create!(expiration_date: "2025-07-23", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing23.id)
+HouseIngredient.create!(expiration_date: "2025-07-24", quantity: 5,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing24.id)
+HouseIngredient.create!(expiration_date: "2025-07-25", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing25.id)
+HouseIngredient.create!(expiration_date: "2025-07-26", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing26.id)
+HouseIngredient.create!(expiration_date: "2025-07-27", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing27.id)
+HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
+HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
+HouseIngredient.create!(expiration_date: "2025-07-30", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing30.id)
+
+puts "Groceries completed 🥕🍌"

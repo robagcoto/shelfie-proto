@@ -1,16 +1,19 @@
 <div class="container">
 
-  <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center mt-3">
 
     <div>
       <h1 class="mb-0 mt-0" style="font-size:35px;">Welcome to Shelfie!</h1>
       <p class="fs-6 text-muted">Explore your recipes, ingredients, and much more</p>
     </div>
 
-    <div class="mb-5">
-      <%= link_to root_path, class: "rounded-circle" do %>
+    <div class="mb-5 dropdown">
+      <a href="#" class="rounded-circle" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "icon_user.png", alt: "User", style: "width:60px; height:60px;" %>
-      <% end %>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+      </div>
     </div>
 
   </div>
@@ -18,7 +21,7 @@
   <div class="col">
 
     <div class="card h-100 shadow-sm">
-      <div class="card card-background text-white">
+      <div class="card card-background text-secondary">
         <div class="card-img-overlay">
 
         <h5 class="card-title">Ingredients alerts</h5>
@@ -40,7 +43,7 @@
     </div>
 
     <div class="card h-100 shadow-sm my-3">
-      <div class="card card-light-background text-black">
+      <div class="card card-light-background text-primary">
         <div class="card-img-overlay">
 
           <h5 class="card-title">Recipes</h5>
@@ -62,16 +65,18 @@
     </div>
 
 
-  <%= link_to chats_path do %>
-    <div class="card h-100 shadow-sm my-3">
-      <div class="card card-background text-white">
-        <div class="card-img-overlay text-center mt-5">
-            <h5>Cooking Assistant</h5>
-            <p>"What would you like to cook today?"</p>
+    <%= link_to chats_path do %>
+      <div class="card h-100 shadow-sm my-3">
+        <div class="card card-other-background text-secondary">
+          <div class="card-img-overlay text-center">
+              <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
+
+              <h5 class="p-0">Cooking Assistant</h5>
+              <p>"What would you like to cook today?"</p>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
   </div>
 </div>

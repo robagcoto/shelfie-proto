@@ -1,51 +1,52 @@
-  <div class="container my-4">
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <h1 class="card-title mb-4 text-center"><%= @recipe.name %></h1>
+<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: true, add_display: false } %>
 
-      <ul class="list-group list-group-flush mb-3">
+<div class="container-img mt-4"><%= cl_image_tag @recipe.photo.key, class: "picture" if @recipe.photo.attached? %></div>
 
-        <%# <div class="container-img"><%= cl_image_tag @recipe.photo.key, class: "picture" %></div> %>
+  <ul class="list-group list-group-flush">
 
-        <li class="list-group-item mt-3"><strong>Category:</strong>
-        <p><%= @recipe.category %></p></li>
+    <li class="list-group-item mt-4"><strong>Category:</strong>
+      <p><%= @recipe.category %></p>
+    </li>
 
-        <li class="list-group-item">
-          <strong>Rating:</strong>
-          <% rating = @recipe.rating.to_i %>
-          <% 5.times do |i| %>
-            <% if i < rating %>
-              <i class="fas fa-star text-warning"></i>
-            <% else %>
-              <i class="far fa-star text-muted"></i>
-            <% end %>
-          <% end %>
-        </li>
+    <li class="list-group-item">
+      <strong>Rating:</strong>
+      <p class="mt-2"><% rating = @recipe.rating.to_i %>
+      <% 5.times do |i| %>
+        <% if i < rating %>
+          <i class="fas fa-star text-warning"></i>
+        <% else %>
+          <i class="far fa-star text-muted"></i>
+        <% end %>
+      <% end %>
+      </p>
+    </li>
 
-        <li class="list-group-item mt-3"><strong>Duration:</strong>
-        <p><%= @recipe.duration %> min</p></li>
+    <li class="list-group-item"><strong>Duration:</strong>
+      <p><%= @recipe.duration %> min</p>
+    </li>
 
-        <ul class="list-group-item mb-1">
-          <p class="mb-3"><strong>Ingredients:</strong></p>
-          <% @recipe.ingredients_recipes.each do |ingredient| %>
+    <li class="list-group-item mb-1">
+      <p><strong>Ingredients:</strong></p>
+      <ul class="mb-1">
+        <% @recipe.ingredients_recipes.each do |ingredient| %>
           <li class="mb-1"><strong><%= ingredient.name %></strong>
           <%= ingredient.quantity %> <%= ingredient.unit %></li>
         <% end %>
-        </ul>
-
-        <li class="list-group-item">
-        <strong>Steps:</strong>
-        <p><%= simple_format(@recipe.steps) %></p></li>
-
       </ul>
+    </li>
 
-      <div class="container mb-3">
-        <div class="d-flex justify-content-between">
-        <%= link_to "Back to recipes", recipes_path, class: "btn btn-primary" %>
-        <%= link_to "Edit recipe", edit_recipe_path(@recipe), class: "btn btn-primary" %>
-        </div>
+  <!--
 
-      </div>
-    </div>
-  </div>
+    <li class="list-group-item">
+      <strong>Steps:</strong>
+        <ol>
+        <% @recipe.steps.each do |step| %>
+          <li><%= step.description %></li>
+        <% end %>
+      </ol>
+    </li>
+
+  -->
+
+  </ul>
 </div>
