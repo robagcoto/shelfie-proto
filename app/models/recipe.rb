@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :user
-  has_many :ingredients_recipe, dependent: :destroy
+  has_many :ingredients_recipes, dependent: :destroy
   has_many :completions, dependent: :destroy
   has_many :steps, dependent: :destroy
 
@@ -25,7 +25,7 @@ VALID_CATEGORIES = [
   validates :name, presence: true
   validates :description, presence: true
   validates :duration, presence: true
-  validates :category, presence: true, inclusion: { in: VALID_CATEGORIES }
+  # validates :category, presence: true, inclusion: { in: VALID_CATEGORIES }
   validates :rating, numericality: {
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 5,
