@@ -3,7 +3,7 @@
 
 class HouseIngredientsController < ApplicationController
   def index
-    @house = House.find(params[:house_id])
+    @house = House.default_for(current_user)
     @house_ingredients = @house.house_ingredients.includes(:ingredient)
   end
 
@@ -12,7 +12,7 @@ class HouseIngredientsController < ApplicationController
     # appeler la house dans laquelle on est
     @house = House.find(params[:house_id])
     # Crééer une nouvelle instance de house_ingredients
-    @house_ingredients = @house.house_ingredients.includes(:ingredient)
+    @house_ingredient = @house.house_ingredients.includes(:ingredient)
     # Lister tous les ingredients au cas où on met une logique d'autocompletion
     @ingredients = Ingredient.all
   end
@@ -22,6 +22,7 @@ class HouseIngredientsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
