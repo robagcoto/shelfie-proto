@@ -23,11 +23,6 @@
                   <p class="ms-2"><%= truncate(recipe.description, length: 100) %></p>
                 <% end %>
 
-                <%# <div class="d-flex justify-content-end">
-                <%= link_to recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-primary btn-sm" do %>
-                <%# <i class="fa-solid fa-trash"></i>
-                <% end %>
-                <%# </div> %>
               </div>
             </div>
           </div>
