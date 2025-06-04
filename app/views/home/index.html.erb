@@ -1,16 +1,19 @@
 <div class="container">
 
-  <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center mt-3">
 
     <div>
       <h1 class="mb-0 mt-0" style="font-size:35px;">Welcome to Shelfie!</h1>
       <p class="fs-6 text-muted">Explore your recipes, ingredients, and much more</p>
     </div>
 
-    <div class="mb-5">
-      <%= link_to root_path, class: "rounded-circle" do %>
+    <div class="mb-5 dropdown">
+      <a href="#" class="rounded-circle" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "icon_user.png", alt: "User", style: "width:60px; height:60px;" %>
-      <% end %>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+      </div>
     </div>
 
   </div>

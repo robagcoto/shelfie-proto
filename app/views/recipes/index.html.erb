@@ -1,40 +1,30 @@
-<div class="container my-1">
-<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
+<div class="container my-1 ">
+  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
 
   <h1 class="text-center mb-4 mt-4">List of my recipes</h1>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
     <% @recipes.each do |recipe| %>
       <div class="col">
-
         <%= link_to recipe_path(recipe), class: "card h-100 shadow-sm text-decoration-none" do %>
-
           <div class="card h-100 shadow-sm">
-          <%# <%= cycle('card-product-light', 'card-product') %>
-            <div class="card-product-light justify-content-center" >
-
-              <%= cl_image_tag recipe.photo.key, id: "pic" %>
+            <div class="card-product-light justify-content-center">
+              <%= cl_image_tag recipe.photo.key, id: "pic" if recipe.photo.attached? %>
 
               <div class="card-description mt-2 pt-3">
                 <h5 class="ms-2"><%= recipe.name %></h5>
                 <% if recipe.description.present? %>
                   <p class="ms-2"><%= truncate(recipe.description, length: 100) %></p>
                 <% end %>
-
-                <%# <div class="d-flex justify-content-end">
-                <%= link_to recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-primary btn-sm" do %>
-                <%# <i class="fa-solid fa-trash"></i>
-                <% end %>
-                <%# </div> %>
               </div>
             </div>
           </div>
         <% end %>
       </div>
     <% end %>
-
-
   </div>
-
 </div>
+
+
+<div class="container"></div>
+<div class="flex"></div>
