@@ -70,6 +70,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
   end
 
   create_table "house_users", force: :cascade do |t|
+
+    t.bigint "user_id", null: false
+    t.bigint "house_id", null: false
+    t.string "role"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"
@@ -87,7 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.string "preservation_method"
+    t.string "storage_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
