@@ -79,4 +79,7 @@ Rails.application.configure do
 
   config.active_storage.service = :cloudinary
 
+  config.hosts << "b87a-213-41-253-129.ngrok-free.app"
+
+  config.hosts << /[a-z0-9\-]+\.ngrok-free\.app/
 end
