@@ -1,9 +1,10 @@
-<div class="container my-1">
-<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
+<div class="container my-1 ">
 
   <h1 class="text-center mb-4 mt-4">List of my recipes</h1>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
 
     <% @recipes.each do |recipe| %>
       <div class="col">
