@@ -1,4 +1,7 @@
 class HouseIngredient < ApplicationRecord
+  VALID_CATEGORIES = ['l', 'g', 'pc(s)']
+
   belongs_to :house
   belongs_to :ingredient
+  validates :unit, presence: true, inclusion: { in: VALID_CATEGORIES }
 end

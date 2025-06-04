@@ -70,11 +70,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
   end
 
   create_table "house_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "roles"
+
     t.bigint "user_id", null: false
     t.bigint "house_id", null: false
+    t.string "role"
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_house_users_on_house_id"
     t.index ["user_id"], name: "index_house_users_on_user_id"
   end
@@ -87,7 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.string "preservation_method"
+    t.string "storage_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
