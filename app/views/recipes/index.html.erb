@@ -1,14 +1,7 @@
 <div class="container my-1">
+<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
 
-  <div class="d-flex justify-content-between text-center mb-4">
-    <%= link_to root_path do %>
-    <%= image_tag "return.png", alt: "return", class:"return-btn" %>
-    <% end %>
-    <%= link_to "favorites", pages_dashboard_path, class: "btn btn-primary" %>
-    <%= link_to "add a recipe", new_recipe_path, class: "btn btn-primary" %>
-  </div>
-
-  <h1 class="text-center mb-4">List of my recipes</h1>
+  <h1 class="text-center mb-4 mt-4">List of my recipes</h1>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 

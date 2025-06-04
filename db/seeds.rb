@@ -36,7 +36,7 @@ steps1 = [
   "Serve right away with extra cheese and black pepper on top."
 ]
 
-recipe1 = Recipe.new(
+recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
   duration: 20,
@@ -56,10 +56,10 @@ recipe1.photo.attach(
 recipe1.save!
 
 
-IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe: recipe1)
+IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe: recipe1)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ steps2 = [
  "Garnish with fresh coriander. Serve hot with naan or basmati rice."
 ]
 
-recipe2 = Recipe.new(
+recipe2 = Recipe.create(
   name: "Chicken Tikka Masala",
   description: "The bold, buttery curry that turns chicken into a rockstar.",
   duration: 50,
@@ -93,10 +93,10 @@ recipe2.photo.attach(
 
 recipe2.save!
 
-IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe_id: recipe2.id)
+IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recipe2)
+IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ steps3 = [
   "Roll it up tightly using the mat, pressing gently. Seal the edge with a bit of water.",
   "Slice roll into 6–8 pieces with a sharp wet knife. Serve with soy sauce, pickled ginger, and wasabi."
 ]
-recipe3 = Recipe.new(
+recipe3 = Recipe.create(
   name: "Sushi Rolls",
   description: "The bite-sized ocean hugs wrapped in rice and cool vibes!",
   duration: 45,
@@ -129,10 +129,10 @@ recipe3.photo.attach(
 
 recipe3.save!
 
-IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: recipe3)
+IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -146,7 +146,7 @@ steps4 = [
   "Serve immediately with tortilla chips, tacos, or toast."
 ]
 
-recipe4 = Recipe.new(
+recipe4 = Recipe.create(
   name: "Guacamole",
   description: "The creamy green dip that turns chips into a party.",
   duration: 10,
@@ -165,10 +165,10 @@ recipe4.photo.attach(
 
 recipe4.save!
 
-IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe: recipe4)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ steps5 = [
   "Garnish with fresh basil. Serve warm or at room temp with crusty bread."
 ]
 
-recipe5 = Recipe.new(
+recipe5 = Recipe.create(
   name: "Ratatouille",
   description: "A colorful veggie confetti that tastes like a French garden party. ",
   duration: 50,
@@ -202,10 +202,10 @@ recipe5.photo.attach(
 )
 recipe5.save!
 
-IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe_id: recipe5.id)
+IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ steps6 = [
   "Serve with lime wedges and let the fiesta begin."
 ]
 
-recipe6 = Recipe.new(
+recipe6 = Recipe.create(
   name: "Tacos al Pastor",
   description: "Sweet, spicy, smoky pork tacos with pineapple party vibes.",
   duration: 60,
@@ -239,10 +239,10 @@ recipe6.photo.attach(
 )
 
 recipe6.save!
-IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe_id: recipe6.id)
+IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
+IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -256,7 +256,7 @@ steps7 = [
   "Add green onions. Serve warm and slurp with joy."
 ]
 
-recipe7 = Recipe.new(
+recipe7 = Recipe.create(
   name: "Miso Soup",
   description: "Traditional Japanese soup with tofu",
   duration: 15,
@@ -275,10 +275,10 @@ recipe7.photo.attach(
 
 recipe7.save!
 
-IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe_id: recipe7.id)
+IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -288,7 +288,7 @@ puts "Go check in your console 🪴"
 
 puts "creating message..."
 
-Chat.create!(title: "harry potter recipe", user_id: 1)
-Message.create!(prompt: "harry potter mood !!", user_id: 1, role: "user", chat_id: 1)
+chat = Chat.create!(title: "harry potter recipe", user: user1)
+Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
 puts "chat created 📨"

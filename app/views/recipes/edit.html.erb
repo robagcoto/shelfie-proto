@@ -1,8 +1,8 @@
+<%= render partial: "shared/top_nav", locals: { return_url: recipe_path(@recipe), fav_display: false, edit_display: false, add_display: false } %>
+
+
 <div class="container my-1">
 
-  <div class="text-start my-3">
-      <%= link_to "Return to recipe", recipes_path, class: "btn btn-primary btn-xl" %>
-  </div>
 
   <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
 
