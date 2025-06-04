@@ -2,26 +2,16 @@
 
 <div class="d-flex flex-column vh-100">
 
-<div class="d-flex flex-column">
+  <div class="d-flex flex-column">
   <%# passe la locale with_add_button pour afficher le button ou non %>
-  
+
 
   <!-- Fixed header with chat title and retour -->
-  <div class="position-fixed top-0 start-0 w-100 bg-light border-bottom" style="z-index: 1050; padding: 0.75rem 0;">
-    <div class="container px-3">
-      <div class="row align-items-center">
-        <div class="col-auto">
-          <%= link_to chats_path do %>
-            <%= image_tag "view.png", alt: "return", width: 40, height: 40, class: "rounded-circle p-1" %>
-          <% end %>
-        </div>
-        <div class="col text-center">
-          <h1 class="h5 mb-0"><%= @chat.title %></h1>
-        </div>
-        <div class="col-auto"></div>
+    <div class="row align-items-center">
+      <div class="col text-center">
+        <h1><%= @chat.title %></h1>
       </div>
     </div>
-  </div>
 
   <!-- Messages list -->
   <div id="messages" class="flex-grow-1 overflow-auto px-3" style="margin-top: 80px; margin-bottom: 90px;">

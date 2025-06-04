@@ -6,14 +6,20 @@
   <%# full_display = boolean, permet de display seulement sur certaines pages %>
     <%# if local_assigns[:fav_display] %>
     <% if fav_display %>
-      <%= link_to "favorites", pages_dashboard_path, class: "btn btn-primary" %>
+      <%= link_to pages_dashboard_path do%>
+      <%= image_tag "fav.png", alt: "fav", class:"fav-btn" %>
+      <% end %>
     <% end %>
 
     <% if edit_display %>
-      <%= link_to "Edit recipe", edit_recipe_path(@recipe), class: "btn btn-primary" %>
+      <%= link_to edit_recipe_path(@recipe) do %>
+      <%= image_tag "edit", alt:"edit", class:"edit-btn" %>
+      <% end %>
     <% end %>
 
     <% if add_display %>
-      <%= link_to "add a recipe", new_recipe_path, class: "btn btn-primary" %>
+      <%= link_to new_recipe_path do %>
+      <%= image_tag "close.png", alt: "add", class: "add-btn" %>
+      <% end %>
     <% end %>
   </div>
