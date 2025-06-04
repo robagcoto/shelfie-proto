@@ -1,6 +1,8 @@
+<%= render partial: "shared/top_nav", locals: { return_url: chats_path, fav_display: false, edit_display: false, add_display: false } %>
+
+
 <div class="d-flex flex-column">
   <%# passe la locale with_add_button pour afficher le button ou non %>
-  <%= render partial: 'shared/top_nav', locals: { with_add_button: true } %>
 
 
   <h1 class="h4 mb-3"><%= @chat.title %></h1>

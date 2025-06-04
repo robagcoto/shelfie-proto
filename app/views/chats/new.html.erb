@@ -1,3 +1,6 @@
+ <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false } %>
+
+
  <div class="container my-5">
     <!-- Formulaire simple pour créer un nouveau chat -->
     <%= simple_form_for @chat do |f| %>

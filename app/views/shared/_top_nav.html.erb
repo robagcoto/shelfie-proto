@@ -1,17 +1,19 @@
-<%# LOCALS %>
-<%# with_add_button => BOOLEAN => affichage du bouton %>
+  <div class="d-flex justify-content-between text-center m-3">
+    <%= link_to return_url do %>
+      <%= image_tag "return.png", alt: "return", class:"return-btn" %>
+    <% end %>
 
-<div class="position-fixed top-0 start-0 w-100 pt-3" style="z-index: 1050; padding: 0.5rem 0; background: #f4f4f4;">
-  <div class="container">
-    <div class="row justify-content-evenly">
+  <%# full_display = boolean, permet de display seulement sur certaines pages %>
+    <%# if local_assigns[:fav_display] %>
+    <% if fav_display %>
+      <%= link_to "favorites", pages_dashboard_path, class: "btn btn-primary" %>
+    <% end %>
 
-      <%= link_to chats_path do %>
-        <%= image_tag "return.png", alt: "return", width: 50, height: 50, class: "rounded-circle p-1" %>
-      <% end %>
+    <% if edit_display %>
+      <%= link_to "Edit recipe", edit_recipe_path(@recipe), class: "btn btn-primary" %>
+    <% end %>
 
-      <% if with_add_button %>
-        <%# <button>+</button> %>
-      <% end %>
-    </div>
+    <% if add_display %>
+      <%= link_to "add a recipe", new_recipe_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
-</div>
