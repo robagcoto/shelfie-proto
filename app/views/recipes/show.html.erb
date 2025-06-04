@@ -27,7 +27,7 @@
 
         <ul class="list-group-item mb-1">
           <p class="mb-3"><strong>Ingredients:</strong></p>
-          <% @recipe.ingredients_recipe.each do |ingredient| %>
+          <% @recipe.ingredients_recipes.each do |ingredient| %>
           <li class="mb-1"><strong><%= ingredient.name %></strong>
           <%= ingredient.quantity %> <%= ingredient.unit %></li>
         <% end %>
