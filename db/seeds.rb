@@ -24,7 +24,7 @@ user2 = User.create!(
   password: "password",
 )
 
-puts "Users created ! 🧑🏻‍💻"
+puts "Users created !   🧑🏻‍💻"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe: recip
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-puts "Recipe 1 created 🍔"
+puts "Recipe 1 created  🍔"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -120,7 +120,7 @@ IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recip
 IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
 IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
-puts "Recipe 2 created 🍔"
+puts "Recipe 2 created  🍔"
 
 # ----------------------------------------------------------------------------------------------------------------------
 puts "creating recipe 3 🔪👨🏻‍🍳"
@@ -159,7 +159,7 @@ IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: r
 IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
 IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
-puts "Recipe 3 created 🍔"
+puts "Recipe 3 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 puts "creating recipe 4 🔪👨🏻‍🍳"
 
@@ -197,7 +197,7 @@ IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe: reci
 IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe: recipe4)
 IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe: recipe4)
 
-puts "Recipe 4 created 🍔"
+puts "Recipe 4 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 
 puts "creating recipe 5 🔪👨🏻‍🍳"
@@ -238,7 +238,7 @@ IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: 
 IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
 IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
-puts "Recipe 5 created 🍔"
+puts "Recipe 5 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 
 puts "creating recipe 6 🔪👨🏻‍🍳"
@@ -278,7 +278,7 @@ IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: r
 IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
 IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
-puts "Recipe 6 created 🍔"
+puts "Recipe 6 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 puts "creating recipe 7 🔪👨🏻‍🍳"
 
@@ -316,7 +316,7 @@ IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe
 IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
 IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
-puts "Recipe 6 created 🍔"
+puts "Recipe 6 created  🍔"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -329,14 +329,14 @@ puts "creating message..."
 chat = Chat.create!(title: "harry potter recipe", user: user1)
 Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
-puts "chat created 📨"
+puts "chat created    📨"
 
 puts "Creating Houses 🏚️"
 house1 = House.create!(name: "My happy house")
 invite1 = HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
 invite2 = HouseUser.create!(role: "user", house: house1, user: user2, status: "accepted")
 
-puts "House created 🏘️"
+puts "House created   🏘️"
 
 puts "Creating the ingredients 🛒"
 
@@ -403,4 +403,4 @@ HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1000,  unit: 'g
 HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
 HouseIngredient.create!(expiration_date: "2025-07-30", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing30.id)
 
-puts "Groceries completed 🥕🍌"
+puts "Groceries completed     🥕🍌"
