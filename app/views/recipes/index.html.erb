@@ -13,9 +13,10 @@
 
           <div class="card h-100 shadow-sm">
           <%# <%= cycle('card-product-light', 'card-product') %>
-            <div class="card-product-light justify-content-center" >
-
-              <%= cl_image_tag recipe.photo.key, id: "pic" %>
+            <div class="card-product-light" >
+              <%# <div> %>
+                <%= cl_image_tag recipe.photo.key, id: "pic" %>
+              <%# </div> %>
 
               <div class="card-description mt-2 pt-3">
                 <h5 class="ms-2"><%= recipe.name %></h5>
