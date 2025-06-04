@@ -3,8 +3,15 @@
     <h1><%= @house.name %> ingredients</h1>
     <ul>
       <% @house_ingredients.each do |ingredient| %>
-        <li><%= ingredient.ingredient.name %>: <%= ingredient.quantity %> <%= ingredient.unit %> </li>
+        <li><%= (ingredient.ingredient.name).capitalize %>: <%= ingredient.quantity %> <%= ingredient.unit %> you have <strong><%= (ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
       <% end %>
     </ul>
   </div>
+  <div>
+    <p>Create new ingredient: </p>
+    <%= link_to new_house_house_ingredient_path(@house), class: "rounded-circle" do %>
+      <%= image_tag "view-light.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
+    <% end %>
+  </div>
+
 </div>

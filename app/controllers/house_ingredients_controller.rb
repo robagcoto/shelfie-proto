@@ -1,8 +1,9 @@
 # Controlleur principal pour l'interface utilisateur
 # d'entrée nous définisons le house avec la méthode privée
-before_action :default_house
 
 class HouseIngredientsController < ApplicationController
+  before_action :default_house
+
   def index
     # @house = House.default_for(current_user)
     @house_ingredients = @house.house_ingredients.includes(:ingredient)
