@@ -321,8 +321,7 @@ puts "chat created 📨"
 
 puts "Creating Houses 🏚️"
 house1 = House.create!(name: "My happy home")
-# HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
-HouseUser.create!(role: "admin", house: house1, user: user1)
+HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
 
 
 puts "House created 🏘️"

@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_133354) do
     t.bigint "user_id", null: false
     t.bigint "house_id", null: false
     t.string "role"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_house_users_on_house_id"
