@@ -12,8 +12,11 @@
       <%= f.input :name, label: "Name of the recipe" %>
     </div>
 
-      <%= f.input :category, label: "Category" %>
+
+    <div class="category-selector mb-3">
+      <%= f.input :category, as: :radio_buttons, label: "Category", collection: Recipe::VALID_CATEGORIES %>
     </div>
+
 
     <div class="mb-3">
       <%= f.input :description, label: "Describe shortly your recipe" %>
@@ -60,6 +63,7 @@
       <%= f.button :submit, "Create recipe", class: "btn btn-primary btn-xl" %>
     </div>
   <% end %>
+  
   </div>
   </div>
 </div>
