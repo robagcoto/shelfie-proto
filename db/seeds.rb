@@ -43,7 +43,16 @@ steps1 = [
   "Serve right away with extra cheese and black pepper on top."
 ]
 
-recipe1 = Recipe.new(
+steps1 = [
+  "Boil water, salt it generously, and cook spaghetti until al dente. Reserve 1 cup of pasta water before draining.",
+  "In a pan, cook pancetta/guanciale over medium heat until crispy. Turn off the heat once done.",
+  "In a bowl, whisk together the egg yolks, whole egg, cheese, and a generous amount of black pepper.",
+  "Add the hot pasta to the pan with pancetta. Quickly toss.",
+  "Immediately stir in the egg mixture, tossing fast so the eggs coat the pasta without scrambling. Add pasta water bit by bit to make it creamy.",
+  "Serve right away with extra cheese and black pepper on top."
+]
+
+recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
   duration: 20,
@@ -63,10 +72,12 @@ recipe1.photo.attach(
 recipe1.save!
 
 
-IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe_id: recipe1.id)
-IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe_id: recipe1.id)
+IngredientsRecipe.create!(name: "spaghetti", quantity: 200, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "eggs", quantity: 2, unit: "pc(s)", recipe: recipe1)
+IngredientsRecipe.create!(name: "cheese", quantity: 100, unit: "g", recipe: recipe1)
+IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe: recipe1)
+
+# ----------------------------------------------------------------------------------------------------------------------
 
 puts "Recipe 1 created 🍔"
 
@@ -104,15 +115,13 @@ recipe2.photo.attach(
 
 recipe2.save!
 
-IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe_id: recipe2.id)
-IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe_id: recipe2.id)
-
-puts "Recipe 2 created 🍔"
+IngredientsRecipe.create!(name: "chicken", quantity: 300, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recipe2)
+IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
+IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
 # ----------------------------------------------------------------------------------------------------------------------
-puts "creating recipe 3 🔪👨🏻‍🍳"
+
 file3 = URI.parse("https://www.kikkoman.fr/fileadmin/_processed_/0/f/csm_1025-recipe-page-Spicy-tuna-and-salmon-rolls_desktop_b6172c0072.jpg").open
 
 steps3 = [
@@ -142,15 +151,13 @@ recipe3.photo.attach(
 
 recipe3.save!
 
-IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe_id: recipe3.id)
-IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe_id: recipe3.id)
+IngredientsRecipe.create!(name: "rice", quantity: 200, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: recipe3)
+IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
+IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
-puts "Recipe 3 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 
-puts "creating recipe 4 🔪👨🏻‍🍳"
 file4 = URI.parse("https://www.foodandwine.com/thmb/PaNa5IByv6syP1U3s3mHuN_BK2c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guacamole-for-a-crowd-FT-RECIPE0125-624c884187d44062ae4fb86794d0769c.jpeg").open
 
 steps4 = [
@@ -180,10 +187,10 @@ recipe4.photo.attach(
 
 recipe4.save!
 
-IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe_id: recipe4.id)
-IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe_id: recipe4.id)
+IngredientsRecipe.create!(name: "avocado", quantity: 2, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe: recipe4)
+IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe: recipe4)
 
 puts "Recipe 4 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
@@ -221,15 +228,13 @@ recipe5.photo.attach(
 )
 recipe5.save!
 
-IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe_id: recipe5.id)
-IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe_id: recipe5.id)
-
-puts "Recipe 5 created 🍔"
+IngredientsRecipe.create!(name: "zucchini", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
+IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
 # ----------------------------------------------------------------------------------------------------------------------
-puts "creating recipe 6 🔪👨🏻‍🍳"
+
 file6 = URI.parse("https://www.seriouseats.com/thmb/4kbwN13BlZnZ3EywrtG2AzCKuYs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210712-tacos-al-pastor-melissa-hom-seriouseats-37-f72cdd02c9574bceb1eef1c8a23b76ed.jpg").open
 
 steps6 = [
@@ -260,16 +265,12 @@ recipe6.photo.attach(
 )
 
 recipe6.save!
-IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe_id: recipe6.id)
-IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe_id: recipe6.id)
-
-puts "Recipe 6 created 🍔"
+IngredientsRecipe.create!(name: "pork", quantity: 250, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: recipe6)
+IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
+IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
 # ----------------------------------------------------------------------------------------------------------------------
-
-puts "creating recipe 7 🔪👨🏻‍🍳"
 
 file7 = URI.parse("https://int.japanesetaste.com/cdn/shop/articles/mixed-miso-soup-recipe-japanese-taste.jpg?v=1737982159&width=600").open
 
@@ -300,15 +301,12 @@ recipe7.photo.attach(
 
 recipe7.save!
 
-IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe_id: recipe7.id)
-IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe_id: recipe7.id)
-
-puts "Recipe 7 created 🍔"
+IngredientsRecipe.create!(name: "miso paste", quantity: 30, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
+IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
 # ----------------------------------------------------------------------------------------------------------------------
-
 
 puts "Recipes sample created with ingredients created 🥘🍙"
 puts "Go check in your console 🪴"
@@ -316,14 +314,16 @@ puts "Go check in your console 🪴"
 
 puts "creating message..."
 
-chat1 = Chat.create!(title: "harry potter recipe", user_id: user1.id)
-message1 = Message.create!(prompt: "harry potter mood !!", user_id: user1.id, role: "user", chat_id: chat1.id)
+chat = Chat.create!(title: "harry potter recipe", user: user1)
+Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
 puts "chat created 📨"
 
 puts "Creating Houses 🏚️"
 house1 = House.create!(name: "My happy home")
-HouseUser.create!(roles: "admin", house_id: house1.id, user_id: user1.id, status: "accepted")
+# HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
+HouseUser.create!(role: "admin", house: house1, user: user1)
+
 
 puts "House created 🏘️"
 

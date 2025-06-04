@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
 
-  resources :house, only: [:index, :show, :new, :create, :edit, :update]
+  resources :houses, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  end
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
+  resources :ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :chats, only: [:index, :new, :create, :destroy] do
     resources :messages, only: [:create, :index, :destroy]

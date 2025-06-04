@@ -6,6 +6,6 @@
   <%= render "messages/message", message: @chat.messages.last %>
 <% end %>
 
-<%= turbo_stream.replace "form" do %>
+<%= turbo_stream.update "form" do %>
   <%= render "messages/form", chat: @chat, message: Message.new %>
 <% end %>

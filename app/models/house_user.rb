@@ -4,6 +4,6 @@ class HouseUser < ApplicationRecord
 
   belongs_to :house
   belongs_to :user
-  validates :roles, presence: true, inclusion: { in: ROLES }
-  validates :status, presence: true, inclusion: { in: STATUSES }
+  validates :role, presence: true, inclusion: { in: ROLES }
+  # validates :status, presence: true, inclusion: { in: STATUSES }
 end

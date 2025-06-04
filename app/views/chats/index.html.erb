@@ -1,23 +1,33 @@
-<div class="container mt-4 mb-5">
-  <%= link_to 'Return', root_path, class: "btn btn-secondary btn-lg mb-4 btn-xl" %>
 
-  <div class="row gx-3 gy-3">
-    <% @chats.each do |chat| %>
-      <div class="col-6">
-        <div class="d-flex align-items-center">
-          <%= link_to chat.title, chat_messages_path(chat),
-                class: "btn btn-outline-primary w-100 text-truncate me-2",
-                style: "border-radius: 10px; max-width: 100%;" %>
-                <%= link_to "X", chat_path(chat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "btn btn-outline-danger btn-sm ms-2", style: "font-weight: bold;" %>
+<div class="container mt-4">
+
+  <div class="position-fixed top-0 start-0 w-100" style="z-index: 1050; padding: 0.5rem 0; background: #f4f4f4;">
+    <div class="container">
+      <%= link_to root_path do %>
+        <%= image_tag "return.png", alt: "return", width: 50, height: 50, class: "rounded-circle p-1" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="padding-top: 70px; my-1;">
+    <div class="row g-3">
+      <% @chats.each do |chat| %>
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-between w-100 shadow height-150px mb-2 px-3" style="border-radius: 10px; max-width: 100%;">
+            <span class="flex-grow-1 text-truncate">
+              <%= link_to chat.title, chat_messages_path(chat),
+                    class: "text-decoration-none text-dark" %>
+            </span>
+            <%= button_to chat_path(chat), method: :delete, data: { confirm: 'Supprimer ce chat ?' }, class: "btn btn-sm btn-outline-none ms-2 p-0" do %>
+              <%= image_tag "close.png", style: "width: 24px; height: 24px;" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class="fixed-bottom p-3 border-top bg-white">
-
-
-    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100" %>
+    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-primary btn-lg w-100 shadow" %>
   </div>
 </div>
