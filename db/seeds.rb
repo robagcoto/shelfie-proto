@@ -1,6 +1,6 @@
 require "open-uri"
 
-puts "Restarting DB 🔥"
+puts "Restarting seed 🔥"
 Step.destroy_all
 IngredientsRecipe.destroy_all
 Recipe.destroy_all
@@ -332,7 +332,7 @@ Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat:
 puts "chat created 📨"
 
 puts "Creating Houses 🏚️"
-house1 = House.create!(name: "My happy home")
+house1 = House.create!(name: "My happy house")
 invite1 = HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
 invite2 = HouseUser.create!(role: "user", house: house1, user: user2, status: "accepted")
 
@@ -384,14 +384,14 @@ HouseIngredient.create!(expiration_date: "2025-07-09", quantity: 2,  unit: 'pc(s
 HouseIngredient.create!(expiration_date: "2025-07-10", quantity: 1,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing10.id)
 HouseIngredient.create!(expiration_date: "2025-07-11", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing11.id)
 HouseIngredient.create!(expiration_date: "2025-07-12", quantity: 2,  unit: 'l',     house_id: house1.id, ingredient_id: ing12.id)
-HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
+HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
 HouseIngredient.create!(expiration_date: "2025-07-14", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing14.id)
 HouseIngredient.create!(expiration_date: "2025-07-15", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing15.id)
 HouseIngredient.create!(expiration_date: "2025-07-16", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing16.id)
 HouseIngredient.create!(expiration_date: "2025-07-17", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing17.id)
 HouseIngredient.create!(expiration_date: "2025-07-18", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing18.id)
-HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
-HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
+HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
+HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2000,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
 HouseIngredient.create!(expiration_date: "2025-07-21", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing21.id)
 HouseIngredient.create!(expiration_date: "2025-07-22", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing22.id)
 HouseIngredient.create!(expiration_date: "2025-07-23", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing23.id)
@@ -399,8 +399,8 @@ HouseIngredient.create!(expiration_date: "2025-07-24", quantity: 5,  unit: 'pc(s
 HouseIngredient.create!(expiration_date: "2025-07-25", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing25.id)
 HouseIngredient.create!(expiration_date: "2025-07-26", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing26.id)
 HouseIngredient.create!(expiration_date: "2025-07-27", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing27.id)
-HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
-HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
+HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
+HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
 HouseIngredient.create!(expiration_date: "2025-07-30", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing30.id)
 
 puts "Groceries completed 🥕🍌"
