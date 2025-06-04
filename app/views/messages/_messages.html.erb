@@ -1,5 +1,4 @@
 <% messages.each do |message| %>
-
   <% if message.role == "user" %>
     <div class="text-end my-3">
       <div class="d-inline-block px-3 py-1 bg-primary text-white" style="border-radius: 20px;">
@@ -18,7 +17,9 @@
                           end) %>
       </div>
     </div>
+
   <% end %>
+
   <%= render "messages/message", message: message %>
 
 <% end %>

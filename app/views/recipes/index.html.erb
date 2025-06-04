@@ -1,9 +1,7 @@
 <div class="container my-1">
 
   <div class="d-flex justify-content-between text-center mb-4">
-    <%= link_to root_path do %>
-    <%= image_tag "return.png", alt: "return", class:"return-btn" %>
-    <% end %>
+    <%= link_to "return", root_path, class: "btn btn-primary" %>
     <%= link_to "favorites", pages_dashboard_path, class: "btn btn-primary" %>
     <%= link_to "add a recipe", new_recipe_path, class: "btn btn-primary" %>
   </div>
@@ -24,31 +22,10 @@
 
               <%= link_to "See more", recipe_path(recipe), class: "btn btn-outline-primary" %>
 
-<<<<<<< HEAD
               <div class="d-flex justify-content-end">
               <%= link_to recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-primary btn-sm" do %>
               <i class="fa-solid fa-trash"></i>
               <% end %>
-=======
-          <div class="card h-100 shadow-sm">
-          <%# <%= cycle('card-product-light', 'card-product') %>
-            <div class="card-product-light justify-content-center" >
-
-              <%= cl_image_tag recipe.photo.key, id: "pic" %>
-
-              <div class="card-description mt-2 pt-3">
-                <h5 class="ms-2"><%= recipe.name %></h5>
-                <% if recipe.description.present? %>
-                  <p class="ms-2"><%= truncate(recipe.description, length: 100) %></p>
-                <% end %>
-
-                <%# <div class="d-flex justify-content-end">
-                <%= link_to recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-primary btn-sm" do %>
-                <%# <i class="fa-solid fa-trash"></i>
-                <% end %>
-                <%# </div> %>
-              </div>
->>>>>>> 56b87b1ca609ed57605bca37ec90a216fb2a8172
             </div>
           </div>
         </div>
@@ -58,3 +35,13 @@
   </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+

@@ -81,8 +81,8 @@ The recipe description and all texts must be in English regardless of the input 
           end
 
           # Ajout des étapes
-          recipe_data["steps"].sort_by { |key, _| key.gsub("step", "").to_i }.each do |_, step_description|
-            recipe.steps.create!(description: step_description)
+          recipe_data["steps"].each do |_, step_description|
+            Step.create!(recipe: recipe, description: step_description)
           end
 
           # Message assistant avec la recette en texte lisible
@@ -136,11 +136,10 @@ The recipe description and all texts must be in English regardless of the input 
     redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
   end
 
-<<<<<<< HEAD
+
   private
 
-=======
->>>>>>> 56b87b1ca609ed57605bca37ec90a216fb2a8172
+
   def message_params
     params.require(:message).permit(:prompt)
   end
@@ -149,18 +148,4 @@ The recipe description and all texts must be in English regardless of the input 
     [SYSTEM_PROMPT, current_user.prompt_setting].compact.join("\n\n")
   end
 
-  def json_recipe
-    [FAVORITE_PROMPT].join("\n\n")
-  end
 end
-
-      # parsed_response = JSON.parse(response.content)
-      #   recipe_response = parsed_response["response"]
-      #   recipe_name = parsed_response["name"]
-      #   recipe_description = parsed_response["description"]
-      #   recipe_rating = parsed_response["rating"]
-      #   recipe_category = parsed_response["category"]
-      #   recipe_favorites = parsed_response["favorites"]
-      #   recipe_duration = parsed_response["duration"]
-      #   recipe_steps = parsed_response["steps"]
-      #   recipe_ingredients_hash = parsed_response["ingredients_recipe"]
