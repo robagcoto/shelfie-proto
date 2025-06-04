@@ -10,8 +10,11 @@ class HouseIngredientsController < ApplicationController
   # Les utilisateurs ne pourront pas crééer directement d'ingrédients dans la table ingrédients, uniquement ici
   def new
     # appeler la house dans laquelle on est
+    @house = House.find(params[:house_id])
     # Crééer une nouvelle instance de house_ingredients
-    # Lister tous les ingredients
+    @house_ingredients = @house.house_ingredients.includes(:ingredient)
+    # Lister tous les ingredients au cas où on met une logique d'autocompletion
+    @ingredients = Ingredient.all
   end
 
   def create

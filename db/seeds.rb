@@ -120,7 +120,10 @@ IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recip
 IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
 IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
+puts "Recipe 2 created 🍔"
+
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 3 🔪👨🏻‍🍳"
 
 file3 = URI.parse("https://www.kikkoman.fr/fileadmin/_processed_/0/f/csm_1025-recipe-page-Spicy-tuna-and-salmon-rolls_desktop_b6172c0072.jpg").open
 
@@ -156,7 +159,9 @@ IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: r
 IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
 IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
+puts "Recipe 3 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 4 🔪👨🏻‍🍳"
 
 file4 = URI.parse("https://www.foodandwine.com/thmb/PaNa5IByv6syP1U3s3mHuN_BK2c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guacamole-for-a-crowd-FT-RECIPE0125-624c884187d44062ae4fb86794d0769c.jpeg").open
 
@@ -233,7 +238,10 @@ IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: 
 IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
 IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
+puts "Recipe 5 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+
+puts "creating recipe 6 🔪👨🏻‍🍳"
 
 file6 = URI.parse("https://www.seriouseats.com/thmb/4kbwN13BlZnZ3EywrtG2AzCKuYs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210712-tacos-al-pastor-melissa-hom-seriouseats-37-f72cdd02c9574bceb1eef1c8a23b76ed.jpg").open
 
@@ -270,7 +278,9 @@ IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: r
 IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
 IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
+puts "Recipe 6 created 🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 7 🔪👨🏻‍🍳"
 
 file7 = URI.parse("https://int.japanesetaste.com/cdn/shop/articles/mixed-miso-soup-recipe-japanese-taste.jpg?v=1737982159&width=600").open
 
@@ -306,6 +316,8 @@ IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe
 IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
 IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
+puts "Recipe 6 created 🍔"
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 puts "Recipes sample created with ingredients created 🥘🍙"
@@ -321,8 +333,8 @@ puts "chat created 📨"
 
 puts "Creating Houses 🏚️"
 house1 = House.create!(name: "My happy home")
-HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
-
+invite1 = HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
+invite2 = HouseUser.create!(role: "user", house: house1, user: user2, status: "accepted")
 
 puts "House created 🏘️"
 
