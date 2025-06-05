@@ -1,4 +1,4 @@
-<%= fields_for "project[steps_attributes][#{turbo_id_for(step)}]", step do |ff| %>
+<%= fields_for "recipe[steps_attributes][#{turbo_id_for(step)}]", step do |ff| %>
   <fieldset class="mb-4" id="<%= turbo_id_for(step) %>">
     <legend>Step Info</legend>
     <%= ff.label :description %><br>

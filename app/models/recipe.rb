@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients_recipes, dependent: :destroy
   has_many :completions, dependent: :destroy
   has_many :steps, dependent: :destroy
-  accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :steps
 
 VALID_CATEGORIES = [
   'French',
@@ -23,13 +23,13 @@ VALID_CATEGORIES = [
   'Turkish']
 
   has_one_attached :photo
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :duration, presence: true
+  # validates :name, presence: true
+  # validates :description, presence: true
+  # validates :duration, presence: true
   # validates :category, presence: true, inclusion: { in: VALID_CATEGORIES }
-  validates :rating, numericality: {
-    greater_than_or_equal_to: 0,
-    less_than_or_equal_to: 5,
-    allow_nil: true
-  }
+  # validates :rating, numericality: {
+  #   greater_than_or_equal_to: 0,
+  #   less_than_or_equal_to: 5,
+  #   allow_nil: true
+  # }
 end

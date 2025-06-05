@@ -18,7 +18,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     counter = 1
-    raise
     if @recipe.save
       number_of_ingredients = @recipe.number_of_ingredients
       number_of_ingredients.times do
@@ -63,7 +62,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :photo, :description, :category, :duration, :steps, :favorite, :rating, :number_of_ingredients, steps_attributes: [:id, :description])
+    params.require(:recipe).permit(:name, :photo, :description, :category, :duration, :favorite, :rating, :number_of_ingredients, steps_attributes: [:id, :description])
   end
 
   def ingredients_recipe
