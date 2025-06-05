@@ -9,16 +9,16 @@ class Ingredient < ApplicationRecord
 # ]
 
 CATEGORIES = [
-    "Fruits",
-    "Vegetables",
-    "Bread, cereals, and nuts",
-    "Meats",
-    "Fish and seafood",
-    "Dairy products and eggs",
-    "Legumes",
-    "Beverages",
-    "Sweets",
-    "Processed foods and ready meals",
+    "fruits",
+    "vegetables",
+    "bread, cereals, and nuts",
+    "meats",
+    "fish and seafood",
+    "dairy and eggs",
+    "legumes",
+    "beverages",
+    "sweets",
+    "processed foods and ready meals",
 ]
 
 STORAGE_METHODS = [
