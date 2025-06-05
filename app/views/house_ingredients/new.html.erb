@@ -1,2 +1,25 @@
-coucou, j'ai besoin d'un formulaire svp ✌🏻
-PS. ma méthode create va planter
+<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: false, add_display: false } %>
+
+
+<div class="container my-1">
+
+  <%= simple_form_for [@house, @house_ingredient], html: { multipart: true } do |f| %>
+
+    <div class="mb-3">
+      <%= f.input :ingredient.name, label: "Name of the ingredient" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :expiration_date, label: "Expiration date" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :quantity, label: "Quantity" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :unit, label: "Unit" %>
+    </div>
+  <% end %>
+  
+</div>
