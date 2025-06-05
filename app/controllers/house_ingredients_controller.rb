@@ -1,7 +1,5 @@
-# Controlleur principal pour l'interface utilisateur
-# d'entrée nous définisons le house avec la méthode privée
-
 class HouseIngredientsController < ApplicationController
+  # d'entrée nous définisons le house avec la méthode privée
   before_action :default_house
 
   def index
@@ -17,6 +15,10 @@ class HouseIngredientsController < ApplicationController
     @house_ingredient = @house.house_ingredients.new
     # Lister tous les ingredients au cas où on met une logique d'autocompletion
     @ingredients = Ingredient.all
+  end
+
+  def show
+    @ingredient = HouseIngredient.find(params[:id])
   end
 
   def create
