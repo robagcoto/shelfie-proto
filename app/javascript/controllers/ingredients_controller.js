@@ -19,25 +19,27 @@ export default class extends Controller {
     console.log("J'ai appuyé sur le bouton");
     this.buttonTarget.remove();
     this.removeTarget.classList.remove("trash");
-    this.rowTarget.insertAdjacentHTML("beforeend",`<div class="ingredient-row">
-      <div class="col-4 mb-2">
+    this.rowTarget.insertAdjacentHTML("beforeend",`
+    <div class="ingredient-row mb-2">
+      <div class="col-4">
         <input type="text" name="ingredient_name${this.count}" id="ingredient_name" placeholder="Ingredients" class="form-control">
-        </div>
+      </div>
 
       <div class="col-4">
         <input type="text" name="ingredient_quantity${this.count}" id="ingredient_quantity" placeholder="Quantity" class="form-control">
-          </div>
+      </div>
 
       <div class="col-2">
         <select name="ingredient_unit${this.count}" id="ingredient_unit" class="form-select"><option value="l">l</option>
           <option value="g">g</option>
-          <option value="pc(s)">pc(s)</option></select>
-        </div>
+          <option value="pc(s)">pc(s)</option>
+        </select>
+      </div>
 
         <div class="col-2 p-0 d-flex justify-content-center">
           <button data-ingredients-target="button" data-action="click->ingredients#addIngredients" type="button" class="btn btn-primary">+</button>
-          </div>
-      </div>`
+        </div>
+    </div>`
   )
  }
 

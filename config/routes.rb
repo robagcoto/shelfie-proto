@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 
+  # suppression et création des steps pour les form de recipes/new et recipes/edit
   resources :steps, only: [:new, :destroy]
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
