@@ -182,23 +182,24 @@ SYSTEM_PROMPT = '
           )
 
           flash[:notice] = "Recette créée avec succès 🎉"
-          redirect_to recipe_path(recipe) and return
         else
           flash[:alert] = "Erreur lors de l'enregistrement de la recette."
         end
       rescue JSON::ParserError => e
         flash[:alert] = "Erreur de parsing JSON : #{e.message}"
+        @chat.messages.create!(
+          prompt: response.content,
+          role: :assistant,
+          user_id: current_user.id
+        )
       rescue => e
         flash[:alert] = "Erreur lors de la création de la recette : #{e.message}"
+        @chat.messages.create!(
+          prompt: response.content,
+          role: :assistant,
+          user_id: current_user.id
+        )
       end
-
-
-      # Fallback message
-      @chat.messages.create!(
-        prompt: response.content,
-        role: :assistant,
-        user_id: current_user.id
-      )
 
       redirect_to chat_messages_path(@chat)
     else

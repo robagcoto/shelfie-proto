@@ -9,22 +9,22 @@ class Ingredient < ApplicationRecord
 # ]
 
 CATEGORIES = [
-    "fruits",
-    "vegetables",
-    "bread, cereals, and nuts",
-    "meats",
-    "fish and seafood",
-    "dairy and eggs",
-    "legumes",
-    "beverages",
-    "sweets",
-    "processed foods and ready meals",
+    "Fruits",
+    "Vegetables",
+    "Bread, cereals, and nuts",
+    "Meats",
+    "Fish and seafood",
+    "Dairy and eggs",
+    "Legumes",
+    "Beverages",
+    "Sweets",
+    "Processed foods and ready meals",
 ]
 
 STORAGE_METHODS = [
-  "dry",
-  "fridge",
-  "freezer"
+  "Dry",
+  "Fridge",
+  "Freezer"
 ]
 
 #   validates :name, presence: true
