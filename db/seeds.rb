@@ -1,6 +1,6 @@
 require "open-uri"
 
-puts "Restarting DB 🔥"
+puts "Restarting seed 🔥"
 Step.destroy_all
 IngredientsRecipe.destroy_all
 Recipe.destroy_all
@@ -24,7 +24,7 @@ user2 = User.create!(
   password: "password",
 )
 
-puts "Users created ! 🧑🏻‍💻"
+puts "Users created !   🧑🏻‍💻"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ IngredientsRecipe.create!(name: "bacon", quantity: 100, unit: "g", recipe: recip
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-puts "Recipe 1 created 🍔"
+puts "Recipe 1 created  🍔"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -120,7 +120,10 @@ IngredientsRecipe.create!(name: "cream", quantity: 100, unit: "l", recipe: recip
 IngredientsRecipe.create!(name: "tomato", quantity: 150, unit: "g", recipe: recipe2)
 IngredientsRecipe.create!(name: "spices", quantity: 20, unit: "g", recipe: recipe2)
 
+puts "Recipe 2 created  🍔"
+
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 3 🔪👨🏻‍🍳"
 
 file3 = URI.parse("https://www.kikkoman.fr/fileadmin/_processed_/0/f/csm_1025-recipe-page-Spicy-tuna-and-salmon-rolls_desktop_b6172c0072.jpg").open
 
@@ -156,7 +159,9 @@ IngredientsRecipe.create!(name: "seaweed", quantity: 4, unit: "pc(s)", recipe: r
 IngredientsRecipe.create!(name: "salmon", quantity: 150, unit: "g", recipe: recipe3)
 IngredientsRecipe.create!(name: "avocado", quantity: 1, unit: "pc(s)", recipe: recipe3)
 
+puts "Recipe 3 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 4 🔪👨🏻‍🍳"
 
 file4 = URI.parse("https://www.foodandwine.com/thmb/PaNa5IByv6syP1U3s3mHuN_BK2c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guacamole-for-a-crowd-FT-RECIPE0125-624c884187d44062ae4fb86794d0769c.jpeg").open
 
@@ -192,7 +197,7 @@ IngredientsRecipe.create!(name: "lime", quantity: 1, unit: "pc(s)", recipe: reci
 IngredientsRecipe.create!(name: "onion", quantity: 0.5, unit: "pc(s)", recipe: recipe4)
 IngredientsRecipe.create!(name: "cilantro", quantity: 10, unit: "g", recipe: recipe4)
 
-puts "Recipe 4 created 🍔"
+puts "Recipe 4 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
 
 puts "creating recipe 5 🔪👨🏻‍🍳"
@@ -233,7 +238,10 @@ IngredientsRecipe.create!(name: "eggplant", quantity: 1, unit: "pc(s)", recipe: 
 IngredientsRecipe.create!(name: "pepper", quantity: 1, unit: "pc(s)", recipe: recipe5)
 IngredientsRecipe.create!(name: "tomato", quantity: 2, unit: "pc(s)", recipe: recipe5)
 
+puts "Recipe 5 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+
+puts "creating recipe 6 🔪👨🏻‍🍳"
 
 file6 = URI.parse("https://www.seriouseats.com/thmb/4kbwN13BlZnZ3EywrtG2AzCKuYs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210712-tacos-al-pastor-melissa-hom-seriouseats-37-f72cdd02c9574bceb1eef1c8a23b76ed.jpg").open
 
@@ -270,7 +278,9 @@ IngredientsRecipe.create!(name: "pineapple", quantity: 100, unit: "g", recipe: r
 IngredientsRecipe.create!(name: "tortilla", quantity: 3, unit: "pc(s)", recipe: recipe6)
 IngredientsRecipe.create!(name: "chili", quantity: 10, unit: "g", recipe: recipe6)
 
+puts "Recipe 6 created  🍔"
 # ----------------------------------------------------------------------------------------------------------------------
+puts "creating recipe 7 🔪👨🏻‍🍳"
 
 file7 = URI.parse("https://int.japanesetaste.com/cdn/shop/articles/mixed-miso-soup-recipe-japanese-taste.jpg?v=1737982159&width=600").open
 
@@ -306,6 +316,8 @@ IngredientsRecipe.create!(name: "tofu", quantity: 100, unit: "g", recipe: recipe
 IngredientsRecipe.create!(name: "seaweed", quantity: 10, unit: "g", recipe: recipe7)
 IngredientsRecipe.create!(name: "green onion", quantity: 1, unit: "pc(s)", recipe: recipe7)
 
+puts "Recipe 6 created  🍔"
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 puts "Recipes sample created with ingredients created 🥘🍙"
@@ -317,14 +329,14 @@ puts "creating message..."
 chat = Chat.create!(title: "harry potter recipe", user: user1)
 Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
-puts "chat created 📨"
+puts "chat created    📨"
 
 puts "Creating Houses 🏚️"
-house1 = House.create!(name: "My happy home")
-HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
+house1 = House.create!(name: "My happy house")
+invite1 = HouseUser.create!(role: "admin", house: house1, user: user1, status: "accepted")
+invite2 = HouseUser.create!(role: "user", house: house1, user: user2, status: "accepted")
 
-
-puts "House created 🏘️"
+puts "House created   🏘️"
 
 puts "Creating the ingredients 🛒"
 
@@ -372,14 +384,14 @@ HouseIngredient.create!(expiration_date: "2025-07-09", quantity: 2,  unit: 'pc(s
 HouseIngredient.create!(expiration_date: "2025-07-10", quantity: 1,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing10.id)
 HouseIngredient.create!(expiration_date: "2025-07-11", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing11.id)
 HouseIngredient.create!(expiration_date: "2025-07-12", quantity: 2,  unit: 'l',     house_id: house1.id, ingredient_id: ing12.id)
-HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
+HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
 HouseIngredient.create!(expiration_date: "2025-07-14", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing14.id)
 HouseIngredient.create!(expiration_date: "2025-07-15", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing15.id)
 HouseIngredient.create!(expiration_date: "2025-07-16", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing16.id)
 HouseIngredient.create!(expiration_date: "2025-07-17", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing17.id)
 HouseIngredient.create!(expiration_date: "2025-07-18", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing18.id)
-HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
-HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
+HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
+HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2000,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
 HouseIngredient.create!(expiration_date: "2025-07-21", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing21.id)
 HouseIngredient.create!(expiration_date: "2025-07-22", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing22.id)
 HouseIngredient.create!(expiration_date: "2025-07-23", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing23.id)
@@ -387,8 +399,8 @@ HouseIngredient.create!(expiration_date: "2025-07-24", quantity: 5,  unit: 'pc(s
 HouseIngredient.create!(expiration_date: "2025-07-25", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing25.id)
 HouseIngredient.create!(expiration_date: "2025-07-26", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing26.id)
 HouseIngredient.create!(expiration_date: "2025-07-27", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing27.id)
-HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
-HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
+HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
+HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
 HouseIngredient.create!(expiration_date: "2025-07-30", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing30.id)
 
-puts "Groceries completed 🥕🍌"
+puts "Groceries completed     🥕🍌"
