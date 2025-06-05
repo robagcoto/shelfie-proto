@@ -1,0 +1,9 @@
+<%= fields_for "project[steps_attributes][#{turbo_id_for(step)}]", step do |ff| %>
+  <fieldset class="mb-4" id="<%= turbo_id_for(step) %>">
+    <legend>Step Info</legend>
+    <%= ff.label :description %><br>
+    <%= ff.text_field :description, class: "px-2 py-1 border w-full rounded-md" %>
+    <%= ff.hidden_field :id %>
+    <%= button_tag "Delete Step", formaction: step_path(turbo_id_for(step)), formmethod: :delete, class: "mt-4 float-right p-2 rounded-md bg-red-300 hover:bg-red-400" %>
+  </fieldset>
+<% end %>

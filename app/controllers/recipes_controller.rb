@@ -18,6 +18,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     counter = 1
+    raise
     if @recipe.save
       number_of_ingredients = @recipe.number_of_ingredients
       number_of_ingredients.times do

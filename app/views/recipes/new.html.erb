@@ -58,9 +58,19 @@
       <%= f.input :duration, label: "Duration" %>
     </div>
 
-    <div class="mb-3">
-      <%= f.input :steps, as: :text, input_html: { rows: 6 }, label: "Steps" %>
+    <div id="steps" class="mb-2">
+      <%= render @recipe.steps %>
     </div>
+    <div class="mb-2">
+      <%= link_to "Add a Step", new_step_path, data: { turbo_stream: true }, class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400" %>
+    </div>
+
+
+    <% if false %>
+      <div class="mb-3">
+        <%= f.input :steps, as: :text, input_html: { rows: 6 }, label: "Steps" %>
+      </div>
+    <% end %>
 
     <div class="text-center my-4">
       <%= f.button :submit, "Create recipe", class: "btn btn-primary btn-xl" %>

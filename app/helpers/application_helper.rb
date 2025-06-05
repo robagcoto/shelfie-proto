@@ -21,4 +21,8 @@ module ApplicationHelper
   #   # return root_path if controller_name == "recipes" && action_name == "index"
   #   return chats_path if controller_name == "recipes" && action_name == "index"
   # end
+
+  def turbo_id_for(obj)
+    obj.persisted? ? obj.id : obj.hash
+  end
 end
