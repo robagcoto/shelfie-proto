@@ -6,19 +6,16 @@
   <%# passe la locale with_add_button pour afficher le button ou non %>
 
 
-  <!-- Fixed header with chat title and retour -->
     <div class="row align-items-center">
       <div class="col text-center">
         <h1><%= @chat.title %></h1>
       </div>
     </div>
 
-  <!-- Messages list -->
-  <div id="messages" class="flex-grow-1 overflow-auto px-3" style="margin-top: 80px; margin-bottom: 90px;">
+  <div id="messages" class="flex-grow-1 overflow-auto px-3" style="margin-top: 80px; margin-bottom: 120px;">
     <%= render partial: "messages/message", collection: @messages, as: :message %>
   </div>
 
-  <!-- Message form fixed at the bottom -->
   <div class="position-fixed bottom-0 start-0 w-100" style="z-index: 1050; padding: 1rem 0;">
     <div class="container px-3">
       <%= render "messages/form", chat: @chat, message: @message %>
