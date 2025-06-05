@@ -59,7 +59,8 @@
     </div>
 
     <div class="mb-3">
-      <%= f.input :steps, as: :text, input_html: { rows: 6 }, label: "Steps" %>
+      <%= f.input :steps, as: :string, multiple: true %>
+      <button>ajouter une étape</button>
     </div>
 
     <div class="text-center my-4">

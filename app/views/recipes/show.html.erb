@@ -4,7 +4,11 @@
 
   <ul class="list-group list-group-flush">
 
-    <li class="list-group-item mt-4"><strong>Category:</strong>
+    <li class="list-group-item mt-4"><strong>Description:</strong>
+      <p>"<%= @recipe.description %>"</p>
+    </li>
+
+    <li class="list-group-item"><strong>Category:</strong>
       <p><%= @recipe.category %></p>
     </li>
 
@@ -36,7 +40,7 @@
     </li>
 
 
-    <li class="list-group-item">
+    <li class="list-group-item" style="margin-bottom: 120px">
       <strong>Steps:</strong>
         <ol>
         <% @recipe.steps.each do |step| %>
