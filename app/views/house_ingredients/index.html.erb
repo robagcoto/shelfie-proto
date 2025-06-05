@@ -1,17 +1,52 @@
-<div class="container">
-  <div class="mt-3">
-    <h1><%= @house.name %> ingredients</h1>
-    <ul>
-      <% @house_ingredients.each do |house_ingredient| %>
-        <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
-      <% end %>
-    </ul>
-  </div>
-  <div>
-    <p>Create new ingredient: </p>
-    <%= link_to new_house_house_ingredient_path(@house), class: "rounded-circle" do %>
-      <%= image_tag "view-light.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
-    <% end %>
-  </div>
+  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
 
+<div class="container">
+  <div class="row text-center">
+
+    <h1>My house ingredients</h1>
+
+    <div class="categories-filter d-flex justify-content-between">
+      <div class="col card-ingredients m-2">
+        <h2>Meats</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Fishes</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Veggies</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Fruits</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Carbs</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Dairies</h2>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="mt-3">
+      <h1><%= @house.name %> ingredients</h1>
+      <ul>
+        <% @house_ingredients.each do |house_ingredient| %>
+          <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <p>Create new ingredient: </p>
+      <%= link_to new_house_house_ingredient_path(@house), class: "rounded-circle" do %>
+        <%= image_tag "view-light.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
+      <% end %>
+    </div>
+  </div>
 </div>

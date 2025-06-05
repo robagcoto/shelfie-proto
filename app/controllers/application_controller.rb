@@ -1,3 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :set_default_house
+
+  def set_default_house
+    @house = current_user.houses.first if user_signed_in?
+  end
 end
