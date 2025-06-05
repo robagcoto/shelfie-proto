@@ -1,4 +1,4 @@
-<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: true, add_display: false } %>
+<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: true, add_display: false, add_ingredient: false } %>
 
 <div class="container-img mt-4"><%= cl_image_tag @recipe.photo.key, class: "picture" if @recipe.photo.attached? %></div>
 

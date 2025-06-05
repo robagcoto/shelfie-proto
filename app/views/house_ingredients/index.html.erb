@@ -1,4 +1,4 @@
-  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
+  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
 
 <div class="container">
   <div class="row text-center">
@@ -34,7 +34,7 @@
 
   </div>
 
-  
+
   <div class="container">
     <div class="mt-3">
       <h1><%= @house.name %> ingredients</h1>
@@ -43,12 +43,6 @@
           <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
         <% end %>
       </ul>
-    </div>
-    <div>
-      <p>Create new ingredient: </p>
-      <%= link_to new_house_house_ingredient_path(@house), class: "rounded-circle" do %>
-        <%= image_tag "view-light.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
-      <% end %>
     </div>
   </div>
 </div>
