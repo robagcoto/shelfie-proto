@@ -2,8 +2,8 @@
   <div class="mt-3">
     <h1><%= @house.name %> ingredients</h1>
     <ul>
-      <% @house_ingredients.each do |ingredient| %>
-        <li><%= link_to (ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, ingredient) %>: <%= ingredient.quantity %> <%= ingredient.unit %> you have <strong><%= (ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
+      <% @house_ingredients.each do |house_ingredient| %>
+        <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
       <% end %>
     </ul>
   </div>

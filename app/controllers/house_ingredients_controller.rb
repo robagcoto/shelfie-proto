@@ -9,20 +9,19 @@ class HouseIngredientsController < ApplicationController
 
   # Les utilisateurs ne pourront pas crééer directement d'ingrédients dans la table ingrédients, uniquement ici
   def new
-    # appeler la house dans laquelle on est  /// je commente parce que j'ai refacto
-    # @house = House.default_for(current_user)
-    # Crééer une nouvelle instance de house_ingredients
+    # appeler la house dans laquelle on est  /// déjà fait en private
+    # Crééer une nouvelle instance de house_ingredients // diff approche de HouseIngredient.new car celle-ci créé la relation auto avec la house
     @house_ingredient = @house.house_ingredients.new
     # Lister tous les ingredients au cas où on met une logique d'autocompletion
     @ingredients = Ingredient.all
   end
 
   def show
-    @ingredient = HouseIngredient.find(params[:id])
+    @house_ingredient = HouseIngredient.find(params[:id])
   end
 
   def create
-
+    @house_ingredient = IngredientHouse.new
   end
 
   def edit
