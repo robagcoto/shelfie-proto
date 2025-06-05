@@ -1,1 +1,36 @@
-<h1>hello</h1>
+  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true } %>
+
+<div class="container d-flex justify-content-center">
+  <div class="row text-center">
+
+    <h1>My house ingredients</h1>
+
+    <div class="d-flex justify-content-between">
+        <div class="col card-ingredients m-2">
+      <h2>Meats</h2>
+        </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Fishes</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Veggies</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Fruits</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Carbs</h2>
+      </div>
+
+      <div class="col card-ingredients m-2">
+        <h2>Dairies</h2>
+      </div>
+
+    </div>
+
+  </div>
+</div>
