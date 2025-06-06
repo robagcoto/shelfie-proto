@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 
-  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy, :toggle_favorite] do
+    member do
+      patch :toggle_favorite
+    end
+  end
 
   resources :ingredients, only: [:index]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
