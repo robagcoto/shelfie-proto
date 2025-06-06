@@ -20,7 +20,8 @@ VALID_CATEGORIES = [
   'Vietnamese',
   'Lebanese',
   'Korean',
-  'Turkish']
+  'Turkish'
+]
 
   has_one_attached :photo
   validates :name, presence: true

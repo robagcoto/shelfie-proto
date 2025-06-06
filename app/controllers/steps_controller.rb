@@ -4,9 +4,8 @@ class StepsController < ApplicationController
   end
 
   def destroy
-    @step = Recipe.find(params[:id])
+    @step = Step.find(params[:id])
     @step.destroy
-
   rescue ActiveRecord::RecordNotFound
     @step = Step.new(id: params[:id])
   ensure
