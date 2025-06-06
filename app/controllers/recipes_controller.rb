@@ -2,11 +2,16 @@ class RecipesController < ApplicationController
   # before_action :set_recipe, only: [:show, :destroy, :edit, :update, :new]
 
   def index
-    @recipes = Recipe.all
+    @my_recipes = Recipe.where(user_id: current_user, my_recipe: true)
+    @favorite_recipes = Recipe.where(favorite: true)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+
+    #@ingredient_name = @recipe.ingredients_recipes.pluck(:name)
+
+
   end
 
   def new
@@ -17,6 +22,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
+    @recipe.my_recipe = true
     counter = 1
     if @recipe.save
       number_of_ingredients = @recipe.number_of_ingredients
@@ -26,10 +32,10 @@ class RecipesController < ApplicationController
           name: params["ingredient_name#{counter}"],
           quantity: params["ingredient_quantity#{counter}"],
           unit: params["ingredient_unit#{counter}"]
-    )
-    counter += 1
-    puts "counter: #{counter}"
-    end
+        )
+        counter += 1
+        puts "counter: #{counter}"
+      end
       redirect_to recipe_path(@recipe)
     else
       render :new, status: :unprocessable_entity
@@ -43,6 +49,9 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
+      Completion.create(recipe: @recipe)
+      # soustraire les ingredients de ma recette (leur quantité)
+      # à ceux que j'ai dans mon frigo
       redirect_to recipe_path
     else
       render :edit
