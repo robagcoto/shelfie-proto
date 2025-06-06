@@ -8,26 +8,23 @@ class Ingredient < ApplicationRecord
 #   "piece"
 # ]
 
-# FOOD_TYPES = [
-#   "vegetable",
-#   "fruit",
-#   "meat",
-#   "fish",
-#   "dairy",
-#   "grain",
-#   "spice",
-#   "condiment",
-#   "beverage",
-#   "sweet",
-#   "frozen",
-#   "prepared",
-#   "other"
-# ]
+CATEGORIES = [
+    "Fruits",
+    "Vegetables",
+    "Bread, cereals, and nuts",
+    "Meats",
+    "Fish and seafood",
+    "Dairy and eggs",
+    "Legumes",
+    "Beverages",
+    "Sweets",
+    "Processed foods and ready meals",
+]
 
 STORAGE_METHODS = [
-  "dry",
-  "fridge",
-  "freezer"
+  "Dry",
+  "Fridge",
+  "Freezer"
 ]
 
 #   validates :name, presence: true
@@ -37,5 +34,6 @@ STORAGE_METHODS = [
 
 has_many :house_ingredients
 validates :storage_method, presence: true, inclusion: { in: STORAGE_METHODS }
+validates :category, presence: true, inclusion: { in: CATEGORIES }
 
 end

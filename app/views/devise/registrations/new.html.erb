@@ -1,33 +1,47 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-4">
 
-    <h2>Sign up</h2>
+<div class="form-background"></div>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+  <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="row w-100">
+      <div class="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
+        <div class="card shadow p-4">
 
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" }%>
-        <%= f.input :password,
-                    required: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" } %>
+          <div class="text-center mb-4">
+            <%= image_tag "logo_shelfie/logo-shelfie-ai-02.png", width: 150, alt: "Shelfie Logo", class: "mb-2" %>
+            <h2 class="mb-0">Sign up</h2>
+          </div>
+
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :email,
+                          required: true, required_mark: '',
+                          autofocus: true,
+                          input_html: { autocomplete: "email", class: "form-control" },
+                          label_html: { class: "form-label" } %>
+              <%= f.input :password,
+                          required: true,
+                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                          input_html: { autocomplete: "new-password", class: "form-control" },
+                          label_html: { class: "form-label" } %>
+              <%= f.input :password_confirmation,
+                          required: true,
+                          input_html: { autocomplete: "new-password", class: "form-control" },
+                          label_html: { class: "form-label" } %>
+              <%= f.input :name, required: true, input_html: { class: "form-control" }, label_html: { class: "form-label" } %>
+              <%= f.input :last_name, required: true, input_html: { class: "form-control" }, label_html: { class: "form-label" } %>
+              <%= f.input :prompt_setting, as: :text, required: false, input_html: { class: "form-control", placeholder: "Please enter your allergies and food preferences." }, label: "Allergies", label_html: { class: "form-label" } %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Sign up", class: "btn btn-primary btn-form" %>
+            </div>
+          <% end %>
+
+          <div class="mt-3 text-center">
+            <%= render "devise/shared/links" %>
+          </div>
+
+        </div>
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Sign up" %>
-      </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
     </div>
   </div>
-</div>

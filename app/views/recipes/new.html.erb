@@ -26,6 +26,9 @@
       <%= f.input :rating, label: "Rating" %>
     </div>
 
+   <!--- Afin de pouvoir rajouter des ingrédients a la liste, il faut d'abord préciser le nombre d'ingrédients, ici entre 1 et 20
+    ---- Stimulus JS -->
+
   <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
 
       <div> <%= f.input :number_of_ingredients, collection: 1..20, placeholder: "number of ingredients" %></div>

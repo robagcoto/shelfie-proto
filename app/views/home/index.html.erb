@@ -33,7 +33,7 @@
         </ul>
 
         <div class="text-end">
-          <%= link_to root_path, class: "rounded-circle" do %>
+          <%= link_to house_house_ingredients_path(@house), class: "rounded-circle" do %>
             <%= image_tag "view-light.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
           <% end %>
         </div>
@@ -66,7 +66,7 @@
 
 
     <%= link_to chats_path do %>
-      <div class="card h-100 shadow-sm my-3">
+      <div class="card h-100 shadow-sm mb-xxl">
         <div class="card card-other-background text-secondary">
           <div class="card-img-overlay text-center">
               <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
@@ -80,3 +80,10 @@
 
   </div>
 </div>
+
+<style>
+body {
+  min-height: 100vh;
+  overflow-y: auto;
+}
+</style>
