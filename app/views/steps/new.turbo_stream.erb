@@ -1,0 +1,4 @@
+<%# ajoute à la un nouveau step à notre liste %>
+<%= turbo_stream.append :steps do %>
+  <%= render partial: "steps/step", locals: { step: Step.new } %>
+<% end %>

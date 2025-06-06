@@ -43,22 +43,14 @@ steps1 = [
   "Serve right away with extra cheese and black pepper on top."
 ]
 
-steps1 = [
-  "Boil water, salt it generously, and cook spaghetti until al dente. Reserve 1 cup of pasta water before draining.",
-  "In a pan, cook pancetta/guanciale over medium heat until crispy. Turn off the heat once done.",
-  "In a bowl, whisk together the egg yolks, whole egg, cheese, and a generous amount of black pepper.",
-  "Add the hot pasta to the pan with pancetta. Quickly toss.",
-  "Immediately stir in the egg mixture, tossing fast so the eggs coat the pasta without scrambling. Add pasta water bit by bit to make it creamy.",
-  "Serve right away with extra cheese and black pepper on top."
-]
-
 recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
   duration: 20,
   category: "Italian",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps1.each do |step|
@@ -102,7 +94,8 @@ recipe2 = Recipe.new(
   duration: 50,
   category: "Indian",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps2.each do |step|
@@ -141,7 +134,8 @@ recipe3 = Recipe.new(
   duration: 45,
   category: "Japanese",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps3.each do |step|
@@ -179,7 +173,8 @@ recipe4 = Recipe.new(
   duration: 10,
   category: "Mexican",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps4.each do |step|
@@ -221,7 +216,8 @@ recipe5 = Recipe.new(
   duration: 50,
   category: "French",
   rating: 3,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps5.each do |step|
@@ -261,7 +257,8 @@ recipe6 = Recipe.new(
   duration: 60,
   category: "Mexican",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps6.each do |step|
@@ -298,7 +295,8 @@ recipe7 = Recipe.new(
   duration: 15,
   category: "Japanese",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps7.each do |step|
@@ -340,36 +338,36 @@ puts "House created   🏘️"
 
 puts "Creating the ingredients 🛒"
 
-ing1  = Ingredient.create!(name: "banana",           storage_method: "dry",      category: "fruits")
-ing2  = Ingredient.create!(name: "apple",            storage_method: "dry",      category: "fruits")
-ing3  = Ingredient.create!(name: "carrot",           storage_method: "fridge",   category: "vegetables")
-ing4  = Ingredient.create!(name: "tomato",           storage_method: "fridge",   category: "fruits")
-ing5  = Ingredient.create!(name: "potato",           storage_method: "dry",      category: "vegetables")
-ing6  = Ingredient.create!(name: "onion",            storage_method: "dry",      category: "vegetables")
-ing7  = Ingredient.create!(name: "garlic",           storage_method: "dry",      category: "vegetables")
-ing8  = Ingredient.create!(name: "broccoli",         storage_method: "fridge",   category: "vegetables")
-ing9  = Ingredient.create!(name: "spinach",          storage_method: "fridge",   category: "vegetables")
-ing10 = Ingredient.create!(name: "lettuce",          storage_method: "fridge",   category: "vegetables")
-ing11 = Ingredient.create!(name: "egg",              storage_method: "fridge",   category: "dairy and eggs")
-ing12 = Ingredient.create!(name: "milk",             storage_method: "fridge",   category: "dairy and eggs")
-ing13 = Ingredient.create!(name: "butter",           storage_method: "fridge",   category: "dairy and eggs")
-ing14 = Ingredient.create!(name: "chicken breast",   storage_method: "fridge",   category: "meats")
-ing15 = Ingredient.create!(name: "beef steak",       storage_method: "fridge",   category: "meats")
-ing16 = Ingredient.create!(name: "pork chop",        storage_method: "fridge",   category: "meats")
-ing17 = Ingredient.create!(name: "fish fillet",      storage_method: "fridge",   category: "fish and seafood")
-ing18 = Ingredient.create!(name: "shrimp",           storage_method: "freezer",  category: "fish and seafood")
-ing19 = Ingredient.create!(name: "frozen peas",      storage_method: "freezer",  category: "vegetables")
-ing20 = Ingredient.create!(name: "cheddar cheese",   storage_method: "fridge",   category: "dairy and eggs")
-ing21 = Ingredient.create!(name: "yogurt",           storage_method: "fridge",   category: "dairy and eggs")
-ing22 = Ingredient.create!(name: "orange",           storage_method: "dry",      category: "fruits")
-ing23 = Ingredient.create!(name: "lemon",            storage_method: "dry",      category: "fruits")
-ing24 = Ingredient.create!(name: "cucumber",         storage_method: "fridge",   category: "vegetables")
-ing25 = Ingredient.create!(name: "zucchini",         storage_method: "fridge",   category: "vegetables")
-ing26 = Ingredient.create!(name: "eggplant",         storage_method: "fridge",   category: "vegetables")
-ing27 = Ingredient.create!(name: "bell pepper",      storage_method: "fridge",   category: "vegetables")
-ing28 = Ingredient.create!(name: "rice",             storage_method: "dry",      category: "bread, cereals, and nuts")
-ing29 = Ingredient.create!(name: "pasta",            storage_method: "dry",      category: "bread, cereals, and nuts")
-ing30 = Ingredient.create!(name: "baguette",         storage_method: "dry",      category: "bread, cereals, and nuts")
+ing1  = Ingredient.create!(name: "banana",           storage_method: "Dry",      category: "Fruits")
+ing2  = Ingredient.create!(name: "apple",            storage_method: "Dry",      category: "Fruits")
+ing3  = Ingredient.create!(name: "carrot",           storage_method: "Fridge",   category: "Vegetables")
+ing4  = Ingredient.create!(name: "tomato",           storage_method: "Fridge",   category: "Fruits")
+ing5  = Ingredient.create!(name: "potato",           storage_method: "Dry",      category: "Vegetables")
+ing6  = Ingredient.create!(name: "onion",            storage_method: "Dry",      category: "Vegetables")
+ing7  = Ingredient.create!(name: "garlic",           storage_method: "Dry",      category: "Vegetables")
+ing8  = Ingredient.create!(name: "broccoli",         storage_method: "Fridge",   category: "Vegetables")
+ing9  = Ingredient.create!(name: "spinach",          storage_method: "Fridge",   category: "Vegetables")
+ing10 = Ingredient.create!(name: "lettuce",          storage_method: "Fridge",   category: "Vegetables")
+ing11 = Ingredient.create!(name: "egg",              storage_method: "Fridge",   category: "Dairy and eggs")
+ing12 = Ingredient.create!(name: "milk",             storage_method: "Fridge",   category: "Dairy and eggs")
+ing13 = Ingredient.create!(name: "butter",           storage_method: "Fridge",   category: "Dairy and eggs")
+ing14 = Ingredient.create!(name: "chicken breast",   storage_method: "Fridge",   category: "Meats")
+ing15 = Ingredient.create!(name: "beef steak",       storage_method: "Fridge",   category: "Meats")
+ing16 = Ingredient.create!(name: "pork chop",        storage_method: "Fridge",   category: "Meats")
+ing17 = Ingredient.create!(name: "fish fillet",      storage_method: "Fridge",   category: "Fish and seafood")
+ing18 = Ingredient.create!(name: "shrimp",           storage_method: "Freezer",  category: "Fish and seafood")
+ing19 = Ingredient.create!(name: "frozen peas",      storage_method: "Freezer",  category: "Vegetables")
+ing20 = Ingredient.create!(name: "cheddar cheese",   storage_method: "Fridge",   category: "Dairy and eggs")
+ing21 = Ingredient.create!(name: "yogurt",           storage_method: "Fridge",   category: "Dairy and eggs")
+ing22 = Ingredient.create!(name: "orange",           storage_method: "Dry",      category: "Fruits")
+ing23 = Ingredient.create!(name: "lemon",            storage_method: "Dry",      category: "Fruits")
+ing24 = Ingredient.create!(name: "cucumber",         storage_method: "Fridge",   category: "Vegetables")
+ing25 = Ingredient.create!(name: "zucchini",         storage_method: "Fridge",   category: "Vegetables")
+ing26 = Ingredient.create!(name: "eggplant",         storage_method: "Fridge",   category: "Vegetables")
+ing27 = Ingredient.create!(name: "bell pepper",      storage_method: "Fridge",   category: "Vegetables")
+ing28 = Ingredient.create!(name: "rice",             storage_method: "Dry",      category: "Bread, cereals, and nuts")
+ing29 = Ingredient.create!(name: "pasta",            storage_method: "Dry",      category: "Bread, cereals, and nuts")
+ing30 = Ingredient.create!(name: "baguette",         storage_method: "Dry",      category: "Bread, cereals, and nuts")
 
 # Rattacher chaque ingrédient à la même maison
 HouseIngredient.create!(expiration_date: "2025-07-01", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing1.id)

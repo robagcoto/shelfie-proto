@@ -3,8 +3,10 @@
 
   <h1 class="text-center mb-4 mt-4">List of my recipes</h1>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <% @recipes.each do |recipe| %>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="margin-bottom: 100px;">
+    <% @my_recipes.each do |recipe| %>
+
       <div class="col">
         <%= link_to recipe_path(recipe), class: "card h-100 shadow-sm text-decoration-none" do %>
           <div class="card h-100 shadow-sm">

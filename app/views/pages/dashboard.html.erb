@@ -1,14 +1,14 @@
-ààà<div class="container mt<div class="col my-3">
+<div class="container mt<div class="col my-3">
   <div class="card h-100 shadow-sm my-4">
     <div class="card">
 
-    <h1>dashboard</h1>
-    <% @my_recipes.each do |recipe| %>
-    <%=recipe.name%>
-    <br>
-    <br>
-    <%=recipe.description%>
-    <%end %>
+      <% @favorite_recipes.each do |recipe| %>
+        <%= link_to recipe_path(recipe), recipe.name %>
+        <%=recipe.name%>
+        <br>
+        <br>
+        <%=recipe.description%>
+      <%end %>
 
     </div>
   </div>

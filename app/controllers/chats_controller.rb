@@ -7,9 +7,10 @@ SYSTEM_PROMPT = '
 
   The output must be a JSON object with exactly two primary keys:
 
-  - recipe_attributes: a JSON object containing exactly these 8 keys:
+  - recipe_attributes: a JSON object containing exactly these 9 keys:
     - name (string): the dish name.
     - description (string): a detailed description of the dish.
+    - my_recipe (boolean): whether the recipe is not a favorite.
     - rating (number, 0 to 5): a quality score for the recipe.
     - category (string): the recipe category (e.g., "Dinner", "Dessert").
     - favorites (boolean): whether the recipe is not a favorite.
@@ -18,7 +19,7 @@ SYSTEM_PROMPT = '
     - ingredients_recipes (object): a nested object listing each ingredient, where each ingredient key is unique (e.g., "ingredient1"), and each ingredient contains:
       - name (string)
       - quantity (number)
-      - unit (string)
+      - unit with the unit being either grams (g), liters (l), or pieces(string)
 
   - recipe_description: a human-readable, well-formatted textual recipe combining the above info, excluding the favorites key, styled like a cookbook entry.
 
@@ -26,99 +27,87 @@ SYSTEM_PROMPT = '
 
   The recipe description and all texts must be in English regardless of the input language.
   this  what the output must looks like
-  {
-    "recipe_attributes": {
-      "name": "Lemon Poppy Seed Muffins",
-      "description": "These Lemon Poppy Seed Muffins are light, fluffy, and bursting with zesty lemon flavor. The addition of poppy seeds provides a subtle crunch, making them the perfect morning treat or afternoon snack. Topped with a tangy lemon glaze, they offer a bright and refreshing bite.",
-      "rating": 4.7,
-      "category": "Dessert",
-      "favorites": false,
-      "duration": "30",
-      "steps": {
-        "step1": "Preheat the oven to 375°F (190°C) and line a muffin tin with paper liners.",
-        "step2": "In a large bowl, whisk together flour, baking powder, baking soda, salt, and poppy seeds.",
-        "step3": "In another bowl, combine sugar, eggs, melted butter, yogurt, lemon juice, lemon zest, and vanilla extract until smooth.",
-        "step4": "Gradually add the dry ingredients to the wet ingredients, stirring until just combined. Do not overmix.",
-        "step5": "Divide the batter evenly among the muffin cups, filling each about 3/4 full.",
-        "step6": "Bake for 18–20 minutes, or until a toothpick inserted in the center comes out clean.",
-        "step7": "While muffins cool, mix powdered sugar and lemon juice to make the glaze.",
-        "step8": "Drizzle the glaze over the cooled muffins and let set before serving."
-      },
-      "ingredients_recipes": {
-        "ingredient1": {
-          "name": "all-purpose flour",
-          "quantity": 2,
-          "unit": "cups"
-        },
-        "ingredient2": {
-          "name": "baking powder",
-          "quantity": 1,
-          "unit": "teaspoon"
-        },
-        "ingredient3": {
-          "name": "baking soda",
-          "quantity": 0.5,
-          "unit": "teaspoon"
-        },
-        "ingredient4": {
-          "name": "salt",
-          "quantity": 0.25,
-          "unit": "teaspoon"
-        },
-        "ingredient5": {
-          "name": "poppy seeds",
-          "quantity": 2,
-          "unit": "tablespoons"
-        },
-        "ingredient6": {
-          "name": "granulated sugar",
-          "quantity": 0.75,
-          "unit": "cup"
-        },
-        "ingredient7": {
-          "name": "eggs",
-          "quantity": 2,
-          "unit": "pieces"
-        },
-        "ingredient8": {
-          "name": "unsalted butter",
-          "quantity": 0.5,
-          "unit": "cup"
-        },
-        "ingredient9": {
-          "name": "plain yogurt",
-          "quantity": 0.5,
-          "unit": "cup"
-        },
-        "ingredient10": {
-          "name": "lemon juice",
-          "quantity": 0.25,
-          "unit": "cup"
-        },
-        "ingredient11": {
-          "name": "lemon zest",
-          "quantity": 1,
-          "unit": "tablespoon"
-        },
-        "ingredient12": {
-          "name": "vanilla extract",
-          "quantity": 1,
-          "unit": "teaspoon"
-        },
-        "ingredient13": {
-          "name": "powdered sugar",
-          "quantity": 0.5,
-          "unit": "cup"
-        },
-        "ingredient14": {
-          "name": "lemon juice (for glaze)",
-          "quantity": 2,
-          "unit": "tablespoons"
-        }
-      }
+ {
+  "recipe_attributes": {
+    "name": "Creamy Mushroom Risotto",
+    "description": "A rich and creamy Italian rice dish infused with the earthy flavors of mushrooms, parmesan cheese, and a hint of white wine. This comforting recipe is perfect for a cozy dinner and showcases the luxurious texture of arborio rice slowly cooked to perfection.",
+    "rating": 4.7,
+     "favorites": false,
+    "category": "Dinner",
+    "favorites": false,
+    "duration": "45 minutes",
+    "steps": {
+      "step1": "Heat the olive oil and 25g of butter in a large saucepan over medium heat.",
+      "step2": "Add the chopped onion and sauté until translucent, about 5 minutes.",
+      "step3": "Stir in the sliced mushrooms and cook until they release their juices and are golden brown, about 8 minutes.",
+      "step4": "Add the arborio rice and stir to coat with the mushroom mixture, cooking for 1–2 minutes.",
+      "step5": "Pour in the white wine and stir until it is mostly absorbed.",
+      "step6": "Gradually add the warm vegetable broth, one ladle at a time, stirring constantly and allowing each addition to absorb before the next.",
+      "step7": "Continue this process until the rice is creamy and al dente, about 20–25 minutes.",
+      "step8": "Remove from heat and stir in the remaining butter, grated parmesan cheese, salt, and pepper.",
+      "step9": "Let it rest for 2 minutes before serving hot, optionally garnished with fresh parsley."
     },
-    "recipe_description": "Lemon Poppy Seed Muffins\n\nThese Lemon Poppy Seed Muffins are light, fluffy, and bursting with zesty lemon flavor. The addition of poppy seeds provides a subtle crunch, making them the perfect morning treat or afternoon snack. Topped with a tangy lemon glaze, they offer a bright and refreshing bite.\n\nCategory: Dessert  \nRating: 4.7/5  \nDuration: 30 minutes\n\nIngredients:\n- 2 cups all-purpose flour\n- 1 teaspoon baking powder\n- 0.5 teaspoon baking soda\n- 0.25 teaspoon salt\n- 2 tablespoons poppy seeds\n- 0.75 cup granulated sugar\n- 2 eggs\n- 0.5 cup unsalted butter (melted)\n- 0.5 cup plain yogurt\n- 0.25 cup lemon juice\n- 1 tablespoon lemon zest\n- 1 teaspoon vanilla extract\n- 0.5 cup powdered sugar\n- 2 tablespoons lemon juice (for glaze)\n\nSteps:\n1. Preheat the oven to 375°F (190°C) and line a muffin tin with paper liners.\n2. In a large bowl, whisk together flour, baking powder, baking soda, salt, and poppy seeds.\n3. In another bowl, combine sugar, eggs, melted butter, yogurt, lemon juice, lemon zest, and vanilla extract until smooth.\n4. Gradually add the dry ingredients to the wet ingredients, stirring until just combined. Do not overmix.\n5. Divide the batter evenly among the muffin cups, filling each about 3/4 full.\n6. Bake for 18–20 minutes, or until a toothpick inserted in the center comes out clean.\n7. While muffins cool, mix powdered sugar and lemon juice to make the glaze.\n8. Drizzle the glaze over the cooled muffins and let set before serving."
-  }
+    "ingredients_recipes": {
+      "ingredient1": {
+        "name": "Arborio rice",
+        "quantity": 300,
+        "unit": "g"
+      },
+      "ingredient2": {
+        "name": "Mushrooms",
+        "quantity": 250,
+        "unit": "g"
+      },
+      "ingredient3": {
+        "name": "Onion",
+        "quantity": 1,
+        "unit": "pieces"
+      },
+      "ingredient4": {
+        "name": "Olive oil",
+        "quantity": 2,
+        "unit": "l"
+      },
+      "ingredient5": {
+        "name": "Butter",
+        "quantity": 50,
+        "unit": "g"
+      },
+      "ingredient6": {
+        "name": "White wine",
+        "quantity": 100,
+        "unit": "l"
+      },
+      "ingredient7": {
+        "name": "Vegetable broth",
+        "quantity": 1,
+        "unit": "l"
+      },
+      "ingredient8": {
+        "name": "Parmesan cheese",
+        "quantity": 50,
+        "unit": "g"
+      },
+      "ingredient9": {
+        "name": "Salt",
+        "quantity": 5,
+        "unit": "g"
+      },
+      "ingredient10": {
+        "name": "Black pepper",
+        "quantity": 2,
+        "unit": "g"
+      },
+      "ingredient11": {
+        "name": "Parsley (optional)",
+        "quantity": 1,
+        "unit": "pieces"
+      }
+    }
+  },
+  "recipe_description": "Creamy Mushroom Risotto\n\nA rich and creamy Italian rice dish infused with the earthy flavors of mushrooms, parmesan cheese, and a hint of white wine. This comforting recipe is perfect for a cozy dinner and showcases the luxurious texture of arborio rice slowly cooked to perfection.\n\nPrep & Cook Time: 45 minutes\nRating: 4.7/5\nCategory: Dinner\n\nIngredients:\n- 300g Arborio rice\n- 250g Mushrooms, sliced\n- 1 Onion, finely chopped\n- 2l Olive oil\n- 50g Butter\n- 100l White wine\n- 1l Vegetable broth, warm\n- 50g Parmesan cheese, grated\n- 5g Salt\n- 2g Black pepper\n- 1 piece Parsley (optional, for garnish)\n\nSteps:\n1. Heat the olive oil and 25g of butter in a large saucepan over medium heat.\n2. Add the chopped onion and sauté until translucent, about 5 minutes.\n3. Stir in the sliced mushrooms and cook until they release their juices and are golden brown, about 8 minutes.\n4. Add the arborio rice and stir to coat with the mushroom mixture, cooking for 1–2 minutes.\n5. Pour in the white wine and stir until it is mostly absorbed.\n6. Gradually add the warm vegetable broth, one ladle at a time, stirring constantly and allowing each addition to absorb before the next.\n7. Continue this process until the rice is creamy and al dente, about 20–25 minutes.\n8. Remove from heat and stir in the remaining butter, grated parmesan cheese, salt, and pepper.\n9. Let it rest for 2 minutes before serving hot, optionally garnished with fresh parsley."
+}
+
 '
 
   def index
