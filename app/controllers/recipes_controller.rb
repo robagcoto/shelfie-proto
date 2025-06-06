@@ -59,23 +59,23 @@ class RecipesController < ApplicationController
   end
 
     # /:recipe_id
-    def update_favorite
-      raise
-      # je récupère mon instance de recipe
-      @recipe = Recipe.find(params[:id])
+  def update_favorite
+    raise
+    # je récupère mon instance de recipe
+    @recipe = Recipe.find(params[:id])
 
-      # instance.update(favorite: !instance.favorite)
-      @recipe.update(favorite: @recipe.favorite)
+    # instance.update(favorite: !instance.favorite)
+    @recipe.update(favorite: @recipe.favorite)
 
-      # si .favorite == false => je l'update en true
-      # si .favorite == true => je l'update en false
-      if @recipe.favorite == false
-        @recipe.update(favorite: true)
-      else
-        @recipe == true
-        @recipe.update(favorite: false)
-      end
+    # si .favorite == false => je l'update en true
+    # si .favorite == true => je l'update en false
+    if @recipe.favorite == false
+      @recipe.update(favorite: true)
+    else
+      @recipe == true
+      @recipe.update(favorite: false)
     end
+  end
 
   def destroy
     @recipe = Recipe.find(params[:id])

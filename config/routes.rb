@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
 
+  resources :pages, only: [:index, :show, :new, :create, :edit, :update] do
+
+  end
   resources :houses, only: [:index, :show, :new, :create, :edit, :update] do
     resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
   # suppression et création des steps pour les form de recipes/new et recipes/edit
   resources :steps, only: [:new, :destroy]
 
-  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy, :toggle_favorite] do
+  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do
       patch :toggle_favorite
     end

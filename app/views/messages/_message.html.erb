@@ -14,9 +14,16 @@
      <%#= link_to toggle_favorite_recipe_path(message.recipe) do %>
      <%# if .favorite? %>
     <%# else %>
+    <%# if message.recipe.favorite? %>
+      <%# <%= image_tag "fav-light.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+    <%# else %>
+      <%# <%= image_tag "fav.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+    <%# end %>
 
-      <%= image_tag "fav-light.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
-      <%#  %>
+    <%= link_to recipes_path do %>
+  <%= image_tag "fav-light.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+<% end %>
+
     </div>
   </div>
 <% end %>
