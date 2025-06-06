@@ -2,21 +2,18 @@
 
 
 <div class="container my-1">
-
   <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
-
     <div class="mb-3 mt-4">
       <%= f.input :photo, as: :file %>
+    </div>
 
     <div class="mb-3">
       <%= f.input :name, label: "Name of the recipe" %>
     </div>
 
-
     <div class="category-selector mb-3">
       <%= f.input :category, as: :radio_buttons, label: "Category", collection: Recipe::VALID_CATEGORIES %>
     </div>
-
 
     <div class="mb-3">
       <%= f.input :description, label: "Describe shortly your recipe" %>
@@ -26,47 +23,51 @@
       <%= f.input :rating, label: "Rating" %>
     </div>
 
-   <!--- Afin de pouvoir rajouter des ingrédients a la liste, il faut d'abord préciser le nombre d'ingrédients, ici entre 1 et 20
-    ---- Stimulus JS -->
+    <!--- Afin de pouvoir rajouter des ingrédients a la liste, il faut d'abord préciser le nombre d'ingrédients, ici entre 1 et 20
+      ---- Stimulus JS -->
+    <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
+      <div>
+        <%= f.input :number_of_ingredients, collection: 1..20, placeholder: "number of ingredients" %>
+      </div>
 
-  <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
-
-      <div> <%= f.input :number_of_ingredients, collection: 1..20, placeholder: "number of ingredients" %></div>
-
-    <div class="ingredient-row" data-ingredients-target="remove">
-      <div class="col-4 mb-2">
-        <%= text_field_tag :ingredient_name1, nil, placeholder: "Ingredients", class: "form-control" %>
+      <div class="ingredient-row mb-2" data-ingredients-target="remove">
+        <div class="col-4">
+          <%= text_field_tag :ingredient_name1, nil, placeholder: "Ingredients", class: "form-control" %>
         </div>
 
-      <div class="col-4">
-        <%= text_field_tag :ingredient_quantity1, nil, placeholder: "Quantity", class: "form-control" %>
-          </div>
-
-      <div class="col-2">
-        <%= select_tag :ingredient_unit1, options_for_select(Recipe::VALID_CATEGORIES), class: "form-select" %>
+        <div class="col-3">
+          <%= text_field_tag :ingredient_quantity1, nil, placeholder: "Quantity", class: "form-control" %>
         </div>
 
-        <div class="col-2 p-0 d-flex justify-content-center" >
+        <div class="col-3">
+          <%= select_tag :ingredient_unit1, options_for_select(['g', 'l', 'pc(s)']), class: "form-select" %>
+        </div>
+
+        <div class="col-1 ms-auto p-0 d-flex justify-content-center">
           <button data-ingredients-target= "button" data-action= "click->ingredients#addIngredients" type="button" class="btn btn-primary">+</button>
           <button data-ingredients-target= "delete" data-action= "click->ingredients#removeRow" type="button" class="trash"><i class="fa-solid fa-trash"></i></button>
-          </div>
+        </div>
       </div>
     </div>
-
 
     <div class="mb-3">
       <%= f.input :duration, label: "Duration" %>
     </div>
 
-    <div class="mb-3">
-      <%#= f.input :steps, as: :text, input_html: { rows: 6 }, label: "Steps" %>
-    </div>
+    <section>
+      <h5>Steps of the recipe</h5>
+      <div class="d-flex" style="gap: 5px;">
+        <div id="steps" class="flex-fill">
+          <%= render @recipe.steps %>
+        </div>
+        <%= link_to new_step_path, data: { turbo_stream: true }, class: "btn btn-primary d-flex align-self-end", style: "height: 38px;" do %>
+          +
+        <% end %>
+      </div>
+    </section>
 
     <div class="text-center my-4">
       <%= f.button :submit, "Create recipe", class: "btn btn-primary btn-xl" %>
     </div>
   <% end %>
-
-  </div>
-  </div>
 </div>

@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients_recipes, dependent: :destroy
   has_many :completions, dependent: :destroy
   has_many :steps, dependent: :destroy
+  accepts_nested_attributes_for :steps, allow_destroy: true, reject_if: :all_blank
 
 VALID_CATEGORIES = [
   'French',
@@ -19,7 +20,8 @@ VALID_CATEGORIES = [
   'Vietnamese',
   'Lebanese',
   'Korean',
-  'Turkish']
+  'Turkish'
+]
 
   has_one_attached :photo
   validates :name, presence: true

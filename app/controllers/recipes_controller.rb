@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe.steps.build
   end
 
   def create
@@ -57,9 +58,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  
-
-
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
@@ -73,8 +71,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :photo, :description, :category, :duration,
-      :favorite, :rating, :number_of_ingredients)
+    params.require(:recipe).permit(:name, :photo, :description, :category, :duration, :favorite, :rating, :number_of_ingredients, steps_attributes: [:id, :description])
   end
 
   def ingredients_recipe
