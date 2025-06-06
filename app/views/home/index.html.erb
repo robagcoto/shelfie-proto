@@ -1,3 +1,7 @@
+<div style="width: 100vw; height: 20px; overflow: hidden; position: relative;">
+  <%= image_tag "bandeau-home-1.png", alt: "", style: "width: 100%; height: 30px; object-fit: cover; display: block;" %>
+</div>
+
 <div class="container">
 
   <div class="d-flex justify-content-between align-items-center mt-3">
@@ -20,6 +24,7 @@
 
   <div class="col">
 
+
     <div class="card h-100 shadow-sm">
       <div class="card card-background text-secondary">
         <div class="card-img-overlay">
@@ -39,42 +44,33 @@
             <% end %>
           <% end %>
         </div>
-
+          
         </div>
       </div>
-    </div>
+    <% end %>
 
-    <div class="card h-100 shadow-sm my-3">
-      <div class="card card-light-background text-primary">
-        <div class="card-img-overlay">
-
-          <h5 class="card-title">Recipes</h5>
-
-          <ul class="list-unstyled">
-            <% @recipes.first(3).each do |recipe| %>
-              <li><%= recipe.name %></li>
-            <% end %>
-          </ul>
-
-          <div class="text-end">
-            <%= link_to recipes_path, class: "rounded-circle" do %>
-              <%= image_tag "view.png", alt: "return", width: 50, height: 50, class: "rounded-circle" %>
-            <% end %>
+    <%= link_to recipes_path, class:"text-decoration-none" do %>
+      <div class="card h-100 shadow-sm my-3">
+        <div class="card card-light-background text-primary">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Recipes</h5>
+            <ul class="list-unstyled">
+              <% @recipes.first(3).each do |recipe| %>
+                <li><%= recipe.name %></li>
+              <% end %>
+            </ul>
           </div>
-
         </div>
       </div>
-    </div>
-
+    <% end %>
 
     <%= link_to chats_path do %>
       <div class="card h-100 shadow-sm mb-xxl">
         <div class="card card-other-background text-secondary">
           <div class="card-img-overlay text-center">
-              <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
-
-              <h5 class="p-0">Cooking Assistant</h5>
-              <p>"What would you like to cook today?"</p>
+            <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
+            <h5 class="p-0">Cooking Assistant</h5>
+            <p>"What would you like to cook today?"</p>
           </div>
         </div>
       </div>
@@ -82,10 +78,3 @@
 
   </div>
 </div>
-
-<style>
-body {
-  min-height: 100vh;
-  overflow-y: auto;
-}
-</style>

@@ -22,4 +22,11 @@
       <%= image_tag "close.png", alt: "add", class: "add-btn" %>
       <% end %>
     <% end %>
+
+    <% if add_ingredient %>
+      <%= link_to new_house_house_ingredient_path(@house) do %>
+      <%= image_tag "close.png", alt: "add", class: "add-btn" %>
+      <% end %>
+    <% end %>
   </div>
+    
