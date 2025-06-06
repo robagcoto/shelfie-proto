@@ -10,8 +10,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     #@ingredient_name = @recipe.ingredients_recipes.pluck(:name)
-
-
   end
 
   def new
