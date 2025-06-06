@@ -1,0 +1,12 @@
+<%= turbo_stream.update("ingredients") do %>
+  <% if params[:category] != 'All' %>
+    <h3 class="mt-3 mb-3 text-center"><%= params[:category] %></h3>
+  <% end %>
+  <% @house_ingredients.each do |house_ingredient| %>
+    <li>
+      <%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>:
+      <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
+      you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left</strong>
+    </li>
+  <% end %>
+<% end %>

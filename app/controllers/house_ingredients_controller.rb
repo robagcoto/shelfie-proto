@@ -5,6 +5,18 @@ class HouseIngredientsController < ApplicationController
   def index
     # @house = House.default_for(current_user)
     @house_ingredients = @house.house_ingredients.includes(:ingredient)
+
+    if params[:category].present? && params[:category] != "All"
+      @house_ingredients = @house_ingredients
+      .joins(:ingredient)
+      .where(ingredients: { category: params[:category] })
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
+    # format.html
   end
 
   # Les utilisateurs ne pourront pas crééer directement d'ingrédients dans la table ingrédients, uniquement ici
