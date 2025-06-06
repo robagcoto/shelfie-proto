@@ -2,6 +2,7 @@ module ApplicationHelper
   def show_mobile_navbar?
     (controller_name == "home" && action_name == "index") ||
     (controller_name == "recipes" && %w[index show].include?(action_name))
+    (controller_name == "pages" && %w[dashboard].include?(action_name))
   end
 
   # helper pour insérer un id unique

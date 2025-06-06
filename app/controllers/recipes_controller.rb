@@ -9,9 +9,6 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
 
-    #@ingredient_name = @recipe.ingredients_recipes.pluck(:name)
-
-
   end
 
   def new
@@ -64,7 +61,11 @@ class RecipesController < ApplicationController
     redirect_to recipe_path, status: :see_other
   end
 
+
+end
+
  private
+
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
@@ -77,5 +78,3 @@ class RecipesController < ApplicationController
   def ingredients_recipe
     params.require(:ingredients_recipe).permit(:name, :quantity, :unit)
   end
-
-end
