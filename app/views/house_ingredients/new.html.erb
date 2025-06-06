@@ -10,12 +10,12 @@
     <%= simple_form_for [@house, @house_ingredient], html: { multipart: true } do |f| %>
 
       <div class="mb-3">
-        <%= f.input :ingredient.name, label: "Name of the ingredient" %>
+        <%= f.input :ingredient_name, label: "Name of the ingredient" %>
       </div>
 
       <div>
         <%= label_tag :category %>
-        <%= select_tag :ingredient, options_for_select(Ingredient::CATEGORIES), class: "form-select" %>
+        <%= select_tag :category, options_for_select(Ingredient::CATEGORIES), class: "form-select" %>
       </div>
 
     <div class="row mb-2 mt-3">
@@ -35,7 +35,7 @@
 
       <div class="mb-3">
         <div class="select-margin"><%= label_tag :storage_method %></div>
-        <%= select_tag :ingredient, options_for_select(Ingredient::STORAGE_METHODS), class: "form-select" %>
+        <%= select_tag :storage_method, options_for_select(Ingredient::STORAGE_METHODS), class: "form-select" %>
       </div>
 
       <div class="text-center my-4">
