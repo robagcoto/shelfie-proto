@@ -19,18 +19,6 @@
 
 }
 
-// .card-product {
-//   background: url("back_card.png");
-//   background-size: cover;
-//   background-position: center;
-//   overflow: hidden;
-//   border-radius: 1rem;
-//   height: 150px;
-//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-//   display: flex;
-//   color: lightgreen;
-// }
-
 #pic {
   width: 130px;
   height: 150px;
@@ -78,4 +66,7 @@
 
 .card-ingredients {
   border: solid lightgray;
+  border-radius: 5px;
+  padding-right: 1px;
+  padding-left: 1px;
 }
