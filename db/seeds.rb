@@ -43,22 +43,14 @@ steps1 = [
   "Serve right away with extra cheese and black pepper on top."
 ]
 
-steps1 = [
-  "Boil water, salt it generously, and cook spaghetti until al dente. Reserve 1 cup of pasta water before draining.",
-  "In a pan, cook pancetta/guanciale over medium heat until crispy. Turn off the heat once done.",
-  "In a bowl, whisk together the egg yolks, whole egg, cheese, and a generous amount of black pepper.",
-  "Add the hot pasta to the pan with pancetta. Quickly toss.",
-  "Immediately stir in the egg mixture, tossing fast so the eggs coat the pasta without scrambling. Add pasta water bit by bit to make it creamy.",
-  "Serve right away with extra cheese and black pepper on top."
-]
-
 recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
   duration: 20,
   category: "Italian",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps1.each do |step|
@@ -102,7 +94,8 @@ recipe2 = Recipe.new(
   duration: 50,
   category: "Indian",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps2.each do |step|
@@ -141,7 +134,8 @@ recipe3 = Recipe.new(
   duration: 45,
   category: "Japanese",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps3.each do |step|
@@ -179,7 +173,8 @@ recipe4 = Recipe.new(
   duration: 10,
   category: "Mexican",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps4.each do |step|
@@ -221,7 +216,8 @@ recipe5 = Recipe.new(
   duration: 50,
   category: "French",
   rating: 3,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps5.each do |step|
@@ -261,7 +257,8 @@ recipe6 = Recipe.new(
   duration: 60,
   category: "Mexican",
   rating: 5,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps6.each do |step|
@@ -298,7 +295,8 @@ recipe7 = Recipe.new(
   duration: 15,
   category: "Japanese",
   rating: 4,
-  user: user1
+  user: user1,
+  my_recipe: true
 )
 
 steps7.each do |step|
