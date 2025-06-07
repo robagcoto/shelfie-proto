@@ -30,3 +30,10 @@
   width: 40px;
   height: 40px;
 }
+
+
+      // <ul id="ingredients" class="col-8" style="margin-bottom: 100px">
+      //   <% @house_ingredients.each do |house_ingredient| %>
+      //     <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
+      //   <% end %>
+      // </ul>
