@@ -1,46 +1,69 @@
 <%= render partial: "shared/top_nav", locals: { return_url: house_house_ingredients_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
 
-<div class="container" style="margin-top: 50px;">
-
-  <div class="row">
-    <div class="col-6">
-      <div class="card bg-secondary text-primary mx-0" style="padding: 20px; margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.ingredient.name.capitalize %></h5>
-          <p class="card-text">fresh for todays</p>
-        </div>
+<div class="container mt-5">
+  <div class="card mx-auto bg-secondary" style="padding: 20px; border-radius: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 70vh;">
+    <div class="card-body position-relative" style="padding: 20px;">
+      <!-- Quantité en haut à droite -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div></div> <!-- Placeholder pour équilibrer -->
+        <span class="badge bg-light text-dark rounded-circle" style="width: 30px; height: 30px; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+          <%= @house_ingredient.quantity %>
+        </span>
       </div>
-    </div>
 
-    <div class="col-6">
-      <div class="card bg-secondary text-primary" style="padding: 30px; margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.quantity %> <%= @house_ingredient.unit %></h5>
-        </div>
-      </div>
-    </div>
-  </div>
+      <!-- Nom de l'ingrédient -->
+      <h2 class="text-start text-primary mt-3" style="font-size: 2rem; font-weight: bold;"><%= @house_ingredient.ingredient.name.capitalize %></h2>
+      <p class="text-start text-primary" style="font-size: 1rem; margin-top: -10px;">fresh for todays</p>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card bg-secondary text-primary" style="margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.ingredient.name.capitalize %></h5>
-          <p class="card-text">fresh for todays</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <!-- Liste des détails -->
+      <ul class="list-unstyled mt-4" style="font-size: 1rem; line-height: 1.5; padding-bottom: 20px;">
+        <li style="margin-bottom: 10px;">3 tomatoes you have 20 days left</li>
+        <li style="margin-bottom: 10px;">2 tomatoes you have 16 days left</li>
+        <li>1 tomatoes you have 3 days left</li>
+      </ul>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card bg-secondary text-primary" style="margin-bottom: 20px;">
-        <div class="card-body">
-          <h5><%= @house_ingredient.ingredient.category.capitalize %></h5>
-          <h5><%= @house_ingredient.expiration_date %></h5>
-          <p class="card-text">fresh for todays</p>
+      <!-- Formulaire de filtrage -->
+      <%= form_with url: house_house_ingredients_path(@house), method: :get, local: true do %>
+        <div class="form-group">
+          <label class="form-label">Select Storage Method:</label>
+          <div class="d-flex gap-3 mt-2">
+            <div class="form-check">
+              <%= check_box_tag 'storage_method[]', 'Dry',
+                  params[:storage_method]&.include?('Dry'),
+                  id: 'storage_dry', class: 'd-none circle-checkbox-input' %>
+              <label for="storage_dry" class="circle-checkbox-label">
+                Dry
+              </label>
+            </div>
+            <div class="form-check">
+              <%= check_box_tag 'storage_method[]', 'Fridge',
+                  params[:storage_method]&.include?('Fridge'),
+                  id: 'storage_fridge', class: 'd-none circle-checkbox-input' %>
+              <label for="storage_fridge" class="circle-checkbox-label">
+                Fridge
+              </label>
+            </div>
+            <div class="form-check">
+              <%= check_box_tag 'storage_method[]', 'Freezer',
+                  params[:storage_method]&.include?('Freezer'),
+                  id: 'storage_freezer', class: 'd-none circle-checkbox-input' %>
+              <label for="storage_freezer" class="circle-checkbox-label">
+                Freezer
+              </label>
+            </div>
+          </div>
         </div>
+        <%# <%= submit_tag 'Filter', class: 'btn btn-primary mt-3' %>
+      <% end %>
+
+      <!-- Bouton en bas à gauche -->
+      <div class="position-absolute bottom-0 start-0 p-3">
+        <%= image_tag 'edit.png',
+              class: 'rounded-circle',
+              style: 'width: 50px; height: 50px;',
+              alt: 'Edit' %>
       </div>
+
     </div>
   </div>
 </div>

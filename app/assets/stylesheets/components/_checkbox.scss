@@ -1,0 +1,43 @@
+.circle-checkbox {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--bs-primary);
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+}
+.circle-checkbox:checked {
+  background-color: var(--bs-primary);
+}
+.circle-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Label circulaire pour la checkbox */
+.circle-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--bs-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--bs-primary);
+  font-size: 0.875rem;
+  user-select: none;
+  transition: background-color .2s, color .2s;
+}
+.circle-checkbox-input:checked + .circle-checkbox-label {
+  background-color: var(--bs-primary);
+  color: #fff;
+}
