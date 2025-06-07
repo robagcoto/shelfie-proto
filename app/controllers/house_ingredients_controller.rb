@@ -33,14 +33,20 @@ class HouseIngredientsController < ApplicationController
   end
 
   def create
+    #je normalize le input de l'utilisateur. La méthode est dans le modèle Ingredient (Strip, singularize et downcase)
     normalized_input = Ingredient.normalized_name(params[:house_ingredient][:ingredient_name])
-    ingredient = Ingredient.all.find { |ing| Ingredient.normalized_name(ing.name) == normalized_input }
-    exp_date = Date.new(
+    #je vérifie dans la rable ingredient l'unicité de l'ingrédient en comparant le nom et le storage_method
+    ingredient = Ingredient.all.find do |ing|
+      Ingredient.normalized_name(ing.name) == normalized_input &&
+      ing.storage_method == params[:storage_method]
+    end
+    #je recompose la DLC
+    expiration_date = Date.new(
       params[:house_ingredient]["expiration_date(1i)"].to_i,
       params[:house_ingredient]["expiration_date(2i)"].to_i,
       params[:house_ingredient]["expiration_date(3i)"].to_i
     )
-
+    #je vérifie si l'ingredient existe, s'il existe je créé uniquement le HouseIngredient
     if ingredient
       new_house_ingredient = HouseIngredient.create!(
         expiration_date: exp_date,
@@ -51,21 +57,71 @@ class HouseIngredientsController < ApplicationController
       )
       redirect_to house_house_ingredient_path(@house, new_house_ingredient)
     else
+      # si'l n'existe pas, je créé d'abord l'Ingredient puis le HouseIngredient
+      new_ingredient = Ingredient.create!(
+        name: Ingredient.normalized_name(params[:house_ingredient][:ingredient_name]),
+        storage_method: params[:storage_method],
+        category: params[:category]
+      )
 
+      new_house_ingredient = HouseIngredient.create!(
+        expiration_date: expiration_date,
+        quantity: params[:house_ingredient][:quantity],
+        unit: params[:unit],
+        house: @house,
+        ingredient: new_ingredient
+      )
+      redirect_to house_house_ingredient_path(@house, new_house_ingredient)
     end
-
   end
 
   def edit
-
+    @house_ingredient = HouseIngredient.find(params[:id])
   end
 
   def update
+    @house_ingredient = HouseIngredient.find(params[:id])
+
+    # j'instancie la nouvelle méthode de storage //et le nom
+    name = @house_ingredient.ingredient.name
+    new_storage_method = params[:storage_method]
+
+
+    # vérification de l'existance du couple // je cherche si le couple ingredient/storage_method existe
+    ingredient = Ingredient.all.find do |ing|
+      Ingredient.normalized_name(ing.name) == name &&
+      ing.storage_method == new_storage_method
+    end
+
+    #s'il n'existe pas je le créé
+    unless ingredient
+      ingredient = Ingredient.create!(
+        name: name,
+        storage_method: new_storage_method,
+        category: @house_ingredient.ingredient.category
+      )
+    end
+
+      #je recompose la DLC
+      expiration_date = Date.new(
+        params[:house_ingredient]["expiration_date(1i)"].to_i,
+        params[:house_ingredient]["expiration_date(2i)"].to_i,
+        params[:house_ingredient]["expiration_date(3i)"].to_i
+      )
+
+    #après la vérification, je update:
+    @house_ingredient.update!(
+      expiration_date: expiration_date,
+      quantity: params[:house_ingredient][:quantity],
+      ingredient: ingredient
+    )
+    redirect_to house_house_ingredient_path(@house, @house_ingredient)
+
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
-    @ingredient.destroy
+    @house_ingredient = HouseIngredient.find(params[:id])
+    @house_ingredient.destroy
     redirect_to house_house_ingredients_path(@house), notice: "Hasta la vista, baby..."
   end
 
