@@ -33,14 +33,20 @@ class HouseIngredientsController < ApplicationController
   end
 
   def create
+    #je normalize le inout de l'utilisateur. La méthode est dans le modèle Ingredient (Strip, singularize et downcase)
     normalized_input = Ingredient.normalized_name(params[:house_ingredient][:ingredient_name])
-    ingredient = Ingredient.all.find { |ing| Ingredient.normalized_name(ing.name) == normalized_input }
+    #je vérifie dans la rable ingredient l'unicité de l'ingrédient en comparant le nom et le storage_method
+    ingredient = Ingredient.all.find do |ing|
+      Ingredient.normalized_name(ing.name) == normalized_input &&
+      ing.storage_method == params[:storage_method]
+    end
+    #je recompose la DLC
     exp_date = Date.new(
       params[:house_ingredient]["expiration_date(1i)"].to_i,
       params[:house_ingredient]["expiration_date(2i)"].to_i,
       params[:house_ingredient]["expiration_date(3i)"].to_i
     )
-
+    #je vérifie si l'ingredient existe, s'il existe je créé uniquement le HouseIngredient
     if ingredient
       new_house_ingredient = HouseIngredient.create!(
         expiration_date: exp_date,
@@ -51,9 +57,22 @@ class HouseIngredientsController < ApplicationController
       )
       redirect_to house_house_ingredient_path(@house, new_house_ingredient)
     else
+      # si'l n'existe pas, je créé d'abord l'Ingredient puis le HouseIngredient
+      new_ingredient = Ingredient.create!(
+        name: Ingredient.normalized_name(params[:house_ingredient][:ingredient_name]),
+        storage_method: params[:storage_method],
+        category: params[:category]
+      )
 
+      new_house_ingredient = HouseIngredient.create!(
+        expiration_date: exp_date,
+        quantity: params[:house_ingredient][:quantity],
+        unit: params[:unit],
+        house: @house,
+        ingredient: new_ingredient
+      )
+      redirect_to house_house_ingredient_path(@house, new_house_ingredient)
     end
-
   end
 
   def edit
@@ -61,11 +80,12 @@ class HouseIngredientsController < ApplicationController
   end
 
   def update
+
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
-    @ingredient.destroy
+    @house_ingredient = HouseIngredient.find(params[:id])
+    @house_ingredient.destroy
     redirect_to house_house_ingredients_path(@house), notice: "Hasta la vista, baby..."
   end
 
