@@ -33,7 +33,27 @@ class HouseIngredientsController < ApplicationController
   end
 
   def create
-    @house_ingredient = IngredientHouse.new
+    normalized_input = Ingredient.normalized_name(params[:house_ingredient][:ingredient_name])
+    ingredient = Ingredient.all.find { |ing| Ingredient.normalized_name(ing.name) == normalized_input }
+    exp_date = Date.new(
+      params[:house_ingredient]["expiration_date(1i)"].to_i,
+      params[:house_ingredient]["expiration_date(2i)"].to_i,
+      params[:house_ingredient]["expiration_date(3i)"].to_i
+    )
+
+    if ingredient
+      new_house_ingredient = HouseIngredient.create!(
+        expiration_date: exp_date,
+        quantity: params[:house_ingredient][:quantity],
+        unit: params[:unit],
+        house: @house,
+        ingredient: ingredient
+      )
+      redirect_to house_house_ingredient_path(@house, new_house_ingredient)
+    else
+
+    end
+
   end
 
   def edit
@@ -53,5 +73,9 @@ private
 
   def default_house
     @house = House.default_for(current_user)
+  end
+
+  def house_ingredients_params
+    params.require(:house_ingredient).permit(:ingredient_name, :quantity, :expiration_date)
   end
 end
