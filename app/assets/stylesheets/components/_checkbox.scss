@@ -19,7 +19,7 @@
   width: 10px;
   height: 10px;
   background: #fff;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 
 /* Label circulaire pour la checkbox */
@@ -39,5 +39,23 @@
 }
 .circle-checkbox-input:checked + .circle-checkbox-label {
   background-color: var(--bs-primary);
-  color: #fff;
+  color: var(--bs-secondary);
+}
+
+.quantity-input {
+  border: none;
+  background: transparent;
+  border-bottom: 1px dashed var(--bs-secondary);
+  width: 80px;
+  transition: border-bottom-color .2s, border-bottom-width .2s,
+              box-shadow .2s;
+}
+
+/* ajout d'un contour primary au focus */
+.quantity-input:focus {
+  outline: none;
+  background: transparent;
+  border-bottom: 2px solid var(--bs-primary);
+  /* contour primaire autour de l'input */
+  box-shadow: 0 0 0 1px var(--bs-primary);
 }
