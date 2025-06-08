@@ -1,0 +1,43 @@
+
+
+
+<!--
+
+<%= render partial: "shared/top_nav", locals: { return_url: house_house_ingredients_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
+
+
+<div class="container my-1 mt-2">
+
+  <h1 class="text-center">Update your <%= @house_ingredient.ingredient.name %></h1>
+
+  <div class="mt-5">
+
+    <%= simple_form_for [@house, @house_ingredient], html: { multipart: true } do |f| %>
+
+    <div class="row mb-2 mt-3">
+      <div class="col-4">
+        <%= f.input :quantity, label: "Quantity" %>
+      </div>
+
+      <div class= "col-2">
+        <div class="select-margin"><%= label_tag :unit %></div>
+        <%= select_tag :unit, options_for_select(HouseIngredient::VALID_CATEGORIES), class:"form-select" %>
+      </div>
+    </div>
+
+      <div class="mb-3">
+        <%= f.input :expiration_date, label: "Expiration date" %>
+      </div>
+
+      <div class="mb-3">
+        <div class="select-margin"><%= label_tag :storage_method %></div>
+        <%= select_tag :storage_method, options_for_select(Ingredient::STORAGE_METHODS), class: "form-select" %>
+      </div>
+
+      <div class="text-center my-4">
+        <%= f.button :submit, "update", class: "btn btn-primary btn-xl" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
