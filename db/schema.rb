@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_05_120550) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_08_131348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_120550) do
     t.index ["recipe_id"], name: "index_completions_on_recipe_id"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "expires_at"
+    t.bigint "house_ingredient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_ingredient_id"], name: "index_histories_on_house_ingredient_id"
+  end
+
   create_table "house_ingredients", force: :cascade do |t|
     t.date "expiration_date"
     t.integer "quantity"
@@ -65,6 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_120550) do
     t.bigint "ingredient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "storage_method"
     t.index ["house_id"], name: "index_house_ingredients_on_house_id"
     t.index ["ingredient_id"], name: "index_house_ingredients_on_ingredient_id"
   end
@@ -157,6 +167,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_120550) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "users"
   add_foreign_key "completions", "recipes"
+  add_foreign_key "histories", "house_ingredients"
   add_foreign_key "house_ingredients", "houses"
   add_foreign_key "house_ingredients", "ingredients"
   add_foreign_key "house_users", "houses"

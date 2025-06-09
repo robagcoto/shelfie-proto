@@ -1,7 +1,12 @@
-<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: true, add_display: false } %>
+<%= render partial: "shared/top_nav", locals: { return_url: recipes_path, fav_display: false, edit_display: true, add_display: false, add_ingredient: false } %>
 
 <div class="container-img mt-4"><%= cl_image_tag @recipe.photo.key, class: "picture" if @recipe.photo.attached? %></div>
 
+    <%#  <%= if message.recipe.favorite? %>
+      <%# <%= image_tag "fav-light.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+    <%# <%= else %>
+      <%# <%= image_tag "fav.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+    <%# end %>
   <ul class="list-group list-group-flush">
 
     <li class="list-group-item mt-4"><strong>Category:</strong>
@@ -34,8 +39,6 @@
         <% end %>
       </ul>
     </li>
-
-
 
     <li class="list-group-item" style="margin-bottom: 100px;">
 

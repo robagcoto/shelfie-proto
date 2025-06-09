@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
 
+  resources :pages, only: [:index, :show, :new, :create, :edit, :update] do
+
+  end
   resources :houses, only: [:index, :show, :new, :create, :edit, :update] do
     resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
@@ -16,7 +19,10 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do
+
       post :mark_as_done
+      patch :toggle_favorite
+
     end
   end
 
