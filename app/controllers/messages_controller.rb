@@ -5,7 +5,9 @@ class MessagesController < ApplicationController
   SYSTEM_PROMPT = '
                    You are a concise and professional chef assistant.
 
-  Please provide a detailed recipe for the user in the following format:
+  Please provide a detailed recipe you need to take in priority the food that have the shortest dlc for the user in the following format:
+  this is the ingredientrs with the shortest dlc:
+  #{ingredient_list}. 
 
   The output must be a JSON object with exactly two primary keys:
 
