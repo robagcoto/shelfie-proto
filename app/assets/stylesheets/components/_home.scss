@@ -1,10 +1,8 @@
 .home-hero-card {
-  /* Hauteur de 30vh pour chaque card */
   height: 30vh;
 }
 @media (max-width: 576px) {
   .home-hero-card {
-    /* Ajustement pour petits écrans */
     height: 25vh;
   }
 }

@@ -14,7 +14,6 @@
 
         <%= simple_form_for [@house, @house_ingredient], html: { multipart: true } do |f| %>
 
-          <!-- logo + minimaliste quantity on focus -->
           <div class="row mb-3">
             <div class="col-6">
               <%= image_tag 'logo.png',
@@ -31,24 +30,22 @@
             </div>
           </div>
 
-          <!-- nom de l'ingrédient (non éditable) -->
           <h2 class="text-start text-primary mt-3 mb-2"
               style="font-size: 2.8rem; font-weight: bold;">
             <%= @house_ingredient.ingredient.name.capitalize %>
           </h2>
 
-          <!-- champ date d'expiration -->
           <div class="mb-3">
             <%= f.input :expiration_date,
                   as: :string,
                   label: false,
                   input_html: {
                     class: 'form-control flatpickr',
-                    placeholder: 'YYYY-MM-DD'
+                    placeholder: 'YYYY-MM-DD',
+                    data: { controller: 'calendar' }
                   } %>
           </div>
 
-          <!-- choix de stock -->
           <div class="form-group">
             <p class="text-start mb-2">storage</p>
             <div class="d-flex justify-content-center gap-5 mb-4">
@@ -68,13 +65,11 @@
             </div>
           </div>
 
-          <!-- bouton Update en bas à droite -->
           <div class="position-absolute bottom-0 end-0 m-3">
             <%= f.button :submit, "Update", class: "btn btn-primary" %>
           </div>
         <% end %>
 
-        <!-- bouton annuler en bas à gauche -->
         <div class="position-absolute bottom-0 start-0 m-3">
           <%= link_to "×",
                 house_house_ingredient_path(@house, @house_ingredient),
