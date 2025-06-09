@@ -46,8 +46,52 @@ VALID_CATEGORIES = [
       stock_quantity = stock[key]
       {
         name: recipe_ingredient.name,
-        ok: !!(stock_quantity && stock_quantity >= recipe_ingredient.quantity)
+        ok: (stock_quantity && stock_quantity >= recipe_ingredient.quantity) ? true : false,
+        # ok:
+        quantity: recipe_ingredient.quantity
       }
     end
   end
+  def ingredients_fully_available_for?(house)
+    stock = house.house_ingredients.joins(:ingredient)
+      .pluck("ingredients.name", :unit, :quantity)
+      .each_with_object({}) do |(name, unit, quantity), hash|
+        hash[[name.downcase.strip, unit.downcase.strip]] = quantity
+      end
+
+    self.ingredients_recipes.all? do |recipe_ingredient|
+      key = [
+        recipe_ingredient.name.downcase.strip,
+        recipe_ingredient.unit.downcase.strip
+      ]
+      stock_quantity = stock[key]
+      stock_quantity && stock_quantity >= recipe_ingredient.quantity
+    end
+  end
+
+  def decrement_house_ingredients!(house)
+    # On utilise la méthode existante pour récupérer l'état de disponibilité des ingrédients
+    availability = ingredient_availability_for(house)
+
+    availability.each do |item|
+      name = item[:name].downcase.strip
+      quantity_needed = item[:quantity]
+      unit = self.ingredients_recipes.find { |ri| ri.name.downcase.strip == name }.unit.downcase.strip
+
+      # house_ingredient = house.house_ingredients.joins(:ingredient)
+        # .find_by("LOWER(ingredients.name) = ? AND LOWER(house_ingredients.unit) = ?", name, unit)
+      ingredient = Ingredient.find_by(name: name)
+      house_ingredient = house.house_ingredients.find_by(ingredient: ingredient)
+      next unless house_ingredient # L'ingrédient n'existe pas dans la maison, on passe
+      if item[:ok]
+        # Si on a assez, on décrémente
+        house_ingredient.quantity -= quantity_needed
+      else
+        # Pas assez : on met à zéro
+        house_ingredient.quantity = 0
+      end
+      house_ingredient.save!
+    end
+  end
+
 end

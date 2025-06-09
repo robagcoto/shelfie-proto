@@ -1,4 +1,5 @@
 class Ingredient < ApplicationRecord
+
   CATEGORIES = [
       "Fruits",
       "Vegetables",
