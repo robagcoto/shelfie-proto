@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   # suppression et création des steps pour les form de recipes/new et recipes/edit
   resources :steps, only: [:new, :destroy]
 
-  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    member do
+      post :mark_as_done
+    end
+  end
 
   resources :ingredients, only: [:index]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]

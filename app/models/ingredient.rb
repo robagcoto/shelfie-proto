@@ -1,4 +1,5 @@
 class Ingredient < ApplicationRecord
+
 #   UNIT_TYPES = [
 #   "g",
 #   "l",

@@ -61,6 +61,15 @@ class RecipesController < ApplicationController
     redirect_to recipe_path, status: :see_other
   end
 
+  def mark_as_done
+    @recipe = Recipe.find(params[:id])
+    @recipe.decrement_house_ingredients!(@house)
+
+    flash[:notice] = "Recette effectuée avec succès 🎉"
+    redirect_to recipe_path(@recipe)
+
+  end
+
 
 end
 
