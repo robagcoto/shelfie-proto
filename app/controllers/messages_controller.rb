@@ -131,7 +131,12 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
 
     if @message.save
-      chat = RubyLLM.chat
+      chat = RubyLLM.chat(
+        model: 'openai/chatgpt-4o-latest',
+        provider: 'openrouter',
+        assume_model_exists: true
+      )
+
       response = chat.with_instructions(instructions).ask(@message.prompt)
 
       begin
