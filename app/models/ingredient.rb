@@ -18,6 +18,7 @@ class Ingredient < ApplicationRecord
     "Freezer"
   ]
 
+  has_one_attached :photo
   has_many :house_ingredients
   validates :storage_method, presence: true, inclusion: { in: STORAGE_METHODS }
   validates :category, presence: true, inclusion: { in: CATEGORIES }

@@ -1,68 +1,82 @@
-  <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
+<%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
 
 <div class="container">
-  <div class="row text-center">
+  <div class="row text-center mt-4">
 
       <h1><%= @house.name %> ingredients</h1>
 
-    <div class="categories-filter d-flex justify-content-between">
+    <div class="categories-filter d-flex justify-content-between mt-4">
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "All"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-        <%= image_tag "icons/all-icon.png", alt:"all" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "All"), data: { turbo_stream: true } do %>
+        <%= image_tag "card_recipes/card_recipes_1.png", class:"categories-res", alt:"all" %>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Meats"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-        <%= image_tag "icons/meats-icon.png", alt:"meats" %>
+
+      <%= link_to house_house_ingredients_path(@house.id, category: "Meats"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/meat.png", alt:"meats", class:"categories-res" %>
+        <p class="text-decoration-none">Meats</p>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Fish and seafood"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-        <%= image_tag "icons/fishes-icon.png", alt:"fishes" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "Fish and seafood"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/fish_seafood.png", alt:"fishes", class:"categories-res" %>
+        <p>Fishes</p>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Vegetables"), class: "col card-ingredients m-2",data: { turbo_stream: true } do %>
-        <%= image_tag "icons/veggies-icon.png", alt:"veggies" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "Vegetables"), class: "col m-2 text-decoration-none",data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/vegetables.png", alt:"veggies", class:"categories-res" %>
+        <p>Veggies</p>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Fruits"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-        <%= image_tag "icons/fruits-icon.png", alt: "fruits" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "Fruits"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/fruits.png", alt: "fruits", class:"categories-res" %>
+        <p>Fruits</p>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Bread, cereals, and nuts"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-        <%= image_tag "icons/carbs-icon.png", alt: "carbs" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "Bread, cereals, and nuts"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/bread_cereal_nuts.png", alt: "carbs",class:"categories-res" %>
+        <p>Carbs</p>
       <% end %>
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "Dairy and eggs"), class: "col card-ingredients m-2", data: { turbo_stream: true } do %>
-      <%= image_tag "icons/dairies-icon.png", alt: "dairies" %>
-
+      <%= link_to house_house_ingredients_path(@house.id, category: "Dairy and eggs"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/dairy_egg.png", alt: "dairies", class:"categories-res" %>
+        <p>Dairies</p>
       <% end %>
 
     </div>
   </div>
 
-
-  <div class="container">
-    <div class="row mt-3" id="ingredients">
-
-      <ul class="col-12" style="columns: 2; margin-bottom: 100px">
+  <div class="container mt-4">
+    <div class="mt-3" id="ingredients">
+      <div class="row row-cols-2 g-3" style="margin-bottom: 100px">
         <% @house_ingredients.each do |house_ingredient| %>
+          <div class="col">
+            <div class="card rounded-4 bg-secondary shadow-sm h-100">
+              <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center">
 
-          <li class="card">
-            <div class="card-body border shadow-sm mt-2">
+                    <div style="width: 48px;">
+                      <% if house_ingredient.ingredient.photo.attached? %>
+                        <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
+                      <% end %>
+                    </div>
 
-              <div class="card-title row">
-                <div class="col-6">
-                <%= link_to house_ingredient.ingredient.name.capitalize, house_house_ingredient_path(@house, house_ingredient) %>
+                    <div class="ms-auto fw-bold small">
+                      <%= house_ingredient.quantity %><%= house_ingredient.unit %>
+                    </div>
+                  </div>
+
+                  <div class="card-text mt-2">
+                    <small>
+                      <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
+                    </small>
+                  </div>
                 </div>
-                <p class="col-6"><%= house_ingredient.quantity %><%= house_ingredient.unit %></p>
-              </div>
-
-              <div class="card-text" >
-                <p>You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left</strong></p>
-              </div>
+              <% end %>
             </div>
-          </li>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 

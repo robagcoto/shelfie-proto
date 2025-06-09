@@ -6,28 +6,36 @@
     </div>
   <% end %>
 
-<div class="container mt-3">
-<ul class="col-12" style="columns: 2; margin-bottom: 100px">
-        <% @house_ingredients.each do |house_ingredient| %>
+ <div class="row row-cols-2 g-3" style="margin-bottom: 100px">
+    <% @house_ingredients.each do |house_ingredient| %>
+      <div class="col">
+        <div class="card rounded-4 bg-secondary shadow-sm h-100">
+          <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
+            <div class="card-body p-2">
+              <div class="d-flex align-items-center">
 
-          <li class="card">
-            <div class="card-body border shadow-sm mt-2">
-
-              <div class="card-title row">
-                <div class="col-6">
-                <%= link_to house_ingredient.ingredient.name.capitalize, house_house_ingredient_path(@house, house_ingredient) %>
+                <div style="width: 48px;">
+                  <% if house_ingredient.ingredient.photo.attached? %>
+                    <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic", class: "img-fluid" %>
+                  <% end %>
                 </div>
-                <p class="col-6"><%= house_ingredient.quantity %><%= house_ingredient.unit %></p>
+
+                <div class="ms-auto fw-bold small">
+                  <%= house_ingredient.quantity %><%= house_ingredient.unit %>
+                </div>
+
               </div>
 
-              <div class="card-text" >
-                <p>You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left</strong></p>
+              <div class="card-text mt-2">
+                <small>
+                  <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
+                </small>
               </div>
             </div>
-          </li>
-        <% end %>
-      </ul>
-</div>
-
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 <% end %>
