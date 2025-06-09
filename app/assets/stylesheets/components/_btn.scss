@@ -32,8 +32,37 @@
 }
 
 
-      // <ul id="ingredients" class="col-8" style="margin-bottom: 100px">
-      //   <% @house_ingredients.each do |house_ingredient| %>
-      //     <li><%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient) %>: <%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></li>
-      //   <% end %>
-      // </ul>
+  //     <ul class="list-unstyled" style="margin-bottom: 100px">
+  //   <% @house_ingredients.each_slice(2) do |pair| %>
+  //     <div class="row">
+  //       <% pair.each do |house_ingredient| %>
+  //         <li class="col-md-6 mb-3">
+  //           <div class="card h-100 shadow-sm">
+  //             <div class="card-body">
+
+  //               <div class="row align-items-center">
+  //                 <div class="col-6">
+  //                   <h5 class="card-title mb-0">
+  //                     <%= link_to house_ingredient.ingredient.name.capitalize, house_house_ingredient_path(@house, house_ingredient) %>
+  //                   </h5>
+  //                 </div>
+  //                 <div class="col-6 text-end">
+  //                   <p class="mb-0">
+  //                     <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
+  //                   </p>
+  //                 </div>
+  //               </div>
+
+  //               <div class="card-text mt-2">
+  //                 <p class="mb-0">
+  //                   You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left</strong>
+  //                 </p>
+  //               </div>
+
+  //             </div>
+  //           </div>
+  //         </li>
+  //       <% end %>
+  //     </div>
+  //   <% end %>
+  // </ul>
