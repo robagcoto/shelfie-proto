@@ -1,46 +1,106 @@
 <%= render partial: "shared/top_nav", locals: { return_url: house_house_ingredients_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
 
-<div class="container" style="margin-top: 50px;">
+<turbo-frame id="house_ingredient_<%= @house_ingredient.id %>"
+             data-turbo-cache="false">
+  <div class="container mt-5">
+    <div class="card mx-auto bg-secondary"
+         style="padding: 20px; border-radius: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 75vh;">
+      <div class="card-body position-relative" style="padding: 20px;">
 
-  <div class="row">
-    <div class="col-6">
-      <div class="card bg-secondary text-primary mx-0" style="padding: 20px; margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.ingredient.name.capitalize %></h5>
-          <p class="card-text">fresh for todays</p>
+        <%# logo à gauche et quantité à droite %>
+        <div class="row mb-3">
+          <div class="col-6">
+            <%= image_tag 'logo.png',
+                  class: 'img-fluid',
+                  style: 'width:40px; height:40px;',
+                  alt: 'Logo' %>
+          </div>
+          <div class="col-6 d-flex justify-content-end align-items-center">
+            <% qty = @house_ingredient.quantity.to_s %>
+            <% if qty.length > 2 %>
+              <!-- rectangle when number is large -->
+              <span
+                class="badge bg-light text-dark d-inline-flex align-items-center justify-content-center"
+                style="min-width: 60px; height: 30px; border-radius: 20px; font-size: 1rem; padding: 0 0.5rem;">
+                <%= qty %>
+              </span>
+            <% else %>
+              <!-- circle for small numbers -->
+              <span
+                class="badge bg-light text-dark rounded-circle d-inline-flex align-items-center justify-content-center"
+                style="min-width: 30px; aspect-ratio: 1 / 1; font-size: 1rem; padding: 0.5rem;">
+                <%= qty %>
+              </span>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-6">
-      <div class="card bg-secondary text-primary" style="padding: 30px; margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.quantity %> <%= @house_ingredient.unit %></h5>
+        <!-- contenu principal full width -->
+        <div class="row">
+          <div class="col-12" style="padding-bottom: 80px;">
+            <!-- titre avec taille d’ingredient ajustée -->
+            <h2 class="text-start text-primary mt-3 mb-2"
+                style="font-size: 2.8rem; font-weight: bold;">
+              <%= @house_ingredient.ingredient.name.capitalize %>
+            </h2>
+            <p class="text-start text-primary"
+               style="font-size: 1rem; margin-top: -10px;">fresh for todays</p>
+
+            <!-- on itère sur les HouseIngredient seedés pour cet ingrédient -->
+            <ul class="list-unstyled mt-4"
+                style="font-size: 1rem; line-height: 1.5; padding-top: 40px;">
+              <% @house.house_ingredients.
+                  where(ingredient: @house_ingredient.ingredient).
+                  order(:expiration_date).
+                  each do |hi| %>
+                <% days_left = (hi.expiration_date - Date.current).to_i %>
+                <li class="mb-2">
+                  <% item_text = "#{hi.quantity} #{hi.ingredient.name.pluralize(hi.quantity)}" %>
+                  <% if hi.quantity == 6 && hi.ingredient.name.downcase.include?('banana') %>
+                    <strong><%= item_text %></strong>
+                  <% else %>
+                    <%= item_text %>
+                  <% end %>
+                  you have <%= days_left %> day<%= "s" if days_left > 1 %> left
+                </li>
+              <% end %>
+            </ul>
+
+            <%= form_with url: house_house_ingredients_path(@house), method: :get, local: true do %>
+              <div class="form-group">
+                <p class="text-start mb-2">storage</p>
+                <div class="d-flex justify-content-center mt-4 mb-2 gap-5">
+                  <% %w[Dry Fridge Freezer].each do |m| %>
+                    <div class="form-check d-flex align-items-center">
+                      <%= check_box_tag 'storage_method', m,
+                           @house_ingredient.ingredient.storage_method == m,
+                           id: "storage_#{m.downcase}",
+                           class: 'd-none circle-checkbox-input',
+                           disabled: true %>
+                      <label for="storage_<%= m.downcase %>" class="circle-checkbox-label"><%= m %></label>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="position-absolute bottom-0 start-0 m-3">
+              <%= link_to edit_house_house_ingredient_path(@house, @house_ingredient),
+                          data: { turbo_frame: "house_ingredient_#{@house_ingredient.id}" } do %>
+                <%= image_tag 'edit.png',
+                      class: 'rounded-circle',
+                      style: 'width: 50px; height: 50px;',
+                      alt: 'Edit' %>
+              <% end %>
+            </div>
+
+            <div class="position-absolute" style="bottom:0; left:0; transform: translate(20px, -20px);">
+            
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="card bg-secondary text-primary" style="margin-bottom: 20px;">
-        <div class="card-body">
-          <h5 class="card-title"><%= @house_ingredient.ingredient.name.capitalize %></h5>
-          <p class="card-text">fresh for todays</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="card bg-secondary text-primary" style="margin-bottom: 20px;">
-        <div class="card-body">
-          <h5><%= @house_ingredient.ingredient.category.capitalize %></h5>
-          <h5><%= @house_ingredient.expiration_date %></h5>
-          <p class="card-text">fresh for todays</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</turbo-frame>

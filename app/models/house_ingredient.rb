@@ -7,5 +7,8 @@ class HouseIngredient < ApplicationRecord
   belongs_to :ingredient
   validates :unit, presence: true, inclusion: { in: VALID_CATEGORIES }
 
-
+  has_many :histories,
+           class_name: "History",
+           foreign_key: "house_ingredient_id",
+           dependent: :destroy
 end

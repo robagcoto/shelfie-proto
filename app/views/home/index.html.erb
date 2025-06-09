@@ -23,26 +23,23 @@
   </div>
 
   <div class="col">
-    <%= link_to house_house_ingredients_path(@house), class:"text-decoration-none" do %>
-      <div class="card h-100 shadow-sm">
+    <%= link_to house_house_ingredients_path(@house), class: "text-decoration-none" do %>
+      <div class="card h-100 shadow-sm home-hero-card" style ="height: 300px;">
         <div class="card card-background text-secondary">
           <div class="card-img-overlay">
-
-          <h5 class="card-title">Ingredients alerts</h5>
-
-          <ul class="list-unstyled">
-            <li>eggs</li>
-            <li>butter</li>
-            <li>onion</li>
-          </ul>
-
+            <h5 class="card-title">Ingredients alerts</h5>
+            <ul class="list-unstyled">
+              <li>eggs</li>
+              <li>butter</li>
+              <li>onion</li>
+            </ul>
           </div>
         </div>
       </div>
     <% end %>
 
-    <%= link_to recipes_path, class:"text-decoration-none" do %>
-      <div class="card h-100 shadow-sm my-3">
+    <%= link_to recipes_path, class: "text-decoration-none" do %>
+      <div class="card h-100 shadow-sm my-3 home-hero-card">
         <div class="card card-light-background text-primary">
           <div class="card-img-overlay">
             <h5 class="card-title">Recipes</h5>
@@ -57,7 +54,7 @@
     <% end %>
 
     <%= link_to chats_path do %>
-      <div class="card h-100 shadow-sm mb-xxl">
+      <div class="card h-100 shadow-sm mb-xxl home-hero-card">
         <div class="card card-other-background text-secondary">
           <div class="card-img-overlay text-center">
             <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
@@ -67,6 +64,5 @@
         </div>
       </div>
     <% end %>
-
   </div>
 </div>

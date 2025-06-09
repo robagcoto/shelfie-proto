@@ -9,7 +9,7 @@ class Ingredient < ApplicationRecord
       "Legumes",
       "Beverages",
       "Sweets",
-      "Processed foods and ready meals",
+      "Processed foods and ready meals"
   ]
 
   STORAGE_METHODS = [

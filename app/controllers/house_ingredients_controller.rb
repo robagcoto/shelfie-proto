@@ -1,10 +1,13 @@
 class HouseIngredientsController < ApplicationController
-  # d'entrée nous définisons le house avec la méthode privée
   before_action :default_house
+  before_action :set_house_ingredient, only: %i[show edit update destroy]
 
   def index
-    # @house = House.default_for(current_user)
-    @house_ingredients = @house.house_ingredients.includes(:ingredient)
+    if params[:storage_method].present?
+      @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] })
+    else
+      @house_ingredients = HouseIngredient.all
+    end
 
     if params[:category].present? && params[:category] != "All"
       @house_ingredients = @house_ingredients
@@ -16,56 +19,57 @@ class HouseIngredientsController < ApplicationController
       format.turbo_stream
       format.html
     end
-    # format.html
   end
 
-  # Les utilisateurs ne pourront pas crééer directement d'ingrédients dans la table ingrédients, uniquement ici
   def new
-    # appeler la house dans laquelle on est  /// déjà fait en private
-    # Crééer une nouvelle instance de house_ingredients // diff approche de HouseIngredient.new car celle-ci créé la relation auto avec la house
     @house_ingredient = @house.house_ingredients.new
-    # Lister tous les ingredients au cas où on met une logique d'autocompletion
     @ingredients = Ingredient.all
   end
 
   def show
-    @house_ingredient = HouseIngredient.find(params[:id])
+    logger.debug "StorageMethod = #{@house_ingredient.storage_method.inspect}"
   end
 
   def create
-    normalized_input = Ingredient.normalized_name(params[:house_ingredient][:ingredient_name])
-    ingredient = Ingredient.all.find { |ing| Ingredient.normalized_name(ing.name) == normalized_input }
-    exp_date = Date.new(
-      params[:house_ingredient]["expiration_date(1i)"].to_i,
-      params[:house_ingredient]["expiration_date(2i)"].to_i,
-      params[:house_ingredient]["expiration_date(3i)"].to_i
+    @house_ingredient = @house.house_ingredients.new(house_ingredient_params)
+
+    ing = Ingredient.find_by(
+      name:         Ingredient.normalized_name(params[:house_ingredient][:ingredient_name]),
+      storage_method: house_ingredient_params[:storage_method]
     )
-
-    if ingredient
-      new_house_ingredient = HouseIngredient.create!(
-        expiration_date: exp_date,
-        quantity: params[:house_ingredient][:quantity],
-        unit: params[:unit],
-        house: @house,
-        ingredient: ingredient
+    unless ing
+      ing = Ingredient.create!(
+        name:           params[:house_ingredient][:ingredient_name],
+        storage_method: house_ingredient_params[:storage_method],
+        category:       @house_ingredient.ingredient.category
       )
-      redirect_to house_house_ingredient_path(@house, new_house_ingredient)
-    else
-
     end
 
+    @house_ingredient.ingredient = ing
+
+    if @house_ingredient.save
+      redirect_to house_house_ingredient_path(@house, @house_ingredient)
+    else
+      render :new
+    end
   end
 
   def edit
-
   end
 
   def update
+    # on met à jour le HouseIngredient (quantity & expiration_date)
+    if @house_ingredient.update(house_ingredient_params.except(:storage_method))
+      # puis on met à jour le storage_method sur l’Ingredient associé
+      @house_ingredient.ingredient.update!(storage_method: house_ingredient_params[:storage_method])
+      redirect_to house_house_ingredient_path(@house, @house_ingredient)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
-    @ingredient.destroy
+    @house_ingredient.destroy
     redirect_to house_house_ingredients_path(@house), notice: "Hasta la vista, baby..."
   end
 
@@ -75,7 +79,12 @@ private
     @house = House.default_for(current_user)
   end
 
-  def house_ingredients_params
-    params.require(:house_ingredient).permit(:ingredient_name, :quantity, :expiration_date)
+  def set_house_ingredient
+    @house_ingredient = @house.house_ingredients.find(params[:id])
+  end
+
+  def house_ingredient_params
+    params.require(:house_ingredient)
+          .permit(:quantity, :expiration_date, :storage_method)
   end
 end
