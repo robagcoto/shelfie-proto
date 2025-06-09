@@ -34,14 +34,16 @@ class HouseIngredientsController < ApplicationController
     @house_ingredient = @house.house_ingredients.new(house_ingredient_params)
 
     ing = Ingredient.find_by(
-      name:         Ingredient.normalized_name(params[:house_ingredient][:ingredient_name]),
+
+      name: Ingredient.normalized_name(params[:house_ingredient][:ingredient_name]),
+
       storage_method: house_ingredient_params[:storage_method]
     )
     unless ing
       ing = Ingredient.create!(
-        name:           params[:house_ingredient][:ingredient_name],
+        name: params[:house_ingredient][:ingredient_name],
         storage_method: house_ingredient_params[:storage_method],
-        category:       @house_ingredient.ingredient.category
+        category: @house_ingredient.ingredient.category
       )
     end
 
