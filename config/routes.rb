@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       collection do
         #ajout de cet élément pour crééer une route path
         post :analyze_ticket
+        get :review_parsed_products
+        post :confirm_parsed_products
       end
     end
   end
