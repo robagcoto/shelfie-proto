@@ -1,9 +1,12 @@
 class ChatsController < ApplicationController
 
-SYSTEM_PROMPT = '
+  def prompt_systeme (ingredient_list)
+     '
   You are a concise and professional chef assistant.
 
-  Please provide a detailed recipe for the user in the following format:
+   Please provide a detailed recipe you need to take in priority the food that have the shortest dlc for the user in the following format:
+  this is the ingredientrs with the shortest dlc:
+  #{ingredient_list}.
 
   The output must be a JSON object with exactly two primary keys:
 
@@ -109,6 +112,7 @@ SYSTEM_PROMPT = '
 }
 
 '
+  end
 
   def index
     @chats = Chat.where(user_id: current_user)
@@ -194,7 +198,6 @@ SYSTEM_PROMPT = '
     else
       render :new, status: :unprocessable_entity
     end
-  end
 
 
   def destroy
@@ -203,9 +206,23 @@ SYSTEM_PROMPT = '
     redirect_to chats_path, notice: "Hasta la vista, baby..."
   end
 
+  def dlc
+    critical_ingredients = HouseIngredient
+      .where(house: current_user.houses)
+      .where.not(expiration_date: nil)
+      .order(:expiration_date)
+      .limit(5)
+
+    ingredient_list = critical_ingredients.map do |hi|
+      "#{hi.quantity} #{hi.unit} de #{hi.ingredient.name} (DLC: #{hi.expiration_date})"
+    end.join(", ")
+  end
+
+end
   private
 
   def instructions
-    [SYSTEM_PROMPT, current_user.prompt_setting].compact.join("\n\n")
+    ingredient_list = self.dlc
+    [prompt_systeme(ingredient_list), current_user.prompt_setting].compact.join("\n\n")
   end
 end

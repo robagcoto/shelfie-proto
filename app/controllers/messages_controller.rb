@@ -2,12 +2,12 @@ require 'json'
 
 class MessagesController < ApplicationController
 
-  SYSTEM_PROMPT = '
+  def prompt_systeme (ingredient_list) = '
                    You are a concise and professional chef assistant.
 
   Please provide a detailed recipe you need to take in priority the food that have the shortest dlc for the user in the following format:
   this is the ingredientrs with the shortest dlc:
-  #{ingredient_list}. 
+  #{ingredient_list}.
 
   The output must be a JSON object with exactly two primary keys:
 
@@ -131,6 +131,7 @@ class MessagesController < ApplicationController
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.new(message_params.merge(role: :user))
     @message.user_id = current_user.id
+    @house_ingredient = current_user.house_ingredient
 
     if @message.save
       chat = RubyLLM.chat
@@ -221,6 +222,18 @@ class MessagesController < ApplicationController
     redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
   end
 
+  def dlc
+    critical_ingredients = HouseIngredient
+      .where(house: current_user.houses)
+      .where.not(expiration_date: nil)
+      .order(:expiration_date)
+      .limit(5)
+
+    ingredient_list = critical_ingredients.map do |hi|
+      "#{hi.quantity} #{hi.unit} de #{hi.ingredient.name} (DLC: #{hi.expiration_date})"
+    end.join(", ")
+    p ingredient_list
+  end
 
   private
 
@@ -230,7 +243,9 @@ class MessagesController < ApplicationController
   end
 
   def instructions
-    [SYSTEM_PROMPT, current_user.prompt_setting].compact.join("\n\n")
+
+    ingredient_list = "fish, salad, tomatoe"
+    [prompt_systeme(ingredient_list), current_user.prompt_setting].compact.join("\n\n")
   end
 
 end

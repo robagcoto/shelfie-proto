@@ -19,4 +19,15 @@ class Chat < ApplicationRecord
     response = RubyLLM.chat.with_instructions(TITLE_PROMPT).ask(first_user_message.prompt)
     update(title: response.content)
   end
+  def dlc
+    critical_ingredients = HouseIngredient
+      .where(house: current_user.houses)
+      .where.not(expiration_date: nil)
+      .order(:expiration_date)
+      .limit(5)
+
+    ingredient_list = critical_ingredients.map do |hi|
+      "#{hi.quantity} #{hi.unit} de #{hi.ingredient.name} (DLC: #{hi.expiration_date})"
+    end.join(", ")
+  end
 end

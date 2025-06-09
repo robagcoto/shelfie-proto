@@ -2,7 +2,7 @@
 
 <div class="container my-5">
   <!-- Formulaire simple pour créer un nouveau chat -->
-  <%= simple_form_for @chat do |f| %>
+  <%= simple_form_for @chat, data: { turbo: false } do |f| %>
     <div class="mb-3">
       <%= f.input :prompt,
                   placeholder: "Tapez ce que vous avez en tête pour obtenir une recommandation",
