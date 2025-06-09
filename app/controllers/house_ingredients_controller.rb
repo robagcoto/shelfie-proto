@@ -1,6 +1,8 @@
 class HouseIngredientsController < ApplicationController
   # d'entrée nous définisons le house avec la méthode privée
   before_action :default_house
+  require 'net/http'
+  require 'json'
 
   def index
     # @house = House.default_for(current_user)
@@ -125,6 +127,23 @@ class HouseIngredientsController < ApplicationController
     redirect_to house_house_ingredients_path(@house), notice: "Hasta la vista, baby..."
   end
 
+  def analyze_ticket
+    #récupère photo, on appelle le paramettre ticket_photo.. aligné avec ce que j'ai mis dans le boutton form
+    image_data = params[:ticket_photo]
+    if image_data.blank?
+      #message d'erreur si pas de photo valide, et retourne dans index
+      redirect_to house_house_ingredients_path(@house), alert: "Invalid file"
+      return
+    end
+    #lance l'appel vers mon LLM
+    parsed_products = analyze_ticket_with_llm(image_data) #ATTENTION à VALIDER
+    # Stocke temporairement le résultat pour l’utilisateur // session permet de stocker une donnée temporairement sans stocker dans db
+    session[:parsed_products] = parsed_products
+    raise
+    #rediriger vers page d'édition /// a coder après
+  end
+
+
 private
 
   def default_house
@@ -134,4 +153,32 @@ private
   def house_ingredients_params
     params.require(:house_ingredient).permit(:ingredient_name, :quantity, :expiration_date)
   end
+
+  def analyze_ticket_with_llm(image_data)
+      prompt = <<~PROMPT
+    You are an assistant for a food waste app.
+    Here is a photo of a grocery receipt.
+    Extract and return only food products (ignore other items).
+    For each product, return:
+    - name (normalize if needed)
+    - estimated storage_method ("dry", "fridge", or "freezer", based on product type)
+    - category (pick from: [Fruits, Vegetables, Bread, cereals, and nuts, Meats, Fish and seafood, Dairy and eggs, Legumes, Beverages, Sweets, Processed foods and ready meals])
+    - estimated expiration_date (suggested typical date)
+    - quantity and unit (unit = 'g', 'l', or 'pc(s)')
+    Return all in a JSON array, one object per food product. Ignore other items.
+  PROMPT
+
+  #instancer un chat
+  chat = RubyLLM.chat(model: "gpt-4o")
+  #Appel LLM
+  response = chat.ask(prompt, with: image_data.tempfile)
+
+  begin
+    JSON.parse(response.content)
+    rescue JSON::ParserError => e
+      Rails.logger.error("Erreur parsing LLM: #{e.message}")
+      []
+    end
+  end
+
 end
