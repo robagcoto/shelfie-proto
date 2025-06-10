@@ -129,7 +129,7 @@ SYSTEM_PROMPT = '
 
       # Appel LLM
       chat = RubyLLM.chat(
-        model: 'openai/chatgpt-4o-latest',
+        model: 'openai/gpt-3.5-turbo',
         provider: 'openrouter',
         assume_model_exists: true
       )
