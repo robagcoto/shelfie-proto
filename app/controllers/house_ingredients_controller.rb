@@ -171,7 +171,6 @@ private
       provider: 'openrouter',
       assume_model_exists: true
     )
-    raise
     # Appel LLM
     response = chat.ask(system_prompt, with: image_path)
     json_text = extract_json_from_codeblock(response.content)
