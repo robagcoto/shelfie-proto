@@ -6,7 +6,7 @@ class HouseIngredientsController < ApplicationController
 
   def index
     if params[:storage_method].present?
-      @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] })
+      @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] }).order(:expiration_date)
     else
       @house_ingredients = HouseIngredient.all
     end

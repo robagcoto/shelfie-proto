@@ -64,10 +64,13 @@
   height: 220px;
 }
 
+// --------- House_ingredients cards -------------------
+
 .card-ingredients {
-  border: solid lightgray;
+  border: none;
+  height: 63px;
+  width: 78px;
   border-radius: 5px;
   padding-right: 1px;
   padding-left: 1px;
-  background-color:aquamarine;
 }
