@@ -12,4 +12,15 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
+
+  def expiring_ingredients
+    house = houses.first
+    return [] unless house
+
+    Ingredient.joins(:house_ingredients)
+      .where(house_ingredients: { house_id: house.id })
+      .where.not(house_ingredients: {expiration_date: nil})
+      .order("house_ingredients.expiration_date ASC")
+      .limit(5)
+  end
 end
