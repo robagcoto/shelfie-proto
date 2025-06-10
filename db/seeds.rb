@@ -343,6 +343,9 @@ puts "Creating the ingredients 🛒"
 file_path1 = Rails.root.join("app/assets/images/seed_ingredient_picto/banana.png")
 ing1  = Ingredient.create!(name: "banana", storage_method: "Dry", category: "Fruits")
 ing1.photo.attach(io: File.open(file_path1), filename: "banana.png", content_type: "image/png")
+HouseIngredient.create!(expiration_date: DateTime.now + 5, quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing1.id)
+
+puts "ingredient 1 added to cart 🛒"
 
 file_path2 = Rails.root.join("app/assets/images/seed_ingredient_picto/apple.png")
 ing2  = Ingredient.create!(name: "apple", storage_method: "Dry", category: "Fruits")
@@ -461,7 +464,6 @@ ing30 = Ingredient.create!(name: "baguette", storage_method: "Dry", category: "B
 ing30.photo.attach(io: File.open(file_path30), filename: "baguette.png", content_type: "image/png")
 
 # Rattacher chaque ingrédient à la même maison
-HouseIngredient.create!(expiration_date: "2025-07-01", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing1.id)
 HouseIngredient.create!(expiration_date: "2025-07-02", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing2.id)
 HouseIngredient.create!(expiration_date: "2025-07-03", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing3.id)
 HouseIngredient.create!(expiration_date: "2025-07-04", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing4.id)
