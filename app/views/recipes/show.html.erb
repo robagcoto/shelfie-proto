@@ -9,9 +9,21 @@
     <%# end %>
   <ul class="list-group list-group-flush">
 
-    <li class="list-group-item mt-4"><strong>Category:</strong>
+    <li class="list-group-item mt-4 row d-flex">
+
+      <div class="col-10">
+        <strong>Category:</strong>
+      </div>
+
+      <div class="col text-align-end">
+        <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"} do %>
+        <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+
       <p><%= @recipe.category %></p>
     </li>
+
 
     <li class="list-group-item">
       <strong>Rating:</strong>

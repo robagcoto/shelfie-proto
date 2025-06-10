@@ -44,3 +44,10 @@ html, body {
 #form {
   flex-shrink: 0;
 }
+
+.modal {
+  z-index: 1060 !important; /* Force le modal à s'afficher devant le fond gris */
+}
+.modal-backdrop {
+  z-index: 1050 !important; /* Fixe le fond gris en arrière-plan */
+}
