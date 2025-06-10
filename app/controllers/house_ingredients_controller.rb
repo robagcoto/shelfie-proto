@@ -152,11 +152,11 @@ private
       Here is a photo of a grocery receipt.
       Extract and return only food products (ignore other items) in the following format:
       The output must be a JSON object with exactly one primary keys:
-      -ticket_attributes: a JSON object containing exactly these 6 keys:
+      - ticket_attributes: a JSON object containing exactly these 6 keys:
         - name (string): Extract the name (normalize if needed, excluding brands). For example, if the line is "Lait Lactel", just return "milk".
         - storage_method (string): Suggest the storage_method "dry", "fridge", or "freezer", based on the product type.
         - category (string): Categorize into one of the following: [Fruits, Vegetables, Bread, cereals, and nuts, Meats, Fish and seafood, Dairy and eggs, Legumes, Beverages, Sweets, Processed foods and ready meals].
-        - expiration_date (date): Calculate the expiration_date based on the scanning date, which is the current date at the time of reading this prompt, expiration dates should always be superior to today. Use typical shelf-life estimates for each product based on the storage_method.
+        - expiration_date (date): Estimate the expiration_date based on today #{DateTime.now}, always assume today is the purchase date and expiration dates should always be superior to today. Use typical shelf-life estimates for each product based on the storage_method.
         - quantity (integer): Include the estimated quantity, a
         - unit (string): "g", "l", or "pc(s)" as the unit (e.g., for packaged, loose, or liquid products).
       The response must be only in JSON format, with no additional text or explanation.
@@ -171,6 +171,7 @@ private
       provider: 'openrouter',
       assume_model_exists: true
     )
+    raise
     # Appel LLM
     response = chat.ask(system_prompt, with: image_path)
     json_text = extract_json_from_codeblock(response.content)
