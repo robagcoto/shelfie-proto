@@ -1,0 +1,18 @@
+<h2>Validate your shopping list </h2>
+<%= form_with url: confirm_parsed_products_house_house_ingredients_path(@house), method: :post do %>
+  <ul>
+    <% @parsed_products.each_with_index do |product, i| %>
+      <li>
+        <%= fields_for "products[]", product do |f| %>
+          Name: <%= f.text_field :name, value: product["name"] %>
+          Storage method: <%= f.text_field :storage_method, value: product["storage_method"] %>
+          Category: <%= f.text_field :category, value: product["category"] %>
+          Estimated expiration date: <%= f.text_field :expiration_date, value: product["expiration_date"] %>
+          Quantity: <%= f.text_field :quantity, value: product["quantity"] %>
+          Unit: <%= f.text_field :unit, value: product["unit"] %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag "Confirm and add to shelf" %>
+<% end %>
