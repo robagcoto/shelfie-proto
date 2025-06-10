@@ -339,157 +339,88 @@ puts "House created   🏘️"
 
 puts "Creating the ingredients 🛒"
 
+ingredients_data = [
+  { name: "banana", storage_method: "Dry", category: "Fruits", quantity: 6, unit: "pc(s)", expiration_days: 5 },
+  { name: "apple", storage_method: "Dry", category: "Fruits", quantity: 4, unit: "pc(s)", expiration_days: 20 },
+  { name: "carrot", storage_method: "Fridge", category: "Vegetables", quantity: 8, unit: "pc(s)", expiration_days: 21 },
+  { name: "tomato", storage_method: "Fridge", category: "Fruits", quantity: 6, unit: "pc(s)", expiration_days: 7 },
+  { name: "potato", storage_method: "Dry", category: "Vegetables", quantity: 10, unit: "pc(s)", expiration_days: 30 },
+  { name: "onion", storage_method: "Dry", category: "Vegetables", quantity: 7, unit: "pc(s)", expiration_days: 60 },
+  { name: "garlic", storage_method: "Dry", category: "Vegetables", quantity: 3, unit: "pc(s)", expiration_days: 90 },
+  { name: "broccoli", storage_method: "Fridge", category: "Vegetables", quantity: 3, unit: "pc(s)", expiration_days: 5 },
+  { name: "spinach", storage_method: "Fridge", category: "Vegetables", quantity: 200, unit: "g", expiration_days: 5 },
+  { name: "lettuce", storage_method: "Fridge", category: "Vegetables", quantity: 200, unit: "g", expiration_days: 7 },
+  { name: "egg", storage_method: "Fridge", category: "Dairy and eggs", quantity: 12, unit: "pc(s)", expiration_days: 28 },
+  { name: "milk", storage_method: "Fridge", category: "Dairy and eggs", quantity: 2, unit: "l", expiration_days: 7 },
+  { name: "butter", storage_method: "Fridge", category: "Dairy and eggs", quantity: 300, unit: "g", expiration_days: 60 },
+  { name: "chicken breast", storage_method: "Fridge", category: "Meats", quantity: 3, unit: "pc(s)", expiration_days: 2 },
+  { name: "beef steak", storage_method: "Fridge", category: "Meats", quantity: 300, unit: "g", expiration_days: 4 },
+  { name: "pork chop", storage_method: "Fridge", category: "Meats", quantity: 200, unit: "g", expiration_days: 4 },
+  { name: "fish fillet", storage_method: "Fridge", category: "Fish and seafood", quantity: 100, unit: "g", expiration_days: 2 },
+  { name: "shrimp", storage_method: "Freezer", category: "Fish and seafood", quantity: 150, unit: "g", expiration_days: 6 },
+  { name: "pea", storage_method: "Freezer", category: "Vegetables", quantity: 1000, unit: "g", expiration_days: 4 },
+  { name: "cheddar cheese", storage_method: "Fridge", category: "Dairy and eggs", quantity: 500, unit: "g", expiration_days: 28 },
+  { name: "yogurt", storage_method: "Fridge", category: "Dairy and eggs", quantity: 6, unit: "pc(s)", expiration_days: 7 },
+  { name: "orange", storage_method: "Dry", category: "Fruits", quantity: 7, unit: "pc(s)", expiration_days: 21 },
+  { name: "yellow lemon", storage_method: "Dry", category: "Fruits", quantity: 8, unit: "pc(s)", expiration_days: 28 },
+  { name: "cucumber", storage_method: "Fridge", category: "Vegetables", quantity: 5, unit: "pc(s)", expiration_days: 10 },
+  { name: "zucchini", storage_method: "Fridge", category: "Vegetables", quantity: 4, unit: "pc(s)", expiration_days: 5 },
+  { name: "eggplant", storage_method: "Fridge", category: "Vegetables", quantity: 2, unit: "pc(s)", expiration_days: 7 },
+  { name: "bell pepper", storage_method: "Fridge", category: "Vegetables", quantity: 3, unit: "pc(s)", expiration_days: 10 },
+  { name: "rice", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 1000, unit: "g", expiration_days: 730 },
+  { name: "pasta", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 1000, unit: "g", expiration_days: 700 },
+  { name: "baguette", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 2, unit: "pc(s)", expiration_days: 2 },
+  { name: "almond", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 200, unit: "g", expiration_days: 200 },
+  { name: "blueberry", storage_method: "Fridge", category: "Fruits", quantity: 125, unit: "g", expiration_days: 5 },
+  { name: "cherry", storage_method: "Fridge", category: "Fruits", quantity: 250, unit: "g", expiration_days: 10 },
+  { name: "raspberry", storage_method: "Fridge", category: "Fruits", quantity: 125, unit: "g", expiration_days: 8 },
+  { name: "hazelnut", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 150, unit: "g", expiration_days: 300 },
+  { name: "kidney bean", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 90 },
+  { name: "chickpea", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 85 },
+  { name: "lentil", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 150 },
+  { name: "tofu", storage_method: "Fridge", category: "Processed foods and ready meals", quantity: 400, unit: "g", expiration_days: 12 },
+  { name: "ham", storage_method: "Fridge", category: "Meats", quantity: 4, unit: "pc(s)", expiration_days: 8 },
+  { name: "salmon", storage_method: "Freezer", category: "Fish and seafood", quantity: 2, unit: "pc(s)", expiration_days: 120 },
+  { name: "cod", storage_method: "Freezer", category: "Fish and seafood", quantity: 2, unit: "pc(s)", expiration_days: 90 },
+  { name: "mozzarella", storage_method: "Fridge", category: "Dairy and eggs", quantity: 250, unit: "g", expiration_days: 16 },
+  { name: "greek yogurt", storage_method: "Fridge", category: "Dairy and eggs", quantity: 4, unit: "pc(s)", expiration_days: 10 },
+  { name: "apple juice", storage_method: "Fridge", category: "Beverages", quantity: 1, unit: "l", expiration_days: 14 },
+  { name: "orange soda", storage_method: "Dry", category: "Beverages", quantity: 1, unit: "l", expiration_days: 18 },
+  { name: "chocolate bar", storage_method: "Dry", category: "Sweets", quantity: 2, unit: "pc(s)", expiration_days: 70 },
+  { name: "cookie", storage_method: "Dry", category: "Sweets", quantity: 8, unit: "pc(s)", expiration_days: 25 },
+  { name: "frozen pizza", storage_method: "Freezer", category: "Processed foods and ready meals", quantity: 1, unit: "pc(s)", expiration_days: 100 },
+  { name: "mushroom", storage_method: "Fridge", category: "Vegetables", quantity: 250, unit: "g", expiration_days: 8 }
+]
 
-file_path1 = Rails.root.join("app/assets/images/seed_ingredient_picto/banana.png")
-ing1  = Ingredient.create!(name: "banana", storage_method: "Dry", category: "Fruits")
-ing1.photo.attach(io: File.open(file_path1), filename: "banana.png", content_type: "image/png")
+ingredients_data.each_with_index do |data, index|
+  if File.exist?("app/assets/images/seed_ingredient_picto/#{data[:name]}.png")
+    file_path = Rails.root.join("app/assets/images/seed_ingredient_picto/#{data[:name]}.png")
+  else
+    file_path = Rails.root.join("app/assets/images/shelfie maintenace.png")
+  end
 
-file_path2 = Rails.root.join("app/assets/images/seed_ingredient_picto/apple.png")
-ing2  = Ingredient.create!(name: "apple", storage_method: "Dry", category: "Fruits")
-ing2.photo.attach(io: File.open(file_path2), filename: "apple.png", content_type: "image/png")
+  ingredient = Ingredient.create!(
+    name: data[:name],
+    storage_method: data[:storage_method],
+    category: data[:category]
+  )
 
-file_path3 = Rails.root.join("app/assets/images/seed_ingredient_picto/carrot.png")
-ing3  = Ingredient.create!(name: "carrot", storage_method: "Fridge", category: "Vegetables")
-ing3.photo.attach(io: File.open(file_path3), filename: "carrot.png", content_type: "image/png")
+  ingredient.photo.attach(
+    io: File.open(file_path),
+    filename: "#{data[:name]}.png",
+    content_type: "image/png"
+  )
 
-file_path4 = Rails.root.join("app/assets/images/seed_ingredient_picto/tomato.png")
-ing4  = Ingredient.create!(name: "tomato", storage_method: "Fridge", category: "Fruits")
-ing4.photo.attach(io: File.open(file_path4), filename: "tomato.png", content_type: "image/png")
+  HouseIngredient.create!(
+    expiration_date: DateTime.now + data[:expiration_days],
+    quantity: data[:quantity],
+    unit: data[:unit],
+    house_id: house1.id,
+    ingredient_id: ingredient.id
+  )
 
-file_path5 = Rails.root.join("app/assets/images/seed_ingredient_picto/potato.png")
-ing5  = Ingredient.create!(name: "potato", storage_method: "Dry", category: "Vegetables")
-ing5.photo.attach(io: File.open(file_path5), filename: "potato.png", content_type: "image/png")
+  puts "ingredient #{index + 1} (#{data[:name]}) added to cart 🛒"
+end
 
-file_path6 = Rails.root.join("app/assets/images/seed_ingredient_picto/onion.png")
-ing6  = Ingredient.create!(name: "onion", storage_method: "Dry", category: "Vegetables")
-ing6.photo.attach(io: File.open(file_path6), filename: "onion.png", content_type: "image/png")
-
-file_path7 = Rails.root.join("app/assets/images/seed_ingredient_picto/garlic.png")
-ing7  = Ingredient.create!(name: "garlic", storage_method: "Dry", category: "Vegetables")
-ing7.photo.attach(io: File.open(file_path7), filename: "garlic.png", content_type: "image/png")
-
-file_path8 = Rails.root.join("app/assets/images/seed_ingredient_picto/broccoli.png")
-ing8  = Ingredient.create!(name: "broccoli", storage_method: "Fridge", category: "Vegetables")
-ing8.photo.attach(io: File.open(file_path8), filename: "broccoli.png", content_type: "image/png")
-
-file_path9 = Rails.root.join("app/assets/images/seed_ingredient_picto/spinach.png")
-ing9  = Ingredient.create!(name: "spinach", storage_method: "Fridge", category: "Vegetables")
-ing9.photo.attach(io: File.open(file_path9), filename: "spinach.png", content_type: "image/png")
-
-file_path10 = Rails.root.join("app/assets/images/seed_ingredient_picto/lettuce.png")
-ing10 = Ingredient.create!(name: "lettuce", storage_method: "Fridge", category: "Vegetables")
-ing10.photo.attach(io: File.open(file_path10), filename: "lettuce.png", content_type: "image/png")
-
-file_path11 = Rails.root.join("app/assets/images/seed_ingredient_picto/egg.png")
-ing11 = Ingredient.create!(name: "egg", storage_method: "Fridge", category: "Dairy and eggs")
-ing11.photo.attach(io: File.open(file_path11), filename: "egg.png", content_type: "image/png")
-
-file_path12 = Rails.root.join("app/assets/images/seed_ingredient_picto/milk.png")
-ing12 = Ingredient.create!(name: "milk", storage_method: "Fridge", category: "Dairy and eggs")
-ing12.photo.attach(io: File.open(file_path12), filename: "milk.png", content_type: "image/png")
-
-file_path13 = Rails.root.join("app/assets/images/seed_ingredient_picto/butter.png")
-ing13 = Ingredient.create!(name: "butter", storage_method: "Fridge", category: "Dairy and eggs")
-ing13.photo.attach(io: File.open(file_path13), filename: "butter.png", content_type: "image/png")
-
-file_path14 = Rails.root.join("app/assets/images/seed_ingredient_picto/chicken_breast.png")
-ing14 = Ingredient.create!(name: "chicken breast", storage_method: "Fridge", category: "Meats")
-ing14.photo.attach(io: File.open(file_path14), filename: "chicken_breast.png", content_type: "image/png")
-
-file_path15 = Rails.root.join("app/assets/images/seed_ingredient_picto/beef_steak.png")
-ing15 = Ingredient.create!(name: "beef steak", storage_method: "Fridge", category: "Meats")
-ing15.photo.attach(io: File.open(file_path15), filename: "beef_steak.png", content_type: "image/png")
-
-file_path16 = Rails.root.join("app/assets/images/seed_ingredient_picto/pork_chop.png")
-ing16 = Ingredient.create!(name: "pork chop", storage_method: "Fridge", category: "Meats")
-ing16.photo.attach(io: File.open(file_path16), filename: "pork_chop.png", content_type: "image/png")
-
-file_path17 = Rails.root.join("app/assets/images/seed_ingredient_picto/fish_fillet.png")
-ing17 = Ingredient.create!(name: "fish fillet", storage_method: "Fridge", category: "Fish and seafood")
-ing17.photo.attach(io: File.open(file_path17), filename: "fish_fillet.png", content_type: "image/png")
-
-file_path18 = Rails.root.join("app/assets/images/seed_ingredient_picto/shrimp.png")
-ing18 = Ingredient.create!(name: "shrimp", storage_method: "Freezer", category: "Fish and seafood")
-ing18.photo.attach(io: File.open(file_path18), filename: "shrimp.png", content_type: "image/png")
-
-file_path19 = Rails.root.join("app/assets/images/seed_ingredient_picto/pea.png")
-ing19 = Ingredient.create!(name: "pea", storage_method: "Freezer", category: "Vegetables")
-ing19.photo.attach(io: File.open(file_path19), filename: "pea.png", content_type: "image/png")
-
-file_path20 = Rails.root.join("app/assets/images/seed_ingredient_picto/cheddar_cheese.png")
-ing20 = Ingredient.create!(name: "cheddar cheese", storage_method: "Fridge", category: "Dairy and eggs")
-ing20.photo.attach(io: File.open(file_path20), filename: "cheddar_cheese.png", content_type: "image/png")
-
-file_path21 = Rails.root.join("app/assets/images/seed_ingredient_picto/yogurt.png")
-ing21 = Ingredient.create!(name: "yogurt", storage_method: "Fridge", category: "Dairy and eggs")
-ing21.photo.attach(io: File.open(file_path21), filename: "yogurt.png", content_type: "image/png")
-
-file_path22 = Rails.root.join("app/assets/images/seed_ingredient_picto/orange.png")
-ing22 = Ingredient.create!(name: "orange", storage_method: "Dry", category: "Fruits")
-ing22.photo.attach(io: File.open(file_path22), filename: "orange.png", content_type: "image/png")
-
-file_path23 = Rails.root.join("app/assets/images/seed_ingredient_picto/yellow_lemon.png")
-ing23 = Ingredient.create!(name: "yellow lemon", storage_method: "Dry", category: "Fruits")
-ing23.photo.attach(io: File.open(file_path23), filename: "yellow_lemon.png", content_type: "image/png")
-
-file_path24 = Rails.root.join("app/assets/images/seed_ingredient_picto/cucumber.png")
-ing24 = Ingredient.create!(name: "cucumber", storage_method: "Fridge", category: "Vegetables")
-ing24.photo.attach(io: File.open(file_path24), filename: "cucumber.png", content_type: "image/png")
-
-file_path25 = Rails.root.join("app/assets/images/seed_ingredient_picto/zucchini.png")
-ing25 = Ingredient.create!(name: "zucchini", storage_method: "Fridge", category: "Vegetables")
-ing25.photo.attach(io: File.open(file_path25), filename: "zucchini.png", content_type: "image/png")
-
-file_path26 = Rails.root.join("app/assets/images/seed_ingredient_picto/eggplant.png")
-ing26 = Ingredient.create!(name: "eggplant", storage_method: "Fridge", category: "Vegetables")
-ing26.photo.attach(io: File.open(file_path26), filename: "eggplant.png", content_type: "image/png")
-
-file_path27 = Rails.root.join("app/assets/images/seed_ingredient_picto/bell_pepper.png")
-ing27 = Ingredient.create!(name: "bell pepper", storage_method: "Fridge", category: "Vegetables")
-ing27.photo.attach(io: File.open(file_path27), filename: "bell_pepper.png", content_type: "image/png")
-
-file_path28 = Rails.root.join("app/assets/images/seed_ingredient_picto/rice.png")
-ing28 = Ingredient.create!(name: "rice", storage_method: "Dry", category: "Bread, cereals, and nuts")
-ing28.photo.attach(io: File.open(file_path28), filename: "rice.png", content_type: "image/png")
-
-file_path29 = Rails.root.join("app/assets/images/seed_ingredient_picto/pasta.png")
-ing29 = Ingredient.create!(name: "pasta", storage_method: "Dry", category: "Bread, cereals, and nuts")
-ing29.photo.attach(io: File.open(file_path29), filename: "pasta.png", content_type: "image/png")
-
-file_path30 = Rails.root.join("app/assets/images/seed_ingredient_picto/baguette.png")
-ing30 = Ingredient.create!(name: "baguette", storage_method: "Dry", category: "Bread, cereals, and nuts")
-ing30.photo.attach(io: File.open(file_path30), filename: "baguette.png", content_type: "image/png")
-
-# Rattacher chaque ingrédient à la même maison
-HouseIngredient.create!(expiration_date: "2025-07-01", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing1.id)
-HouseIngredient.create!(expiration_date: "2025-07-02", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing2.id)
-HouseIngredient.create!(expiration_date: "2025-07-03", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing3.id)
-HouseIngredient.create!(expiration_date: "2025-07-04", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing4.id)
-HouseIngredient.create!(expiration_date: "2025-07-05", quantity: 10, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing5.id)
-HouseIngredient.create!(expiration_date: "2025-07-06", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing6.id)
-HouseIngredient.create!(expiration_date: "2025-07-07", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing7.id)
-HouseIngredient.create!(expiration_date: "2025-07-08", quantity: 5,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing8.id)
-HouseIngredient.create!(expiration_date: "2025-07-09", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing9.id)
-HouseIngredient.create!(expiration_date: "2025-07-10", quantity: 1,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing10.id)
-HouseIngredient.create!(expiration_date: "2025-07-11", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing11.id)
-HouseIngredient.create!(expiration_date: "2025-07-12", quantity: 2,  unit: 'l',     house_id: house1.id, ingredient_id: ing12.id)
-HouseIngredient.create!(expiration_date: "2025-07-13", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing13.id)
-HouseIngredient.create!(expiration_date: "2025-07-14", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing14.id)
-HouseIngredient.create!(expiration_date: "2025-07-15", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing15.id)
-HouseIngredient.create!(expiration_date: "2025-07-16", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing16.id)
-HouseIngredient.create!(expiration_date: "2025-07-17", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing17.id)
-HouseIngredient.create!(expiration_date: "2025-07-18", quantity: 12, unit: 'pc(s)', house_id: house1.id, ingredient_id: ing18.id)
-HouseIngredient.create!(expiration_date: "2025-07-19", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing19.id)
-HouseIngredient.create!(expiration_date: "2025-07-20", quantity: 2000,  unit: 'g',    house_id: house1.id, ingredient_id: ing20.id)
-HouseIngredient.create!(expiration_date: "2025-07-21", quantity: 6,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing21.id)
-HouseIngredient.create!(expiration_date: "2025-07-22", quantity: 7,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing22.id)
-HouseIngredient.create!(expiration_date: "2025-07-23", quantity: 8,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing23.id)
-HouseIngredient.create!(expiration_date: "2025-07-24", quantity: 5,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing24.id)
-HouseIngredient.create!(expiration_date: "2025-07-25", quantity: 4,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing25.id)
-HouseIngredient.create!(expiration_date: "2025-07-26", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing26.id)
-HouseIngredient.create!(expiration_date: "2025-07-27", quantity: 3,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing27.id)
-HouseIngredient.create!(expiration_date: "2025-07-28", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing28.id)
-HouseIngredient.create!(expiration_date: "2025-07-29", quantity: 1000,  unit: 'g',    house_id: house1.id, ingredient_id: ing29.id)
-HouseIngredient.create!(expiration_date: "2025-07-30", quantity: 2,  unit: 'pc(s)', house_id: house1.id, ingredient_id: ing30.id)
 
 puts "Groceries completed     🥕🍌"
