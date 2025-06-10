@@ -10,9 +10,14 @@
           <%= image_tag "picto_navbar/icon_calendar.png", alt: "Recipes", style: "height:40px;" %><br>
     <% end %>
 
-    <%= link_to pages_path, class: "text-dark text-center flex-fill" do %>
+<!-- Link/Button to trigger the modal -->
+
+    <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#ticketModal" } do %>
       <%= image_tag "picto_navbar/icon_pict.png", alt: "Recipes", style: "height:44px;" %><br>
     <% end %>
+
+    <!-- Modal -->
+
 
     <%= link_to house_house_ingredients_path(@house), class: "text-dark text-center flex-fill" do %>
       <%= image_tag "picto_navbar/icon_fridge.png", alt: "return" %>
@@ -20,3 +25,25 @@
 
   </div>
 </div>
+
+    <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true";>
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content align-items-center">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ticketModalLabel">Scan a Ticket</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= form_with url: analyze_ticket_house_house_ingredients_path(@house), local: true, html: { multipart: true } do |f| %>
+              <div class="mb-3">
+                <%= f.label :ticket_photo, "Upload or take a photo of your ticket", class: "form-label" %>
+                <%= f.file_field :ticket_photo, accept: 'image/*', capture: 'environment', class: "form-control" %>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <%= f.submit "Scan ticket", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

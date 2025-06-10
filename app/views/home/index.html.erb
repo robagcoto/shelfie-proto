@@ -33,7 +33,7 @@
             <ul class="list-unstyled text-secondary" id="ingredients" style="margin-bottom: 10px">
               <% @house_ingredients.first(4).each do |house_ingredient| %>
                 <li>
-                  <%= link_to (house_ingredient.ingredient.name).capitalize, house_house_ingredient_path(@house, house_ingredient), class: "text-decoration-none text-secondary" %>
+                  <%= house_ingredient.ingredient.name.capitalize %>
                   - <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
                 </li>
               <% end %>
