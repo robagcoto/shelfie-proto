@@ -7,14 +7,15 @@
 
     <div class="categories-filter d-flex justify-content-between mt-4">
 
-      <%= link_to house_house_ingredients_path(@house.id, category: "All"), data: { turbo_stream: true } do %>
-        <%= image_tag "card_recipes/card_recipes_1.png", class:"categories-res", alt:"all" %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "All"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/all-icon.png", alt: "all", class:"categories-res" %>
+        <p>All</p>
       <% end %>
 
 
       <%= link_to house_house_ingredients_path(@house.id, category: "Meats"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/meat.png", alt:"meats", class:"categories-res" %>
-        <p class="text-decoration-none">Meats</p>
+        <p>Meats</p>
       <% end %>
 
       <%= link_to house_house_ingredients_path(@house.id, category: "Fish and seafood"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
@@ -54,19 +55,22 @@
               <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
                 <div class="card-body p-2">
                   <div class="d-flex align-items-center">
-
                     <div style="width: 48px;">
                       <% if house_ingredient.ingredient.photo.attached? %>
                         <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
                       <% end %>
                     </div>
-
-                    <div class="ms-auto fw-bold small">
-                      <%= house_ingredient.quantity %><%= house_ingredient.unit %>
-                    </div>
                   </div>
 
-                  <div class="card-text mt-2">
+                    <div class="mt-2">
+                      <%= house_ingredient.ingredient.name.capitalize %>
+                    </div>
+                    
+                    <div class="text-end fw-bold small">
+                      x <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
+                    </div>
+
+                  <div class="card-text mt-2 fw-bold text-end">
                     <small>
                       <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
                     </small>

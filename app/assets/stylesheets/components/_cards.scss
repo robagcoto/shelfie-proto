@@ -23,7 +23,8 @@
   width: 130px;
   height: 150px;
   object-fit: cover;
-  border-radius: 1rem;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
   flex-shrink: 0;
 }
 
