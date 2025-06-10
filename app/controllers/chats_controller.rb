@@ -128,7 +128,11 @@ SYSTEM_PROMPT = '
       @chat.generate_title_from_first_message
 
       # Appel LLM
-      chat = RubyLLM.chat
+      chat = RubyLLM.chat(
+        model: 'openai/gpt-3.5-turbo',
+        provider: 'openrouter',
+        assume_model_exists: true
+      )
       response = chat.with_instructions(instructions).ask(prompt)
 
       begin

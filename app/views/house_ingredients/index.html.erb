@@ -85,3 +85,10 @@
   </div>
 
 </div>
+
+<div class="container">
+  <%= form_with url: analyze_ticket_house_house_ingredients_path(@house), local: true, html: { multipart: true } do |f| %>
+    <%= f.file_field :ticket_photo, accept: 'image/*', capture: 'environment' %>
+    <%= f.submit "Scan a ticket" %>
+  <% end %>
+</div>
