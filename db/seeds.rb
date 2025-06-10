@@ -7,10 +7,10 @@ Recipe.destroy_all
 HouseUser.destroy_all
 HouseIngredient.destroy_all
 Ingredient.destroy_all
+Message.delete_all
+Chat.delete_all
 User.destroy_all
 House.destroy_all
-Message.destroy_all
-Chat.destroy_all
 
 puts "Initializing seed 🌱"
 
