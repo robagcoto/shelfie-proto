@@ -369,11 +369,36 @@ ingredients_data = [
   { name: "bell pepper", storage_method: "Fridge", category: "Vegetables", quantity: 3, unit: "pc(s)", expiration_days: 10 },
   { name: "rice", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 1000, unit: "g", expiration_days: 730 },
   { name: "pasta", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 1000, unit: "g", expiration_days: 700 },
-  { name: "baguette", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 2, unit: "pc(s)", expiration_days: 2 }
+  { name: "baguette", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 2, unit: "pc(s)", expiration_days: 2 },
+  { name: "almond", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 200, unit: "g", expiration_days: 200 },
+  { name: "blueberry", storage_method: "Fridge", category: "Fruits", quantity: 125, unit: "g", expiration_days: 5 },
+  { name: "cherry", storage_method: "Fridge", category: "Fruits", quantity: 250, unit: "g", expiration_days: 10 },
+  { name: "raspberry", storage_method: "Fridge", category: "Fruits", quantity: 125, unit: "g", expiration_days: 8 },
+  { name: "hazelnut", storage_method: "Dry", category: "Bread, cereals, and nuts", quantity: 150, unit: "g", expiration_days: 300 },
+  { name: "kidney bean", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 90 },
+  { name: "chickpea", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 85 },
+  { name: "lentil", storage_method: "Dry", category: "Legumes", quantity: 500, unit: "g", expiration_days: 150 },
+  { name: "tofu", storage_method: "Fridge", category: "Processed foods and ready meals", quantity: 400, unit: "g", expiration_days: 12 },
+  { name: "ham", storage_method: "Fridge", category: "Meats", quantity: 4, unit: "pc(s)", expiration_days: 8 },
+  { name: "salmon", storage_method: "Freezer", category: "Fish and seafood", quantity: 2, unit: "pc(s)", expiration_days: 120 },
+  { name: "cod", storage_method: "Freezer", category: "Fish and seafood", quantity: 2, unit: "pc(s)", expiration_days: 90 },
+  { name: "mozzarella", storage_method: "Fridge", category: "Dairy and eggs", quantity: 250, unit: "g", expiration_days: 16 },
+  { name: "greek yogurt", storage_method: "Fridge", category: "Dairy and eggs", quantity: 4, unit: "pc(s)", expiration_days: 10 },
+  { name: "apple juice", storage_method: "Fridge", category: "Beverages", quantity: 1, unit: "l", expiration_days: 14 },
+  { name: "orange soda", storage_method: "Dry", category: "Beverages", quantity: 1, unit: "l", expiration_days: 18 },
+  { name: "chocolate bar", storage_method: "Dry", category: "Sweets", quantity: 2, unit: "pc(s)", expiration_days: 70 },
+  { name: "cookie", storage_method: "Dry", category: "Sweets", quantity: 8, unit: "pc(s)", expiration_days: 25 },
+  { name: "frozen pizza", storage_method: "Freezer", category: "Processed foods and ready meals", quantity: 1, unit: "pc(s)", expiration_days: 100 },
+  { name: "mushroom", storage_method: "Fridge", category: "Vegetables", quantity: 250, unit: "g", expiration_days: 8 }
 ]
 
 ingredients_data.each_with_index do |data, index|
-  file_path = Rails.root.join("app/assets/images/seed_ingredient_picto/#{data[:name]}.png")
+  if File.exist?("app/assets/images/seed_ingredient_picto/#{data[:name]}.png")
+    file_path = Rails.root.join("app/assets/images/seed_ingredient_picto/#{data[:name]}.png")
+  else
+    file_path = Rails.root.join("app/assets/images/shelfie maintenace.png")
+  end
+
   ingredient = Ingredient.create!(
     name: data[:name],
     storage_method: data[:storage_method],
@@ -389,7 +414,7 @@ ingredients_data.each_with_index do |data, index|
   HouseIngredient.create!(
     expiration_date: DateTime.now + data[:expiration_days],
     quantity: data[:quantity],
-    unit: 'pc(s)',
+    unit: data[:unit],
     house_id: house1.id,
     ingredient_id: ingredient.id
   )
