@@ -1,6 +1,6 @@
 <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
 
-<div class="container">
+<div class="container" style="padding-bottom: 7rem;">
   <div class="row text-center mt-4">
 
     <h1><%= @house.name %> ingredients</h1>
@@ -43,39 +43,44 @@
         <p>Dairies</p>
       <% end %>
 
-  </div>
+     <%= link_to house_house_ingredients_path(@house.id, category: "Processed foods and ready meals"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/processed_meals.png", alt: "processed food", class:"categories-res" %>
+        <p>Processed Foods</p>
+      <% end %>
+
     </div>
-<div class="pb-5 mb-5">
+  </div>
 
+      <div class="mt-3" id="ingredients">
+        <div class="row row-cols-2 g-3">
+          <% @house_ingredients.each do |house_ingredient| %>
+            <div class="col">
+              <div class="card rounded-4 bg-secondary shadow-sm h-100">
+                <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
+                  <div class="card-body p-2">
+                    <div class="d-flex align-items-center">
 
-  <div class="container mt-4">
-    <div class="mt-3" id="ingredients">
-      <div class="row row-cols-2 g-3" style="margin-bottom: 100px">
-        <% @house_ingredients.each do |house_ingredient| %>
-          <div class="col">
-            <div class="card rounded-4 bg-secondary shadow-sm h-100">
-              <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-center">
-                    <div style="width: 48px;">
-                      <% if house_ingredient.ingredient.photo.attached? %>
-                        <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
-                      <% end %>
-                    </div>
-                  </div>
+                      <div style="width: 48px;">
+                        <% if house_ingredient.ingredient.photo.attached? %>
+                          <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
+                        <% end %>
+                      </div>
 
-                    <div class="mt-2">
-                      <%= house_ingredient.ingredient.name.capitalize %>
                     </div>
 
-                    <div class="text-end fw-bold small">
-                      x <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
-                    </div>
+                      <div class="mt-2">
+                        <%= house_ingredient.ingredient.name.capitalize %>
+                      </div>
 
-                  <div class="card-text mt-2 fw-bold text-end">
-                    <small>
-                      <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
-                    </small>
+                      <div class="text-end fw-bold small">
+                        x <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
+                      </div>
+
+                        <div class="card-text mt-2 fw-bold text-end">
+                          <small>
+                            <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
+                          </small>
+
                   </div>
                 </div>
               <% end %>
@@ -84,7 +89,5 @@
         <% end %>
       </div>
     </div>
-  </div>
 
 </div>
-

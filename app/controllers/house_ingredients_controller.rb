@@ -8,13 +8,14 @@ class HouseIngredientsController < ApplicationController
     if params[:storage_method].present?
       @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] }).order(:expiration_date)
     else
-      @house_ingredients = HouseIngredient.all
+      @house_ingredients = HouseIngredient.all.order(:expiration_date)
     end
 
     if params[:category].present? && params[:category] != "All"
       @house_ingredients = @house_ingredients
       .joins(:ingredient)
       .where(ingredients: { category: params[:category] })
+      .order(:expiration_date)
     end
 
     respond_to do |format|
@@ -177,7 +178,7 @@ private
 
     # instancer un chat
     chat = RubyLLM.chat(
-      model: "google/gemini-2.5-pro-preview",
+      model: "google/gemini-2.5-flash-preview-05-20",
       provider: 'openrouter',
       assume_model_exists: true
     )
