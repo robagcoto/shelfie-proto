@@ -88,7 +88,10 @@ class RecipesController < ApplicationController
 
   end
 
-
+    def llm_index
+    # Affiche uniquement les recettes IA créées pour l'utilisateur courant
+    @llm_recipes = Recipe.where(user_id: current_user, my_recipe: false)
+  end
 end
 
  private
