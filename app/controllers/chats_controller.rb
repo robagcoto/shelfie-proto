@@ -204,7 +204,7 @@ SYSTEM_PROMPT = '
 
   def destroy
     @chat = current_user.chats.find(params[:id])
-    @chat.destroy
+    @chat.destroy!
     redirect_to chats_path, notice: "Hasta la vista, baby..."
   end
 
