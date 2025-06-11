@@ -144,11 +144,12 @@ SYSTEM_PROMPT = '
         recipe = Recipe.new(
           name: recipe_data["name"],
           description: recipe_data["description"],
-          rating: recipe_data["rating"],
+          rating: 0,
           category: recipe_data["category"],
           duration: recipe_data["duration"],
           favorite: recipe_data["favorites"],
           number_of_ingredients: recipe_data["ingredients_recipes"].size,
+          my_recipe: false,
           user: current_user
         )
 
