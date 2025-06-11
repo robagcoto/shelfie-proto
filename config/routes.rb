@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   resources :steps, only: [:new, :destroy]
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    collection do
+      get :llm_index
+    end
     member do
-
       post :mark_as_done
       patch :toggle_favorite
 
