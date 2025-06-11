@@ -23,7 +23,8 @@
   width: 130px;
   height: 150px;
   object-fit: cover;
-  border-radius: 1rem;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
   flex-shrink: 0;
 }
 
@@ -45,7 +46,7 @@
 // -----------------------------------------
 
 .card-background {
-  background-image: url("card_home/back_card.png");
+  background-image: url("card_home/back_card_2.png");
   background-size: cover;
   background-position: center;
   height: 220px;
@@ -64,10 +65,21 @@
   height: 220px;
 }
 
+// --------- House_ingredients cards -------------------
+
 .card-ingredients {
-  border: solid lightgray;
+  border: none;
+  height: 63px;
+  width: 78px;
   border-radius: 5px;
   padding-right: 1px;
   padding-left: 1px;
-  background-color:aquamarine;
+}
+
+// ------------------- cards recipes show -------------------------
+
+.card-recipe {
+  border: none;
+  border-radius: 5%;
+  background-color: #B8EBA8;
 }

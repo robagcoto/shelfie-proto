@@ -11,15 +11,24 @@ Rails.application.routes.draw do
 
   end
   resources :houses, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :house_ingredients, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :house_ingredients do
+      collection do
+        #ajout de cet élément pour crééer une route path
+        post :analyze_ticket
+        get :review_parsed_products
+        post :confirm_parsed_products
+      end
+    end
   end
 
   # suppression et création des steps pour les form de recipes/new et recipes/edit
   resources :steps, only: [:new, :destroy]
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    collection do
+      get :llm_index
+    end
     member do
-
       post :mark_as_done
       patch :toggle_favorite
 

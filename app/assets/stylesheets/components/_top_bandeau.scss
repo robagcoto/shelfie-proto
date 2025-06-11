@@ -1,0 +1,14 @@
+.bandeau_top{
+  background-image: asset_url('bandeau-home.png');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 12vh;
+  z-index: -1;
+  margin-bottom: 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}

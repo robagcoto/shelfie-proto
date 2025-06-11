@@ -1,8 +1,11 @@
-<div style="width: 100vw; height: 20px; overflow: hidden; position: relative;">
-  <%= image_tag "bandeau-home-1.png", alt: "", style: "width: 100%; height: 30px; object-fit: cover; display: block;" %>
-</div>
+<%# <div style="width: 100vw; height: 20px; overflow: hidden; position: relative;">
+  <%# <%= image_tag "bandeau-home-1.png", alt: "", style: "width: 100%; height: 30px; object-fit: cover; display: block;" %>
+<%# </div> %>
 
-<div class="container">
+
+
+<%# <div class="bandeau_top"></div> %>
+<div class="container" style="padding-bottom: 5rem;">
 
   <div class="d-flex justify-content-between align-items-center mt-3">
 
@@ -22,17 +25,23 @@
 
   </div>
 
-  <div class="col">
+  <div class="col mt-2">
     <%= link_to house_house_ingredients_path(@house), class: "text-decoration-none" do %>
       <div class="card h-100 shadow-sm home-hero-card" style ="height: 300px;">
         <div class="card card-background text-secondary">
           <div class="card-img-overlay">
-            <h5 class="card-title">Ingredients alerts</h5>
-            <ul class="list-unstyled">
-              <li>eggs</li>
-              <li>butter</li>
-              <li>onion</li>
+            <h1 class="card-title text-center text-secondary" style="font-weight: 600;">Ingredients</h1>
+            <h4 class="card-title text-secondary">Storage Alerts:</h4>
+
+            <ul class="list-unstyled text-secondary" id="ingredients" style="margin-bottom: 10px">
+              <% @house_ingredients.first(4).each do |house_ingredient| %>
+                <li>
+                  <strong><%= house_ingredient.ingredient.name.capitalize %></strong>
+                  | <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> | You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
+                </li>
+              <% end %>
             </ul>
+
           </div>
         </div>
       </div>
@@ -42,7 +51,8 @@
       <div class="card h-100 shadow-sm my-3 home-hero-card">
         <div class="card card-light-background text-primary">
           <div class="card-img-overlay">
-            <h5 class="card-title">Recipes</h5>
+            <h1 class="card-title text-center">Recipes</h1>
+            <h4 class="card-title">Last viewed:</h4>
             <ul class="list-unstyled">
               <% @recipes.first(3).each do |recipe| %>
                 <li><%= recipe.name %></li>

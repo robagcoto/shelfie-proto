@@ -134,7 +134,12 @@ class MessagesController < ApplicationController
     # @house_ingredient = current_user.house_ingredient
 
     if @message.save
-      chat = RubyLLM.chat
+      chat = RubyLLM.chat(
+        model: 'openai/gpt-3.5-turbo',
+        provider: 'openrouter',
+        assume_model_exists: true
+      )
+
       response = chat.with_instructions(instructions).ask(@message.prompt)
 
       begin
@@ -146,11 +151,12 @@ class MessagesController < ApplicationController
         recipe = Recipe.new(
           name: recipe_data["name"],
           description: recipe_data["description"],
-          rating: recipe_data["rating"],
+          rating: 0,
           category: recipe_data["category"],
           duration: recipe_data["duration"],
           favorite: recipe_data["favorites"],
           number_of_ingredients: recipe_data["ingredients_recipes"].size,
+          my_recipe: false,
           user: current_user
         )
 

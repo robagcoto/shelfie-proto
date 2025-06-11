@@ -1,14 +1,14 @@
 <% if message.role == "user" %>
   <div class="text-end my-3">
-    <div class="d-inline-block px-3 py-1 bg-primary text-white" style="border-radius: 20px;">
-      <p class="mb-1"><strong><%= message.role.capitalize %></strong></p>
+    <div class="d-inline-block px-3 pt-3 p bg-primary text-white" style="border-radius: 20px;">
+      <%# <p class="mb-1"><strong><%= message.role.capitalize </strong></p> %>
       <%= simple_format(message.prompt) %>
     </div>
   </div>
 <% else %>
   <div class="text-start my-3">
     <div class="d-inline-block p-2 bg-light" style="border-radius: 20px;">
-      <p class="mb-1"><strong><%= message.role.capitalize %></strong></p>
+      <%# <p class="mb-1"><strong><%= message.role.capitalize </strong></p> %>
       <%= simple_format(message.prompt) %>
      <%# link_to vers la route pour update_favorite à laquelle je passe mon instance pour pouvoir récupérer l'id dans mon action %>
      <%#= link_to toggle_favorite_recipe_path(message.recipe) do %>
@@ -20,8 +20,8 @@
       <%# <%= image_tag "fav.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
     <%# end %>
 
-    <%= link_to recipes_path do %>
-  <%= image_tag "fav-light.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
+    <%= link_to llm_index_recipes_path do %>
+  <%= image_tag "shelfie-robot2.png", alt: "return", width: 40, height: 40, class: "rounded-circle" %>
 <% end %>
 
     </div>

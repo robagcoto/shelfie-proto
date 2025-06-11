@@ -16,7 +16,13 @@ class Chat < ApplicationRecord
     first_user_message = messages.where(role: "user").order(:created_at).first
     return if first_user_message.nil?
 
-    response = RubyLLM.chat.with_instructions(TITLE_PROMPT).ask(first_user_message.prompt)
+    chat = RubyLLM.chat(
+      model: 'openai/gpt-3.5-turbo',
+      provider: 'openrouter',
+      assume_model_exists: true
+    )
+
+  response = chat.with_instructions(TITLE_PROMPT).ask(first_user_message.prompt)
     update(title: response.content)
   end
 

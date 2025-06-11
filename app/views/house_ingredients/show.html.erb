@@ -10,10 +10,9 @@
         <%# logo à gauche et quantité à droite %>
         <div class="row mb-3">
           <div class="col-6">
-            <%= image_tag 'logo.png',
-                  class: 'img-fluid',
-                  style: 'width:40px; height:40px;',
-                  alt: 'Logo' %>
+            <% if @house_ingredient.ingredient.photo.attached? %>
+              <%= image_tag @house_ingredient.ingredient.photo, class: "ing-show" %>
+            <% end %>
           </div>
           <div class="col-6 d-flex justify-content-end align-items-center">
             <% qty = @house_ingredient.quantity.to_s %>
@@ -95,7 +94,7 @@
             </div>
 
             <div class="position-absolute" style="bottom:0; left:0; transform: translate(20px, -20px);">
-            
+
             </div>
           </div>
         </div>
