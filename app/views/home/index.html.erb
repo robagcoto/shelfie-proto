@@ -36,8 +36,8 @@
             <ul class="list-unstyled text-secondary" id="ingredients" style="margin-bottom: 10px">
               <% @house_ingredients.first(4).each do |house_ingredient| %>
                 <li>
-                  <%= house_ingredient.ingredient.name.capitalize %>
-                  - <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
+                  <strong><%= house_ingredient.ingredient.name.capitalize %></strong>
+                  | <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> | You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
                 </li>
               <% end %>
             </ul>
