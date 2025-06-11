@@ -177,7 +177,7 @@ private
 
     # instancer un chat
     chat = RubyLLM.chat(
-      model: "google/gemini-2.5-pro-preview",
+      model: "google/gemini-2.5-flash-preview-05-20",
       provider: 'openrouter',
       assume_model_exists: true
     )
