@@ -34,7 +34,7 @@ Rails.application.routes.draw do
         post :create_dlc
       end
     end
-    member do
+    collection do
       post :create_chat_dlc
     end
   end

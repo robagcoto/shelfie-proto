@@ -110,115 +110,7 @@ class MessagesController < ApplicationController
 
   '
 
-  def prompt_systeme(ingredient_list) = `
-                   You are a concise and professional chef assistant.
-
-  Please provide a detailed recipe you need to take in priority the food that have the shortest dlc for the user in the following format:
-  this is the ingredientrs with the shortest dlc:
-  #{ingredient_list}.
-
-  The output must be a JSON object with exactly two primary keys:
-
-  - recipe_attributes: a JSON object containing exactly these 8 keys:
-    - name (string): the dish name.
-    - description (string): a detailed description of the dish.
-    - rating (number, 0 to 5): a quality score for the recipe.
-    - category (string): the recipe category (e.g., "Dinner", "Dessert").
-    - favorites (boolean): whether the recipe is not a favorite.
-    - duration (string): estimated preparation time (e.g., "25 minutes").
-    - steps (object): an ordered set of step instructions using unique keys (e.g., "step1", "step2", etc.), where each value is a string describing the step.
-    - ingredients_recipes (object): a nested object listing each ingredient, where each ingredient key is unique (e.g., "ingredient1"), and each ingredient contains:
-      - name (string)
-      - quantity (number)
-      - unit must be either grams (g), liters (l), or pieces(string)
-
-  - recipe_description: a human-readable, well-formatted textual recipe combining the above info, excluding the favorites key, styled like a cookbook entry.
-
-  The response must be only in JSON format, with no additional text or explanation.
-
-  The recipe description and all texts must be in English regardless of the input language.
-  this  what the output must looks like
- {
-  "recipe_attributes": {
-    "name": "Creamy Mushroom Risotto",
-    "description": "A rich and creamy Italian rice dish infused with the earthy flavors of mushrooms, parmesan cheese, and a hint of white wine. This comforting recipe is perfect for a cozy dinner and showcases the luxurious texture of arborio rice slowly cooked to perfection.",
-    "rating": 4.7,
-    "category": "Dinner",
-    "favorites": false,
-    "duration": "45 minutes",
-    "steps": {
-      "step1": "Heat the olive oil and 25g of butter in a large saucepan over medium heat.",
-      "step2": "Add the chopped onion and sauté until translucent, about 5 minutes.",
-      "step3": "Stir in the sliced mushrooms and cook until they release their juices and are golden brown, about 8 minutes.",
-      "step4": "Add the arborio rice and stir to coat with the mushroom mixture, cooking for 1–2 minutes.",
-      "step5": "Pour in the white wine and stir until it is mostly absorbed.",
-      "step6": "Gradually add the warm vegetable broth, one ladle at a time, stirring constantly and allowing each addition to absorb before the next.",
-      "step7": "Continue this process until the rice is creamy and al dente, about 20–25 minutes.",
-      "step8": "Remove from heat and stir in the remaining butter, grated parmesan cheese, salt, and pepper.",
-      "step9": "Let it rest for 2 minutes before serving hot, optionally garnished with fresh parsley."
-    },
-    "ingredients_recipes": {
-      "ingredient1": {
-        "name": "Arborio rice",
-        "quantity": 300,
-        "unit": "g"
-      },
-      "ingredient2": {
-        "name": "Mushrooms",
-        "quantity": 250,
-        "unit": "g"
-      },
-      "ingredient3": {
-        "name": "Onion",
-        "quantity": 1,
-        "unit": "pieces"
-      },
-      "ingredient4": {
-        "name": "Olive oil",
-        "quantity": 2,
-        "unit": "l"
-      },
-      "ingredient5": {
-        "name": "Butter",
-        "quantity": 50,
-        "unit": "g"
-      },
-      "ingredient6": {
-        "name": "White wine",
-        "quantity": 100,
-        "unit": "l"
-      },
-      "ingredient7": {
-        "name": "Vegetable broth",
-        "quantity": 1,
-        "unit": "l"
-      },
-      "ingredient8": {
-        "name": "Parmesan cheese",
-        "quantity": 50,
-        "unit": "g"
-      },
-      "ingredient9": {
-        "name": "Salt",
-        "quantity": 5,
-        "unit": "g"
-      },
-      "ingredient10": {
-        "name": "Black pepper",
-        "quantity": 2,
-        "unit": "g"
-      },
-      "ingredient11": {
-        "name": "Parsley (optional)",
-        "quantity": 1,
-        "unit": "pieces"
-      }
-    }
-  },
-  "recipe_description": "Creamy Mushroom Risotto\n\nA rich and creamy Italian rice dish infused with the earthy flavors of mushrooms, parmesan cheese, and a hint of white wine. This comforting recipe is perfect for a cozy dinner and showcases the luxurious texture of arborio rice slowly cooked to perfection.\n\nPrep & Cook Time: 45 minutes\nRating: 4.7/5\nCategory: Dinner\n\nIngredients:\n- 300g Arborio rice\n- 250g Mushrooms, sliced\n- 1 Onion, finely chopped\n- 2l Olive oil\n- 50g Butter\n- 100l White wine\n- 1l Vegetable broth, warm\n- 50g Parmesan cheese, grated\n- 5g Salt\n- 2g Black pepper\n- 1 piece Parsley (optional, for garnish)\n\nSteps:\n1. Heat the olive oil and 25g of butter in a large saucepan over medium heat.\n2. Add the chopped onion and sauté until translucent, about 5 minutes.\n3. Stir in the sliced mushrooms and cook until they release their juices and are golden brown, about 8 minutes.\n4. Add the arborio rice and stir to coat with the mushroom mixture, cooking for 1–2 minutes.\n5. Pour in the white wine and stir until it is mostly absorbed.\n6. Gradually add the warm vegetable broth, one ladle at a time, stirring constantly and allowing each addition to absorb before the next.\n7. Continue this process until the rice is creamy and al dente, about 20–25 minutes.\n8. Remove from heat and stir in the remaining butter, grated parmesan cheese, salt, and pepper.\n9. Let it rest for 2 minutes before serving hot, optionally garnished with fresh parsley."
-}
-
-  `
+  
 
   def index
     @chat = Chat.find(params[:chat_id])
@@ -239,7 +131,7 @@ class MessagesController < ApplicationController
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.new(message_params.merge(role: :user))
     @message.user_id = current_user.id
-    @house_ingredient = current_user.house_ingredient
+    # @house_ingredient = current_user.house_ingredient
 
     if @message.save
       chat = RubyLLM.chat
@@ -421,16 +313,6 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:prompt)
-  end
-
-  def instructions_dlc
-    expiring_ingredients_5 = current_user.expiring_ingredients
-    ingredient_list = []
-    expiring_ingredients_5.each do |ingredient|
-      ingredient_list += ingredient.name
-    end
-
-    [prompt_systeme(ingredient_list), current_user.prompt_setting].compact.join("\n\n")
   end
 
   def instructions
