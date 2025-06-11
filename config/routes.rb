@@ -38,7 +38,14 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :chats, only: [:index, :new, :create, :destroy] do
-    resources :messages, only: [:create, :index, :destroy]
+    resources :messages, only: [:create, :index, :destroy] do
+      member do
+        post :create_dlc
+      end
+    end
+    collection do
+      post :create_chat_dlc
+    end
   end
 
   get "/pages/dashboard", to: "pages#dashboard"

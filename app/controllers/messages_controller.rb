@@ -110,6 +110,8 @@ class MessagesController < ApplicationController
 
   '
 
+  
+
   def index
     @chat = Chat.find(params[:chat_id])
     @messages = @chat.messages.order(:created_at)
@@ -129,6 +131,7 @@ class MessagesController < ApplicationController
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.new(message_params.merge(role: :user))
     @message.user_id = current_user.id
+    # @house_ingredient = current_user.house_ingredient
 
     if @message.save
       chat = RubyLLM.chat(
@@ -217,6 +220,92 @@ class MessagesController < ApplicationController
     end
   end
 
+  def create_dlc
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.new(message_params.merge(role: :user))
+    @message.user_id = current_user.id
+    @house_ingredient = current_user.house_ingredient
+
+    if @message.save
+      chat = RubyLLM.chat
+      response = chat.with_instructions(instructions_dlc).ask(@message.prompt)
+
+      begin
+        parsed = JSON.parse(response.content)
+        recipe_data = parsed["recipe_attributes"]
+        description_text = parsed["recipe_description"]
+
+        # Création de la recette
+        recipe = Recipe.new(
+          name: recipe_data["name"],
+          description: recipe_data["description"],
+          rating: recipe_data["rating"],
+          category: recipe_data["category"],
+          duration: recipe_data["duration"],
+          favorite: recipe_data["favorites"],
+          number_of_ingredients: recipe_data["ingredients_recipes"].size,
+          user: current_user
+        )
+
+        if recipe.save
+          # Ajout des ingrédients
+          recipe_data["ingredients_recipes"].each_value do |ingredient|
+            recipe.ingredients_recipes.create!(
+              name: ingredient["name"],
+              quantity: ingredient["quantity"],
+              unit: ingredient["unit"]
+            )
+          end
+
+          # Ajout des étapes
+          recipe_data["steps"].each do |_, step_description|
+            Step.create!(recipe: recipe, description: step_description)
+          end
+
+          # Message assistant avec la recette en texte lisible
+          @assistant_message = @chat.messages.create!(
+            prompt: description_text,
+            role: :assistant,
+            user_id: current_user.id
+          )
+
+          flash[:notice] = "Recette créée avec succès 🎉"
+        else
+          flash[:alert] = "Erreur lors de l'enregistrement de la recette."
+        end
+      rescue JSON::ParserError => e
+        flash[:alert] = "Erreur de parsing JSON : #{e.message}"
+        @chat.messages.create!(
+          prompt: response.content,
+          role: :assistant,
+          user_id: current_user.id
+        )
+      rescue => e
+        flash[:alert] = "Erreur lors de la création de la recette : #{e.message}"
+        @chat.messages.create!(
+          prompt: response.content,
+          role: :assistant,
+          user_id: current_user.id
+        )
+      end
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to chat_messages_path(@chat) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            "new_message",
+            partial: "messages/form",
+            locals: { chat: @chat, message: @message }
+          )
+        }
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @chat = current_user.chats.find(params[:chat_id])
@@ -224,7 +313,6 @@ class MessagesController < ApplicationController
     @message.destroy
     redirect_to chat_messages_path(@chat), notice: "Hasta la vista, baby..."
   end
-
 
   private
 

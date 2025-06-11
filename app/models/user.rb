@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :messages, through: :chat
   has_many :house_users, dependent: :destroy
   has_many :houses, through: :house_users
+
 end

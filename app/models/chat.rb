@@ -25,4 +25,5 @@ class Chat < ApplicationRecord
   response = chat.with_instructions(TITLE_PROMPT).ask(first_user_message.prompt)
     update(title: response.content)
   end
+
 end
