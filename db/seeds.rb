@@ -328,6 +328,15 @@ puts "creating message..."
 chat = Chat.create!(title: "harry potter recipe", user: user1)
 Message.create!(prompt: "harry potter mood !!", user: user1, role: "user", chat: chat)
 
+chat = Chat.create!(title: "ratatouille", user: user1)
+Message.create!(prompt: "I just watched ratatouille and I'm hungry !!", user: user1, role: "user", chat: chat)
+
+chat = Chat.create!(title: "chicken sandwich recipe", user: user1)
+Message.create!(prompt: "I want the best chicken sandwich!!", user: user1, role: "user", chat: chat)
+
+chat = Chat.create!(title: "Quick asian recipe", user: user1)
+Message.create!(prompt: "a quick chinese recipe", user: user1, role: "user", chat: chat)
+
 puts "chat created    📨"
 
 puts "Creating Houses 🏚️"
