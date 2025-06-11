@@ -1,70 +1,87 @@
 <%= render partial: "shared/top_nav", locals: { return_url: recipe_path(@recipe), fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
 
-<div class="container my-1">
-  <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
-    <div class="mb-3 mt-4">
-      <%= f.input :photo, as: :file %>
-    </div>
+<div class="form-background"></div>
+  <div class="container" style="margin-bottom: 5rem;">
 
-    <div class="mb-3">
-      <%= f.input :name, label: "Name of the recipe" %>
-    </div>
+      <div class="text-center">
+        <h1>Edit my recipe</h1>
+      </div>
 
-    <div>
-      <%= f.input :category, as: :radio_buttons, label: "Category", collection: Recipe::VALID_CATEGORIES %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.input :description, label: "Describe shortly your recipe" %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.input :rating, label: "Rating" %>
-    </div>
-
-    <% @recipe.ingredients_recipes.each do |ingredient| %>
-      <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
-        <div class="ingredient-row mb-2" data-ingredients-target="remove">
-          <div class="col-4">
-            <%= text_field_tag "ingredients[][name]", ingredient.name, placeholder: "Ingredient", class: "form-control" %>
+    <div class="card shadow-sm">
+      <div class="container my-1">
+        <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
+          <div class="mb-3 mt-4">
+            <%= f.input :photo, as: :file, label_html: { class: "fw-bold" } %>
           </div>
 
-          <div class="col-3">
-            <input type="text" name="ingredients[][quantity]" value="<%= ingredient.quantity %>" class="form-control" />
+          <div class="mb-3">
+            <%= f.input :name, label: "Name of the recipe:", label_html: { class: "fw-bold" } %>
           </div>
 
-          <div class="col-3">
-            <select name="ingredients[][unit]" class="form-control">
-              <%= options_for_select(['g', 'l', 'pc(s)'], ingredient.unit) %>
-            </select>
+          <div class="mb-3">
+            <%= f.input :rating, label: "Rating:", label_html: { class: "fw-bold" } %>
           </div>
 
-          <div class="col-1 ms-auto p-0 d-flex justify-content-center" >
-            <button data-ingredients-target= "button" data-action= "click->ingredients#addIngredients" type="button" class="btn btn-primary">+</button>
+          <div class="mb-3">
+            <%= f.input :duration, label: "Duration:", label_html: { class: "fw-bold" } %>
           </div>
-
         </div>
       </div>
-    <% end %>
 
-    <div class="mb-3">
-      <%= f.input :duration, label: "Duration" %>
-    </div>
+        <div class="card mt-4 p-3 shadow-sm">
+          <div>
+            <%= f.input :category, as: :radio_buttons, label: "Category:", label_html: { class: "fw-bold" }, collection: Recipe::VALID_CATEGORIES %>
+          </div>
 
-    <section>
-      <h5>Steps of the recipe</h5>
-      <div class="d-flex" style="gap: 5px;">
-        <div id="steps" class="flex-fill">
-          <%= render @recipe.steps %>
-        </div>
-        <%= link_to new_step_path, data: { turbo_stream: true }, class: "btn btn-primary d-flex align-self-end", style: "height: 38px;" do %>
-          +
-        <% end %>
+          <div class="mb-3">
+            <%= f.input :description, label: "Describe shortly your recipe:", label_html: { class: "fw-bold" } %>
+          </div>
+
+
+          <p><strong>Ingredients:</strong></p>
+            <% @recipe.ingredients_recipes.each do |ingredient| %>
+              <div class="row d-flex justify-content-between mb-3" data-controller= "ingredients" data-ingredients-target="row">
+                <div class="ingredient-row mb-2" data-ingredients-target="remove">
+                  <div class="col-4">
+                    <%= text_field_tag "ingredients[][name]", ingredient.name, placeholder: "Ingredient", class: "form-control" %>
+                  </div>
+
+                  <div class="col-3">
+                    <input type="text" name="ingredients[][quantity]" value="<%= ingredient.quantity %>" class="form-control" />
+                  </div>
+
+                  <div class="col-3">
+                    <select name="ingredients[][unit]" class="form-control">
+                      <%= options_for_select(['g', 'l', 'pc(s)'], ingredient.unit) %>
+                    </select>
+                  </div>
+
+                  <div class="col-1 ms-auto p-0 d-flex justify-content-center" >
+                    <button data-ingredients-target= "button" data-action= "click->ingredients#addIngredients" type="button" class="btn btn-primary">+</button>
+                  </div>
+
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        <div class="card mt-4 p-3 shadow-sm">
+          <section>
+            <h5>Steps of the recipe</h5>
+            <div class="d-flex" style="gap: 5px;">
+              <div id="steps" class="flex-fill">
+                <%= render @recipe.steps %>
+              </div>
+              <%= link_to new_step_path, data: { turbo_stream: true }, class: "btn btn-primary d-flex align-self-end", style: "height: 38px;" do %>
+                +
+              <% end %>
+            </div>
+          </section>
       </div>
-    </section>
 
-    <div class="text-center mt-4">
-      <%= f.button :submit, "Update recipe", class: "btn btn-primary btn-xl" %>
-    </div>
-  <% end %>
-</div>
+        <div class="text-center mt-5">
+          <%= f.button :submit, "Update recipe", class: "btn btn-primary btn-xl" %>
+        </div>
+      <% end %>
+
+  </div>

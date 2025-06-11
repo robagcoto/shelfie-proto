@@ -8,13 +8,14 @@ class HouseIngredientsController < ApplicationController
     if params[:storage_method].present?
       @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] }).order(:expiration_date)
     else
-      @house_ingredients = HouseIngredient.all
+      @house_ingredients = HouseIngredient.all.order(:expiration_date)
     end
 
     if params[:category].present? && params[:category] != "All"
       @house_ingredients = @house_ingredients
       .joins(:ingredient)
       .where(ingredients: { category: params[:category] })
+      .order(:expiration_date)
     end
 
     respond_to do |format|
@@ -99,22 +100,23 @@ class HouseIngredientsController < ApplicationController
   end
 
   def confirm_parsed_products
-    products = params[:products]
+    products = params[:products].values
     created = []
+
     # On itère sur l'array du json
-    params[:products].values.each do |product|
+    products.each do |product|
       #on normalize le nom pour vérifier si le couple nom/storage_method existe ou pas
       normalized_name = Ingredient.normalized_name(product["name"])
+      storage_method = product["storage_method"].capitalize
       ing = Ingredient.find_by(
         name: normalized_name,
-        storage_method: product["storage_method"]
+        storage_method: storage_method
       )
-
       #s'il n'existe pas on créée
       unless ing
         ing = Ingredient.create!(
           name: normalized_name,
-          storage_method: product["storage_method"].capitalize,
+          storage_method: storage_method,
           category: product["category"]
         )
       end
@@ -128,7 +130,16 @@ class HouseIngredientsController < ApplicationController
       )
       created << house_ingredient
     end
-    redirect_to house_house_ingredients_path(@house), notice: "#{created.size} ingredients added to shelf"
+    # redirect_to house_house_ingredients_path(@house), notice: "#{created.size} ingredients added to shelf"
+    respond_to do |format|
+      format.turbo_stream do
+        render partial: "shared/redirect", locals: { url: house_house_ingredients_path(@house) }
+      end
+      format.html do
+        redirect_to house_house_ingredients_path(@house), notice: "#{created.size} ingredients added to shelf"
+      end
+    end
+
   end
 
 private
@@ -167,7 +178,7 @@ private
 
     # instancer un chat
     chat = RubyLLM.chat(
-      model: "google/gemini-2.5-pro-preview",
+      model: "google/gemini-2.5-flash-preview-05-20",
       provider: 'openrouter',
       assume_model_exists: true
     )

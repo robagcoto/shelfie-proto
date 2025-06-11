@@ -27,4 +27,5 @@ class Ingredient < ApplicationRecord
   def self.normalized_name(name)
     name.to_s.strip.downcase.singularize
   end
+  # Extrait les 5 ingrédients les plus urgents pour un user donné
 end

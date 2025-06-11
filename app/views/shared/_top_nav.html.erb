@@ -1,23 +1,31 @@
-<div class="d-flex justify-content-between text-center m-3 position-relative" 
+<div class="d-flex justify-content-between text-center m-3 position-relative"
      style="z-index: 1100;">
   <%= link_to return_url do %>
     <%= image_tag "return.png", alt: "return", class: "return-btn" %>
   <% end %>
+
   <% if fav_display %>
     <%= link_to pages_dashboard_path do %>
       <%= image_tag "fav.png", alt: "fav", class: "fav-btn" %>
     <% end %>
+
+    <%= link_to llm_index_recipes_path do %>
+      <%= image_tag "shelfie-robot2.png", alt: "robot", class:"fav-btn" %>
+    <% end %>
   <% end %>
+
   <% if edit_display %>
     <%= link_to edit_recipe_path(@recipe) do %>
       <%= image_tag "edit.png", alt:"edit", class:"edit-btn" %>
     <% end %>
   <% end %>
+
   <% if add_display %>
     <%= link_to new_recipe_path do %>
       <%= image_tag "close.png", alt: "add", class: "add-btn" %>
     <% end %>
   <% end %>
+
   <% if add_ingredient %>
     <%= link_to new_house_house_ingredient_path(@house) do %>
       <%= image_tag "close.png", alt: "add", class: "add-btn" %>

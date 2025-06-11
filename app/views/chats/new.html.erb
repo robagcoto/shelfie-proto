@@ -1,7 +1,9 @@
 <%= render partial: "shared/top_nav", locals: { return_url: chats_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
 
 <div class="container my-5">
+
   <%= simple_form_for @chat do |f| %>
+
     <div class="mb-3">
       <%= f.input :prompt,
                   placeholder: "Type whats on your mind to get a recommendation",
@@ -11,4 +13,8 @@
     </div>
     <%= f.button :submit, 'submit', class: 'btn btn-primary w-100' %>
   <% end %>
+
+  <div class="button-expire">
+    <%= link_to "EXPIRING INGREDIENT", create_chat_dlc_chats_path, data: {"turbo-method": :post} %>
+  </div>
 </div>
