@@ -1,56 +1,45 @@
 <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
 
+
+
 <div class="container" style="padding-bottom: 7rem;">
   <div class="row text-center mt-4">
-
     <h1><%= @house.name %> ingredients</h1>
-
     <div class="categories-filter d-flex justify-content-between mt-4">
-
-      <%= link_to house_house_ingredients_path(@house.id, category: "All"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+      <%= link_to house_house_ingredients_path(@house.id, category: "All"), class: "col m-2 text-decoration-none",  data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/all-icon.png", alt: "all", class:"categories-res" %>
         <p>All</p>
       <% end %>
-
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Meats"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/meat.png", alt:"meats", class:"categories-res" %>
         <p>Meats</p>
       <% end %>
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Fish and seafood"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/fish_seafood.png", alt:"fishes", class:"categories-res" %>
         <p>Fishes</p>
       <% end %>
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Vegetables"), class: "col m-2 text-decoration-none",data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/vegetables.png", alt:"veggies", class:"categories-res" %>
         <p>Veggies</p>
       <% end %>
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Fruits"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/fruits.png", alt: "fruits", class:"categories-res" %>
         <p>Fruits</p>
       <% end %>
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Bread, cereals, and nuts"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/bread_cereal_nuts.png", alt: "carbs",class:"categories-res" %>
         <p>Carbs</p>
       <% end %>
-
       <%= link_to house_house_ingredients_path(@house.id, category: "Dairy and eggs"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/dairy_egg.png", alt: "dairies", class:"categories-res" %>
         <p>Dairies</p>
       <% end %>
-
      <%= link_to house_house_ingredients_path(@house.id, category: "Processed foods and ready meals"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/processed_meals.png", alt: "processed food", class:"categories-res" %>
-        <p>Processed Foods</p>
+        <p>Processed Food</p>
       <% end %>
-
     </div>
   </div>
-
       <div class="mt-3" id="ingredients">
         <div class="row row-cols-2 g-3">
           <% @house_ingredients.each do |house_ingredient| %>
@@ -59,28 +48,22 @@
                 <%= link_to house_house_ingredient_path(@house, house_ingredient), class:"text-decoration-none" do %>
                   <div class="card-body p-2">
                     <div class="d-flex align-items-center">
-
                       <div style="width: 48px;">
                         <% if house_ingredient.ingredient.photo.attached? %>
                           <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
                         <% end %>
                       </div>
-
                     </div>
-
                       <div class="mt-2">
                         <%= house_ingredient.ingredient.name.capitalize %>
                       </div>
-
                       <div class="text-end fw-bold small">
                         x <%= house_ingredient.quantity %> <%= house_ingredient.unit %>
                       </div>
-
                         <div class="card-text mt-2 fw-bold text-end">
                           <small>
                             <%= (house_ingredient.expiration_date - Date.today).to_i %> days left
                           </small>
-
                   </div>
                 </div>
               <% end %>
@@ -89,5 +72,4 @@
         <% end %>
       </div>
     </div>
-
 </div>
