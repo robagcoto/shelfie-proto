@@ -28,10 +28,14 @@
       <% end %>
     </div>
 
-    <div style="margin-bottom: 100px;"></div>
+    <div style="margin-bottom: 110px;"></div>
   </div>
 
+
   <div class="fixed-bottom p-3 bg-#f4f4f4">
-    <%= link_to 'Ask a question', new_chat_path, class: "btn btn-secondary btn-lg w-100 shadow", style: "border-radius: 50px;" %>
+    <div class="d-flex gap-2">
+      <%= link_to 'Magic recipe with short DLC', create_chat_dlc_chats_path, class: "btn btn-secondary btn-lg flex-fill shadow", style: "border-radius: 50px;" %>
+      <%= link_to 'Create a recipe with assistant', new_chat_path, class: "btn btn-secondary btn-lg flex-fill shadow", style: "border-radius: 50px;" %>
+    </div>
   </div>
 </div>
