@@ -5,17 +5,18 @@
       <%= image_tag "picto_navbar/picto_navbar_home.png", alt: "home", style: "height:40px;" %>
     <% end %>
 
-    <%= link_to recipes_path do %>
-      <%= image_tag "picto_navbar/picto_navbar_recipes.png", alt: "recipes", style: "height:40px;" %>
+    <%= link_to house_house_ingredients_path(@house) do %>
+      <%= image_tag "picto_navbar/picto_navbar_ingr.png", alt: "return", style: "height:40px;" %>
     <% end %>
 
     <%= link_to "#", data: { bs_toggle: "modal", bs_target: "#ticketModal" } do %>
       <%= image_tag "picto_navbar/picto_navbar_picture.png", alt: "picture", style: "height:40px;" %>
     <% end %>
 
-    <%= link_to house_house_ingredients_path(@house) do %>
-      <%= image_tag "picto_navbar/picto_navbar_ingr.png", alt: "return", style: "height:40px;" %>
+    <%= link_to recipes_path do %>
+      <%= image_tag "picto_navbar/picto_navbar_recipes.png", alt: "recipes", style: "height:40px;" %>
     <% end %>
+
   </div>
 </div>
 
