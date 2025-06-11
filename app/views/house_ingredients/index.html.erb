@@ -43,6 +43,11 @@
         <p>Dairies</p>
       <% end %>
 
+     <%= link_to house_house_ingredients_path(@house.id, category: "Processed foods and ready meals"), class: "col m-2 text-decoration-none", data: { turbo_stream: true } do %>
+        <%= image_tag "category_pictos/processed_meals.png", alt: "processed food", class:"categories-res" %>
+        <p>Processed Foods</p>
+      <% end %>
+
     </div>
   </div>
 

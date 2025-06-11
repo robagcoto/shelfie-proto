@@ -8,13 +8,14 @@ class HouseIngredientsController < ApplicationController
     if params[:storage_method].present?
       @house_ingredients = HouseIngredient.joins(:ingredient).where(ingredients: { storage_method: params[:storage_method] }).order(:expiration_date)
     else
-      @house_ingredients = HouseIngredient.all
+      @house_ingredients = HouseIngredient.all.order(:expiration_date)
     end
 
     if params[:category].present? && params[:category] != "All"
       @house_ingredients = @house_ingredients
       .joins(:ingredient)
       .where(ingredients: { category: params[:category] })
+      .order(:expiration_date)
     end
 
     respond_to do |format|
