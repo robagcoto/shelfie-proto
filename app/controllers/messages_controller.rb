@@ -110,7 +110,7 @@ class MessagesController < ApplicationController
 
   '
 
-  
+
 
   def index
     @chat = Chat.find(params[:chat_id])
@@ -134,6 +134,10 @@ class MessagesController < ApplicationController
     # @house_ingredient = current_user.house_ingredient
 
     if @message.save
+      if @chat.title == "Untitled" && @chat.messages.where(role: "user").count == 1
+      @chat.generate_title_from_first_message
+      end
+
       chat = RubyLLM.chat(
         model: 'openai/gpt-3.5-turbo',
         provider: 'openrouter',

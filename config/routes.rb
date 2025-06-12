@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   resources :ingredients, only: [:index]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :chats, only: [:index, :new, :create, :destroy] do
+  resources :chats, only: [:index, :create, :destroy] do
     resources :messages, only: [:create, :index, :destroy] do
       member do
         post :create_dlc
