@@ -8,7 +8,9 @@
     <%= link_to pages_dashboard_path do %>
       <%= image_tag "fav.png", alt: "fav", class: "fav-btn" %>
     <% end %>
+  <% end %>
 
+  <% if fav_robot %>
     <%= link_to llm_index_recipes_path do %>
       <%= image_tag "shelfie-robot2.png", alt: "robot", class:"fav-btn" %>
     <% end %>
