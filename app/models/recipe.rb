@@ -48,7 +48,8 @@ VALID_CATEGORIES = [
         name: recipe_ingredient.name,
         ok: (stock_quantity && stock_quantity >= recipe_ingredient.quantity) ? true : false,
         # ok:
-        quantity: recipe_ingredient.quantity
+        quantity: recipe_ingredient.quantity,
+        unit: recipe_ingredient.unit
       }
     end
   end
