@@ -1,4 +1,4 @@
-<%= render partial: "shared/top_nav", locals: { return_url: house_house_ingredients_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
+<%= render partial: "shared/top_nav", locals: { return_url: house_house_ingredients_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: false, fav_robot: false, } %>
 
 <turbo-frame id="house_ingredient_<%= @house_ingredient.id %>"
              data-turbo-cache="false">
