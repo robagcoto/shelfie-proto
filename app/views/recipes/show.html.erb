@@ -56,7 +56,6 @@
       </div>
 
         <div class="text-start p-3">
-          <%= console %>
           <% @recipe.ingredient_availability_for(@house).each do |ingredient| %>
             <li class="mb-1">
               <span class="badge <%= ingredient[:ok] ? 'bg-success' : 'bg-danger' %>">
