@@ -1,5 +1,5 @@
 .bandeau_top_home{
-  background-image: asset_url('home-top-back-3.png');
+  background-image: asset_url('home-top-back-4.png');
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -16,6 +16,22 @@
 
 .bandeau_top_ingr{
   background-image: asset_url('ingr-top-back-2.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 15vh;
+  z-index: -1;
+  padding-top: 5px;
+  margin-bottom: 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.bandeau_top_ingr_dark{
+  background-image: asset_url('ingr-top-back-dark.png');
   background-size: cover;
   background-position: center;
   position: absolute;
