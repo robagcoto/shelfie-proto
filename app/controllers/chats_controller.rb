@@ -202,87 +202,15 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = current_user.chats.new(title: "Untitled")
-    if @chat.save
-      prompt = params[:chat][:prompt]
-      user_message = @chat.messages.create!(prompt: prompt, role: "user", user_id: current_user.id)
-
-      # Génère un titre
-      @chat.generate_title_from_first_message
-
-      # Appel LLM
-      chat = RubyLLM.chat(
-        model: 'openai/gpt-3.5-turbo',
-        provider: 'openrouter',
-        assume_model_exists: true
-      )
-      response = chat.with_instructions(instructions).ask(prompt)
-
-      begin
-        parsed = JSON.parse(response.content)
-        recipe_data = parsed["recipe_attributes"]
-        description_text = parsed["recipe_description"]
-
-        # Création de la recette
-        recipe = Recipe.new(
-          name: recipe_data["name"],
-          description: recipe_data["description"],
-          rating: 0,
-          category: recipe_data["category"],
-          duration: recipe_data["duration"],
-          favorite: recipe_data["favorites"],
-          number_of_ingredients: recipe_data["ingredients_recipes"].size,
-          my_recipe: false,
-          user: current_user
-        )
-
-        if recipe.save
-          # Ajout des ingrédients
-          recipe_data["ingredients_recipes"].each_value do |ingredient|
-            recipe.ingredients_recipes.create!(
-              name: ingredient["name"],
-              quantity: ingredient["quantity"],
-              unit: ingredient["unit"]
-            )
-          end
-
-          # Ajout des étapes
-          recipe_data["steps"].each do |_, step_description|
-            Step.create!(recipe: recipe, description: step_description)
-          end
-
-          # Message assistant avec la recette en texte lisible
-          @assistant_message = @chat.messages.create!(
-            prompt: description_text,
-            role: :assistant,
-            user_id: current_user.id
-          )
-
-          flash[:notice] = "Recette créée avec succès 🎉"
-        else
-          flash[:alert] = "Erreur lors de l'enregistrement de la recette."
-        end
-      rescue JSON::ParserError => e
-        flash[:alert] = "Erreur de parsing JSON : #{e.message}"
-        @chat.messages.create!(
-          prompt: response.content,
-          role: :assistant,
-          user_id: current_user.id
-        )
-      rescue => e
-        flash[:alert] = "Erreur lors de la création de la recette : #{e.message}"
-        @chat.messages.create!(
-          prompt: response.content,
-          role: :assistant,
-          user_id: current_user.id
-        )
-      end
-
-      redirect_to chat_messages_path(@chat)
-    else
-      render :new, status: :unprocessable_entity
-    end
+  @chat = current_user.chats.new(title: "Untitled")
+  if @chat.save
+    redirect_to chat_messages_path(@chat)
+  else
+    # Gérer le cas d’erreur
+    redirect_to chats_path, alert: "Impossible de créer le chat."
   end
+end
+
 
   def destroy
     @chat = current_user.chats.find(params[:id])

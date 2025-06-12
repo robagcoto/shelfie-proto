@@ -33,9 +33,10 @@
                   class: "flex-fill d-flex justify-content-center align-items-center text-decoration-none text-secondary",
                   data: { turbo_method: :post } %>
 
-      <%= link_to "Ask a question",
-                  new_chat_path,
-                  class: "flex-fill d-flex justify-content-center align-items-center text-decoration-none text-secondary" %>
+      <%= link_to "Ask a recipe",
+                  chats_path,
+                  class: "flex-fill d-flex justify-content-center align-items-center text-decoration-none text-secondary",
+                  data: { turbo_method: :post } %>
     </div>
   </div>
 </div>
