@@ -1,14 +1,11 @@
+<div class="container my-1 ">
   <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: true, edit_display: false, add_display: true, add_ingredient: false } %>
-<div class="bandeau_top_ingr"></div>
-<div class="container ">
 
-<div class="container my-1" style="padding-bottom: 7rem;">
-
-  <h1 class="text-center pt-2">List of my recipes</h1>
+  <h1 class="text-center mb-4 mt-4">My assistant recipes</h1>
 
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <% @my_recipes.each do |recipe| %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="margin-bottom: 100px;">
+    <% @llm_recipes.each do |recipe| %>
 
       <div class="col">
         <%= link_to recipe_path(recipe), class: "card h-100 shadow-sm text-decoration-none" do %>

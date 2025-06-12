@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   resources :steps, only: [:new, :destroy]
 
   resources :recipes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    collection do
+      get :llm_index
+    end
     member do
-
       post :mark_as_done
       patch :toggle_favorite
 
@@ -36,7 +38,14 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index]
   # resources :ingredients, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :chats, only: [:index, :new, :create, :destroy] do
-    resources :messages, only: [:create, :index, :destroy]
+    resources :messages, only: [:create, :index, :destroy] do
+      member do
+        post :create_dlc
+      end
+    end
+    collection do
+      post :create_chat_dlc
+    end
   end
 
   get "/pages/dashboard", to: "pages#dashboard"
