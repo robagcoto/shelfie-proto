@@ -50,7 +50,7 @@
       <% end %>
     </div>
   </div>
-  
+
       <div id="ingredients">
         <div class="row row-cols-2 g-3">
           <% @house_ingredients.each do |house_ingredient| %>
@@ -61,7 +61,7 @@
                     <div class="d-flex align-items-center">
                       <div style="width: 48px;">
                         <% if house_ingredient.ingredient.photo.attached? %>
-                          <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
+                          <%= cl_image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
                         <% end %>
                       </div>
                     </div>
