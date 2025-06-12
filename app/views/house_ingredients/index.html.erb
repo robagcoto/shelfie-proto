@@ -1,8 +1,8 @@
 <%= render partial: "shared/top_nav", locals: { return_url: root_path, fav_display: false, edit_display: false, add_display: false, add_ingredient: true } %>
 
 
-
 <div class="container" style="padding-bottom: 7rem;">
+
   <div class="row text-center mt-4">
     <h1><%= @house.name %> ingredients</h1>
     <div class="categories-filter d-flex justify-content-between mt-4">
@@ -81,4 +81,5 @@
         <% end %>
       </div>
     </div>
+
 </div>
