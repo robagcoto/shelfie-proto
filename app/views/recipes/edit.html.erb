@@ -19,7 +19,7 @@
           </div>
 
           <div class="mb-3">
-            <%= f.input :rating, label: "Rating:", label_html: { class: "fw-bold" } %>
+            <%= f.input :rating, label: "Rating:", label_html: { class: "fw-bold" }, collection: (0..5).to_a %>
           </div>
 
           <div class="mb-3">

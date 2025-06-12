@@ -17,7 +17,7 @@
   <% end %>
 
   <% if edit_display %>
-    <%= link_to edit_recipe_path(@recipe) do %>
+    <%= link_to edit_recipe_path(@recipe), data: { turbo: false } do %>
       <%= image_tag "edit.png", alt:"edit", class:"edit-btn" %>
     <% end %>
   <% end %>
