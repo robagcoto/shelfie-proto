@@ -1,7 +1,7 @@
 <%= turbo_stream.update("ingredients") do %>
 
   <% if params[:category] != 'All' %>
-    <div class="mt-3 mb-3 text-center">
+    <div class="mb-4 text-center">
       <h3><%= params[:category] %></h3>
     </div>
   <% end %>

@@ -6,7 +6,7 @@
 
   <div class="row text-center mt-4">
     <h1><%= @house.name %> ingredients</h1>
-    <div class="categories-filter d-flex justify-content-between mt-4">
+    <div class="categories-filter d-flex justify-content-between pt-4">
 
       <%= link_to house_house_ingredients_path(@house.id, category: "All"), class: "text-decoration-none", data: { turbo_stream: true } do %>
         <%= image_tag "category_pictos/all-icon.png", alt: "all", class:"categories-res" %>
@@ -50,7 +50,8 @@
       <% end %>
     </div>
   </div>
-      <div class="mt-3" id="ingredients">
+  
+      <div id="ingredients">
         <div class="row row-cols-2 g-3">
           <% @house_ingredients.each do |house_ingredient| %>
             <div class="col">
