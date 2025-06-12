@@ -16,7 +16,7 @@
 
                <div style="width: 48px;">
                       <% if house_ingredient.ingredient.photo.attached? %>
-                        <%= image_tag house_ingredient.ingredient.photo, id:"ing-pic"%>
+                        <%= cl_image_tag house_ingredient.ingredient.photo.key, id:"ing-pic"%>
                       <% end %>
                     </div>
                   </div>

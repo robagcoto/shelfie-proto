@@ -78,4 +78,3 @@ end
 gem "devise"
 
 gem "ruby_llm", '1.3.0'
-
