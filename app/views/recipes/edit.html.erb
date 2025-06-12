@@ -1,4 +1,4 @@
-<%= render partial: "shared/top_nav", locals: { return_url: recipe_path(@recipe), fav_display: false, edit_display: false, add_display: false, add_ingredient: false } %>
+<%= render partial: "shared/top_nav", locals: { return_url: recipe_path(@recipe), fav_display: false, edit_display: false, add_display: false, add_ingredient: false, fav_robot: false } %>
 
 <div class="form-background"></div>
   <div class="container" style="margin-bottom: 5rem;">
@@ -30,7 +30,7 @@
 
         <div class="card mt-4 p-3 shadow-sm">
           <div>
-            <%= f.input :category, as: :radio_buttons, label: "Category:", label_html: { class: "fw-bold" }, collection: Recipe::VALID_CATEGORIES %>
+            <%= f.input :category, as: :select, label: "Category:", label_html: { class: "fw-bold" }, collection: Recipe::VALID_CATEGORIES, include_blank: "Select a category", input_html: { class: "form-control rounded-4" } %>
           </div>
 
           <div class="mb-3">

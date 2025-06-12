@@ -3,76 +3,73 @@
 <%# </div> %>
 
 
+  <div class="container padding-bottom: 12rem;" style="padding-top: 10px; padding-bottom: 7rem;">
+    <div class="d-flex justify-content-between align-items-center;">
 
-<%# <div class="bandeau_top"></div> %>
-<div class="container" style="padding-bottom: 5rem;">
+      <div>
+        <h1 class="mb-0 mt-0" style="font-size:35px;">Welcome to Shelfie!</h1>
+        <p class="fs-6 text-muted">Explore your recipes, ingredients, and much more</p>
+      </div>
 
-  <div class="d-flex justify-content-between align-items-center mt-3">
-
-    <div>
-      <h1 class="mb-0 mt-0" style="font-size:35px;">Welcome to Shelfie!</h1>
-      <p class="fs-6 text-muted">Explore your recipes, ingredients, and much more</p>
-    </div>
-
-    <div class="mb-5 dropdown">
-      <a href="#" class="rounded-circle" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= image_tag "icon_user.png", alt: "User", style: "width:60px; height:60px;" %>
-      </a>
-      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+      <div class="mb-5 dropdown">
+        <a href="#" class="rounded-circle" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag "icon_user.png", alt: "User", style: "width:60px; height:60px;" %>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+        </div>
       </div>
     </div>
+    <div class="bandeau_top_home"></div>
 
+      <div class="col mt-2">
+        <%= link_to house_house_ingredients_path(@house), class: "text-decoration-none" do %>
+          <div class="card h-100 shadow-sm home-hero-card" style ="height: 300px;">
+            <div class="card card-background text-secondary">
+              <div class="card-img-overlay">
+                <h1 class="card-title text-center text-secondary" style="font-weight: 600;">Ingredients</h1>
+                <h4 class="card-title text-secondary">Storage Alerts:</h4>
+
+                <ul class="list-unstyled text-secondary" id="ingredients" style="margin-bottom: 10px">
+                  <% @house_ingredients.first(4).each do |house_ingredient| %>
+                    <li>
+                      <%= house_ingredient.ingredient.name.capitalize %>
+                      - <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> you have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
+                    </li>
+                  <% end %>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <%= link_to recipes_path, class: "text-decoration-none" do %>
+          <div class="card h-100 shadow-sm my-3 home-hero-card">
+            <div class="card card-light-background text-primary">
+              <div class="card-img-overlay">
+                <h1 class="card-title text-center">Recipes</h1>
+                <h4 class="card-title">Last viewed:</h4>
+                <ul class="list-unstyled">
+                  <% @recipes.first(3).each do |recipe| %>
+                    <li><%= recipe.name %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <%= link_to chats_path do %>
+          <div class="card h-100 shadow-sm mb-xxl home-hero-card">
+            <div class="card card-other-background text-secondary">
+              <div class="card-img-overlay text-center">
+                <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
+                <h5 class="p-0">Cooking Assistant</h5>
+                <p>"What would you like to cook today?"</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
   </div>
-
-  <div class="col mt-2">
-    <%= link_to house_house_ingredients_path(@house), class: "text-decoration-none" do %>
-      <div class="card h-100 shadow-sm home-hero-card" style ="height: 300px;">
-        <div class="card card-background text-secondary">
-          <div class="card-img-overlay">
-            <h1 class="card-title text-center text-secondary" style="font-weight: 600;">Ingredients</h1>
-            <h4 class="card-title text-secondary">Storage Alerts:</h4>
-
-            <ul class="list-unstyled text-secondary" id="ingredients" style="margin-bottom: 10px">
-              <% @house_ingredients.first(4).each do |house_ingredient| %>
-                <li>
-                  <strong><%= house_ingredient.ingredient.name.capitalize %></strong>
-                  | <span class="text-secondary"><%= house_ingredient.quantity %> <%= house_ingredient.unit %> | You have <strong><%= (house_ingredient.expiration_date - Date.today).to_i %> days left </strong></span>
-                </li>
-              <% end %>
-            </ul>
-
-          </div>
-        </div>
-      </div>
-    <% end %>
-
-    <%= link_to recipes_path, class: "text-decoration-none" do %>
-      <div class="card h-100 shadow-sm my-3 home-hero-card">
-        <div class="card card-light-background text-primary">
-          <div class="card-img-overlay">
-            <h1 class="card-title text-center">Recipes</h1>
-            <h4 class="card-title">Last viewed:</h4>
-            <ul class="list-unstyled">
-              <% @recipes.first(3).each do |recipe| %>
-                <li><%= recipe.name %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    <% end %>
-
-    <%= link_to chats_path do %>
-      <div class="card h-100 shadow-sm mb-xxl home-hero-card">
-        <div class="card card-other-background text-secondary">
-          <div class="card-img-overlay text-center">
-            <%= image_tag "shelfie-logo-chat-1.png", alt: "return", width: 120, height: 120, class: "rounded-circle" %>
-            <h5 class="p-0">Cooking Assistant</h5>
-            <p>"What would you like to cook today?"</p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>

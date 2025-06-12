@@ -1,0 +1,39 @@
+.blur-background {
+  position: fixed;        // <— garder uniquement fixed
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2em;
+  background: rgba(255,255,255,0.3);
+  border-radius: 1em 1em 0 0;
+  z-index: 1;
+  overflow: visible;      // pour laisser déborder le ::before
+  // position: relative;  // <— SUPPRIMER cette ligne !
+
+  // on déporte tout le backdrop-filter ici et on masque le haut
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20px;           // 20px au-dessus pour adoucir
+    left: 0;
+    width: 100%;
+    height: calc(100% + 60px);
+    background-color: rgba(255, 255, 255, 0.2);  // fond plus transparent
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: inherit;
+    z-index: -1;
+
+    mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    rgb(255, 255, 255) 20%,
+    rgb(224, 224, 224) 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    rgb(255, 255, 255) 20%,
+    rgb(220, 220, 220) 100%
+  );
+  }
+}
