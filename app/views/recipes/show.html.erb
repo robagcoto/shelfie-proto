@@ -25,7 +25,7 @@
             <strong>Category:</strong>
               <p><%= @recipe.category %></p>
             <strong>Duration:</strong>
-              <p><%= @recipe.duration %> min</p>
+              <p><%= @recipe.duration %></p>
           </div>
 
         </div>
@@ -87,7 +87,7 @@
     <div class="d-flex justify-content-between">
 
       <div class="mx-auto">
-        <%= button_to "Mark as done", mark_as_done_recipe_path(@recipe), method: :post, class:"btn btn-primary text-secondary" %>
+        <%= link_to "Mark as done", house_house_ingredients_path(@house), method: :post, class:"btn btn-primary text-secondary" %>
       </div>
 
       <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"} do %>

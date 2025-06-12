@@ -47,7 +47,7 @@ steps1 = [
 recipe1 = Recipe.create!(
   name: "Spaghetti Carbonara",
   description: "The creamy, cheesy, bacon-hugged pasta that thinks it's too cool for cream !",
-  duration: 20,
+  duration: "20 minutes",
   category: "Italian",
   rating: 5,
   user: user1,
@@ -92,7 +92,7 @@ steps2 = [
 recipe2 = Recipe.new(
   name: "Chicken Tikka Masala",
   description: "The bold, buttery curry that turns chicken into a rockstar.",
-  duration: 50,
+  duration: "50 minutes",
   category: "Indian",
   rating: 4,
   user: user1,
@@ -132,7 +132,7 @@ steps3 = [
 recipe3 = Recipe.new(
   name: "Sushi Rolls",
   description: "The bite-sized ocean hugs wrapped in rice and cool vibes!",
-  duration: 45,
+  duration: "45 minutes",
   category: "Japanese",
   rating: 5,
   user: user1,
@@ -171,7 +171,7 @@ steps4 = [
 recipe4 = Recipe.new(
   name: "Guacamole",
   description: "The creamy green dip that turns chips into a party.",
-  duration: 10,
+  duration: "10 minutes",
   category: "Mexican",
   rating: 4,
   user: user1,
@@ -214,7 +214,7 @@ steps5 = [
 recipe5 = Recipe.new(
   name: "Ratatouille",
   description: "A colorful veggie confetti that tastes like a French garden party. ",
-  duration: 50,
+  duration: "50 minutes",
   category: "French",
   rating: 3,
   user: user1,
@@ -255,7 +255,7 @@ steps6 = [
 recipe6 = Recipe.new(
   name: "Tacos al Pastor",
   description: "Sweet, spicy, smoky pork tacos with pineapple party vibes.",
-  duration: 60,
+  duration: "60 minutes",
   category: "Mexican",
   rating: 5,
   user: user1,
@@ -293,7 +293,7 @@ steps7 = [
 recipe7 = Recipe.new(
   name: "Miso Soup",
   description: "Traditional Japanese soup with tofu",
-  duration: 15,
+  duration: "15 minutes",
   category: "Japanese",
   rating: 4,
   user: user1,
